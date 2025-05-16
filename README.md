@@ -1,4 +1,28 @@
 # Terminal Settings
+## Warp
+
+- `brew install warp`
+- warp theme with catppuccin
+  ```
+  mkdir -p ~/.warp/themes
+  curl --output-dir ~/.warp/themes -LO https://raw.githubusercontent.com/catppuccin/warp/main/themes/catppuccin_mocha.yml
+  curl --output-dir ~/.warp/themes -LO https://raw.githubusercontent.com/catppuccin/warp/main/themes/catppuccin_macchiato.yml
+  curl --output-dir ~/.warp/themes -LO https://raw.githubusercontent.com/catppuccin/warp/main/themes/catppuccin_frappe.yml
+  curl --output-dir ~/.warp/themes -LO https://raw.githubusercontent.com/catppuccin/warp/main/themes/catppuccin_latte.yml
+  ```
+  restart warp and select the theme
+
+## Install starship
+- `brew install starship`
+- add to `~/.zshrc`
+  ```
+  eval "$(starship init zsh)"
+  ```
+- configure starship with catppuccin colors
+  ```
+  mkdir -p ~/.config
+  cp starship.toml ~/.config
+  ```
 
 ## iTerm2 color scheme
 
