@@ -54,3 +54,4 @@
 
 ## Lazygit
 - `brew install lazygit`
+
