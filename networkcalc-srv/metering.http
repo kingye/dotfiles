@@ -1,0 +1,27 @@
+### Call Unified Metering API
+
+### collectUsages
+POST http://localhost:4004/unified-metering/collectUsages
+Content-Type: application/json
+Authorization: Basic BEM_ALL:Welcome1
+
+{
+}
+
+### sendUsages
+POST http://localhost:4004/unified-metering/sendUsages
+Content-Type: application/json
+Authorization: Basic BEM_ALL:Welcome1
+
+{
+  "usages": [
+    {
+      "id": "test",
+      "qualifier": "testQ",
+      "usageCount": 1,
+      "customDimensions": {
+        "dimension1": "testValue"
+      }
+    }
+  ]
+}
