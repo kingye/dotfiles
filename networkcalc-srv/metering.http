@@ -1,6 +1,6 @@
 // Call Unified Metering API
 
-// collectUsages
+// @name=collectUsages
 POST http://localhost:4004/unified-metering/collectUsages
 Content-Type: application/json
 Authorization: Basic BEM_ALL:Welcome1
@@ -9,7 +9,7 @@ Authorization: Basic BEM_ALL:Welcome1
 }
 
 ### 
-//sendUsages
+//@name=sendUsages
 POST http://localhost:4004/unified-metering/sendUsages
 Content-Type: application/json
 Authorization: Basic BEM_ALL:Welcome1
