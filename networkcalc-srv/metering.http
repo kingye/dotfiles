@@ -1,28 +1,52 @@
 // Call Unified Metering API
 
-// @name=collectUsages
-POST http://localhost:4004/unified-metering/collectUsages
-Content-Type: application/json
-Authorization: Basic BEM_ALL:Welcome1
-
-{
-}
-
-### 
-//@name=sendUsages
+// @name=sendUsages-nc
 POST http://localhost:4004/unified-metering/sendUsages
 Content-Type: application/json
+dwc-subaccount-id: c645be38-509d-4335-b0a3-bf772f0bbdf3
+dwc-tenent: c645be38-509d-4335-b0a3-bf772f0bbdf2
 Authorization: Basic BEM_ALL:Welcome1
 
 {
-  "usages": [
-    {
-      "id": "test",
-      "qualifier": "testQ",
-      "usageCount": 1,
-      "customDimensions": {
-        "dimension1": "testValue"
-      }
-    }
-  ]
+    "usages" : [
+       {
+            "id": "c2214e4e-9629-42a0-8fbb-5d204c29c21b",
+            "timestamp": "2025-05-21T01:30:00.339Z",
+            "measure": {
+                "id": "footprint-calculated",
+                "value": 100
+            }
+        }
+    ]
 }
+
+###
+//@name=ingestUsages
+// @certificate=test.pem
+// @certificate-key=key2.pem
+POST https://input.eu.edp.services.cloud.sap/v2/accounts/metering_live_1ad0df7d_ef30_4f49_a557_0743d886dd4e/namespaces/metering/datastreams/btp$1/eventBatch
+Content-Type: application/json
+
+[
+   {
+        "id": "c2214e4e-9629-42a0-8fbb-5d204c29c21d",
+        "timestamp": "2025-05-21T01:30:00.339Z",
+        "consumer": {
+            "region": "cf-eu20",
+            "btp": {
+                "environment": "CF",
+                "subAccount": "c645be38-509d-4335-b0a3-bf772f0bbdf2"
+            }
+        },
+        "product": {
+            "service": {
+                "id": "TEST",
+                "plan": "standard"
+            }
+        },
+        "measure": {
+            "id": "footprint-calculated",
+            "value": 100
+        }
+    }
+]
