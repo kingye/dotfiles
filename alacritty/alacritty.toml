@@ -37,14 +37,14 @@ shell={ program = "/bin/zsh", args = ["-l"] }
 
 [keyboard]
 bindings = [
-  { key = "v", mods = "Command", action = "Paste" },
-  { key = "c", mods = "Command", action = "Copy" },
-  { key = "+", mods = "Command", action = "IncreaseFontSize" },
-  { key = "-", mods = "Command", action = "DecreaseFontSize" },
-  { key = "0", mods = "Command", action = "ResetFontSize" },
-  { key = "M", mods = "Command", action = "ToggleMaximized" },
-  { key = "h", mods = "Command", action = "Hide" },
-  { key = "q", mods = "Command", action = "Quit" },
-  { key = "n", mods = "Command|Shift", action = "SpawnNewInstance" },
-  { key = "v", mods = "Command|Shift", action = "ToggleViMode" },
+    { key = "v", mods = "Command", action = "Paste" },
+    { key = "c", mods = "Command", action = "Copy" },
+    { key = "+", mods = "Command", action = "IncreaseFontSize" },
+    { key = "-", mods = "Command", action = "DecreaseFontSize" },
+    { key = "0", mods = "Command", action = "ResetFontSize" },
+    { key = "M", mods = "Command", action = "ToggleMaximized" },
+    { key = "h", mods = "Command", action = "Hide" },
+    { key = "q", mods = "Command", action = "Quit" },
+    { key = "n", mods = "Command|Shift", action = "SpawnNewInstance" },
+    { key = "f", mods = "Command|Shift", action = "ToggleFullscreen" },
 ]
