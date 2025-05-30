@@ -28,8 +28,10 @@ Authorization: Basic BEM_ALL:Welcome1
     const credentials = $xsenv.serviceCredentials({ name : "sfm-unified-metering" });
     request.variables.set("cert", credentials.certificate);
     request.variables.set("key", credentials.key);
+    request.variables.set("endpoint", credentials.endpoints.usageIngestion);
+    request.variables.set("meteringAccountName", credentials.meteringAccount.name);
 %}
-POST https://input.eu.edp.services.cloud.sap/v2/accounts/metering_live_1ad0df7d_ef30_4f49_a557_0743d886dd4e/namespaces/metering/datastreams/btp$1/eventBatch
+POST {{endpoint}}/v2/accounts/{{meteringAccountName}}/namespaces/metering/datastreams/btp$1/eventBatch
 Content-Type: application/json
 
 [
@@ -45,7 +47,7 @@ Content-Type: application/json
         },
         "product": {
             "service": {
-                "id": "TEST",
+                "id": "sustainability-footprint-management",
                 "plan": "standard"
             }
         },
@@ -76,7 +78,7 @@ Content-Type: application/json
         },
         "product": {
             "service": {
-                "id": "TEST",
+                "id": "sustainability-footprint-management",
                 "plan": "standard"
             }
         },
@@ -86,3 +88,18 @@ Content-Type: application/json
         }
     }
 ]
+
+###
+//@name=retreiveUsages
+// @certificate={{cert}}
+// @certificate-key={{key}}
+< {%
+    const credentials = $xsenv.serviceCredentials({ name : "sfm-unified-metering" });
+    request.variables.set("cert", credentials.certificate);
+    request.variables.set("key", credentials.key);
+    request.variables.set("endpoint", credentials.endpoints.syncRetrieval);
+    request.variables.set("meteringAccountName", credentials.meteringAccount.name);
+%}
+GET {{endpoint}}/v2/accounts/{{meteringAccountName}}/namespaces/metering/datastreams/btp$1/events
+Content-Type: application/json
+
