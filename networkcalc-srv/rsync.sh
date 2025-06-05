@@ -5,6 +5,7 @@ rsync -azP --delete \
     --exclude='gen' \
     --exclude='out' \
     --exclude=.git \
+    --exclude='*.mtar' \
     ./ 10.239.116.147:projects/c21-networkcalculation-srv
 
 

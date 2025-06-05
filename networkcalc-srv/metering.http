@@ -103,3 +103,24 @@ Content-Type: application/json
 GET {{endpoint}}/v2/accounts/{{meteringAccountName}}/namespaces/metering/datastreams/btp$1/events
 Content-Type: application/json
 
+###
+//@name=nc-metering-service
+// @certificate={{CF_INSTANCE_CERT}}
+// @certificate-key={{CF_INSTANCE_KEY}}
+POST https://c21-eu20-c214bc14f17-019736ef-c82d-aa6a-69b5-43e96dcdce18.cfapps.eu20.hana.ondemand.com/unified-metering/sendUsages
+Content-Type: application/json
+dwc-subaccount-id: 03d9acb6-3078-48bb-935c-fd5f125c547b
+dwc-tenent: 03d9acb6-3078-48bb-935c-fd5f125c547b
+
+{
+    "usages" : [
+       {
+            "id": "c2214e4e-9629-42a0-8fbb-5d204c29c21b",
+            "timestamp": "2025-05-21T01:30:00.339Z",
+            "measure": {
+                "id": "footprint-calculated",
+                "value": 100
+            }
+        }
+    ]
+}
