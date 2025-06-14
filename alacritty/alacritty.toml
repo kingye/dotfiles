@@ -10,6 +10,7 @@ decorations = "Buttonless"
 opacity = 0.95
 blur = true 
 decorations_theme_variant="Dark"
+option_as_alt = "Both"
 
 [scrolling]
 multiplier = 3
@@ -35,7 +36,7 @@ thickness = 0.15
 [terminal]
 shell={ program = "/bin/zsh", args = ["-l"] }
 
-
+# Cmd is the leader key for macOS
 [keyboard]
 bindings = [
     { key = "v", mods = "Command", action = "Paste" },
