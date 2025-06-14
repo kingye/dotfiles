@@ -1,6 +1,8 @@
 ## Yazi
+
 `brew install yazi ffmpeg sevenzip jq poppler fd ripgrep fzf zoxide resvg imagemagick font-symbols-only-nerd-font`
 https://github.com/sxyazi/yazi
+
 ## SPF
 https://superfile.netlify.app/
 
