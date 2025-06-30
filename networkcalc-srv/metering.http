@@ -90,17 +90,17 @@ Content-Type: application/json
 ]
 
 ###
-//@name=retreiveUsages
-// @certificate={{cert}}
-// @certificate-key={{key}}
-< {%
-    const credentials = $xsenv.serviceCredentials({ name : "sfm-unified-metering" });
-    request.variables.set("cert", credentials.certificate);
-    request.variables.set("key", credentials.key);
-    request.variables.set("endpoint", credentials.endpoints.syncRetrieval);
-    request.variables.set("meteringAccountName", credentials.meteringAccount.name);
-%}
-GET {{endpoint}}/v2/accounts/{{meteringAccountName}}/namespaces/metering/datastreams/btp$1/events
+// @name=retrieveUsages
+// @xsenv={ "name": "sfm-unified-metering" }
+// @mtls
+GET {{endpoints.syncRetrieval}}/v2/accounts/{{meteringAccount.name}}/namespaces/metering/datastreams/btp$1/events
+Content-Type: application/json
+
+###
+// @name=retrieveUsages_eu20
+// @xsenv={ "name": "eu20-unified-metering" }
+// @mtls
+GET {{endpoints.syncRetrieval}}/v2/accounts/{{meteringAccount.name}}/namespaces/metering/datastreams/btp$1/events
 Content-Type: application/json
 
 ###
@@ -124,3 +124,11 @@ dwc-tenent: 03d9acb6-3078-48bb-935c-fd5f125c547b
         }
     ]
 }
+
+
+###
+// @name=saas-tenants
+// @oauth
+// @xsenv={ "name": "saas-registry" }
+// @json
+GET {{saas_registry_url}}/saas-manager/v1/application/subscriptions

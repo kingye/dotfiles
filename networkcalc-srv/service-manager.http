@@ -1,0 +1,6 @@
+// @name instances
+// @json
+// @oauth
+// @xsenv {"name": "pfm-foundation-service-manager"}
+GET {{sm_url}}/v1/service_instances
+
