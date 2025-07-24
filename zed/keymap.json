@@ -98,6 +98,8 @@
 
       "space g g": "git_panel::ToggleFocus",
 
+      "space f t": "terminal_panel::ToggleFocus",
+
       "space |": "pane::SplitRight",
 
       "space -": "pane::SplitDown"
