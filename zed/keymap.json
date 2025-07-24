@@ -96,6 +96,8 @@
       // Show project panel with current file
       "space e": "pane::RevealInProjectPanel",
 
+      "space g g": "git_panel::ToggleFocus",
+
       "space |": "pane::SplitRight",
 
       "space -": "pane::SplitDown"
