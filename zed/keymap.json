@@ -214,6 +214,19 @@
       "s": ["vim::PushSneak", {}],
       "S": ["vim::PushSneakBackward", {}]
     }
+  },
+  {
+    "context": "GitPanel",
+    "bindings": {
+      // Navigate between panel
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "P": "git::Push",
+      "p": "git::Pull",
+      "c": "git::Commit"
+    }
   }
   // Subword motion is not working really nice with `ciw`, disable for now
   // {
