@@ -97,11 +97,28 @@ GET {{endpoints.syncRetrieval}}/v2/accounts/{{meteringAccount.name}}/namespaces/
 Content-Type: application/json
 
 ###
+// @name=retrieveUsages_by_date
+// @xsenv={ "name": "sfm-unified-metering" }
+// @mtls
+GET {{endpoints.syncRetrieval}}/v2/accounts/{{meteringAccount.name}}/namespaces/metering/datastreams/btp$1/events?from={{from}}&to={{to}}
+Content-Type: application/json
+
+
+
+###
 // @name=retrieveUsages_eu20
 // @xsenv={ "name": "eu20-unified-metering" }
 // @mtls
 GET {{endpoints.syncRetrieval}}/v2/accounts/{{meteringAccount.name}}/namespaces/metering/datastreams/btp$1/events
 Content-Type: application/json
+
+###
+// @name=retrieveUsages_eu20_by_date
+// @xsenv={ "name": "eu20-unified-metering" }
+// @mtls
+GET {{endpoints.syncRetrieval}}/v2/accounts/{{meteringAccount.name}}/namespaces/metering/datastreams/btp$1/events?from={{from}}&to={{to}}
+Content-Type: application/json
+
 
 ###
 //@name=nc-metering-service
