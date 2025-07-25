@@ -1,0 +1,67 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "language_models": {
+    "openai": {
+      "available_models": [
+        {
+          "name": "deepseek-ai/DeepSeek-R1",
+          "display_name": "DeepSeek-R1",
+          "max_tokens": 64000,
+          "max_completion_tokens": 4096
+        },
+        {
+          "name": "deepseek-ai/DeepSeek-V3",
+          "display_name": "DeepSeek-V3",
+          "max_tokens": 64000,
+          "max_completion_tokens": 4096
+        }
+      ],
+      "api_url": "https://api.siliconflow.cn/v1"
+    }
+  },
+  "features": {
+    "edit_prediction_provider": "copilot"
+  },
+  "show_edit_predictions": true,
+  "ssh_connections": [
+    {
+      "host": "10.239.116.147",
+      "projects": [
+        {
+          "paths": ["/sapmnt/home1/d032459"]
+        }
+      ]
+    }
+  ],
+  "agent": {
+    "default_model": {
+      "provider": "openai",
+      "model": "deepseek-ai/DeepSeek-R1"
+    }
+  },
+  "autosave": "on_focus_change",
+  "vim_mode": true,
+  "buffer_font_family": "Fira Code",
+  "buffer_font_size": 15.0,
+  "ui_font_family": "JetBrainsMonoNL Nerd Font Mono",
+  "ui_font_size": 15.0,
+  "terminal": {
+    "font_family": "JetBrainsMonoNL Nerd Font",
+    "font_size": 15
+  },
+  "theme": {
+    "mode": "dark",
+    "dark": "Catppuccin Mocha",
+    "light": "Catppuccin Latte"
+  },
+  "debugger": {
+    "timeout": 3000
+  }
+}
