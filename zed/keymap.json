@@ -41,11 +41,6 @@
     "bindings": {
       // put key-bindings here if you want them to work only in normal mode
       // Window movement bindings
-      // Ctrl jklk to move between panes
-      "ctrl-h": "workspace::ActivatePaneLeft",
-      "ctrl-l": "workspace::ActivatePaneRight",
-      "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-j": "workspace::ActivatePaneDown",
 
       // +LSP
       "space c a": "editor::ToggleCodeActions",
@@ -103,10 +98,8 @@
       "space |": "pane::SplitRight",
 
       "space -": "pane::SplitDown",
-
-      "ctrl-s s": "projects::OpenRecent",
-
-      "ctrl-w q": "pane::CloseAllItems"
+      "space u L": "editor::ToggleRelativeLineNumbers",
+      "space u l": "editor::ToggleLineNumbers"
     }
   },
   // Empty pane, set of keybindings that are available when there is no active editor
@@ -161,12 +154,8 @@
   {
     "context": "Terminal",
     "bindings": {
-      "ctrl-h": "workspace::ActivatePaneLeft",
-      "ctrl-l": "workspace::ActivatePaneRight",
-      "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-j": "workspace::ActivatePaneDown",
-      "ctrl-/": "workspace::ToggleBottomDock",
-      "ctrl-s s": "projects::OpenRecent"
+      "ctrl-s %": "pane::SplitRight",
+      "ctrl-s \"": "pane::SplitDown"
     }
   },
   // File panel (netrw)
@@ -183,22 +172,20 @@
       // Close project panel as project file panel on the right
       "q": "workspace::ToggleRightDock",
       // Navigate between panel
-      "ctrl-h": "workspace::ActivatePaneLeft",
-      "ctrl-l": "workspace::ActivatePaneRight",
-      "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-j": "workspace::ActivatePaneDown",
-      "space e": "workspace::ToggleLeftDock",
-      "ctrl-s s": "projects::OpenRecent"
+      "space e": "workspace::ToggleLeftDock"
     }
   },
   // Panel nagivation
   {
-    "context": "Dock",
+    "context": "ProjectPanel || Editor || Dock || RightDock || LeftDock || BottomDock || TopDock || TerminalPanel || GitPanel",
     "bindings": {
-      "ctrl-w h": "workspace::ActivatePaneLeft",
-      "ctrl-w l": "workspace::ActivatePaneRight",
-      "ctrl-w k": "workspace::ActivatePaneUp",
-      "ctrl-w j": "workspace::ActivatePaneDown"
+      // Navigate between panel
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-s s": "projects::OpenRecent",
+      "ctrl-w q": "pane::CloseAllItems"
     }
   },
   {
@@ -226,14 +213,18 @@
   {
     "context": "GitPanel",
     "bindings": {
-      // Navigate between panel
-      "ctrl-h": "workspace::ActivatePaneLeft",
-      "ctrl-l": "workspace::ActivatePaneRight",
-      "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-j": "workspace::ActivatePaneDown",
       "P": "git::Push",
       "p": "git::Pull",
-      "c": "git::Commit"
+      "c": "git::Commit",
+      "s": "git::StageAll",
+      "u": "git::UnstageAll",
+      "S": "git::StageRange",
+
+      // Show project panel with current file
+      "space e": "pane::RevealInProjectPanel",
+      "space f f": "file_finder::Toggle",
+      // Project search
+      "space /": "pane::DeploySearch"
     }
   }
   // Subword motion is not working really nice with `ciw`, disable for now

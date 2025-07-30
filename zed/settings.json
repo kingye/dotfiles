@@ -46,6 +46,7 @@
       "model": "deepseek-ai/DeepSeek-R1"
     }
   },
+  "relative_line_numbers": true,
   "autosave": "on_focus_change",
   "vim_mode": true,
   "buffer_font_family": "Fira Code",
