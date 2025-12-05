@@ -11,7 +11,7 @@
 [alias]
     # Essential shortcuts
     s = status
-    co = checkout  
+    co = checkout
     br = branch
     cm = commit -m
     p = pull

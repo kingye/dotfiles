@@ -21,11 +21,12 @@ return {
        },
       picker = {
         hidden = true,
+        ignored = true, -- show files ignored by git like node_modules
+        exclude = {".git", ".DS_Store" },
         sources = {
           files = {
             hidden = true,   -- Show hidden/dotfiles
             ignored = true, -- show files ignored by git like node_modules
-            include = {"node_modules"},
             exclude = { ".git" },
           },
           grep = {
