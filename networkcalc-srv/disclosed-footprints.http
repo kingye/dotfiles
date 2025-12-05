@@ -1,0 +1,14 @@
+###
+// @name=disclosed-footprints
+// @xsenv={ "name": "sfm" }
+// @oauth
+GET {{endpoints.apihost}}/carbondata-outbound/v2/2/footprints
+Content-Type: application/json
+
+
+###
+// @name=disclosed-footprints-e2e
+// @xsenv={ "name": "sfm-e2e-test" }
+// @oauth
+GET {{endpoints.apihost}}/carbondata-outbound/v2/2/footprints
+Content-Type: application/json

@@ -1,0 +1,28 @@
+{
+  "name": "saas-registry",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "ts-node src/index.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/mustache": "^4.2.6",
+    "@types/node-forge": "1.3.13",
+    "@types/sap__xsenv": "^3.3.2",
+    "node-network-devtools": "^1.0.29",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@dwc/nodejs-utils": "^2.7.0",
+    "@sap/cds": "^7",
+    "@sap/xsenv": "^6.0.0",
+    "express": "^5.1.0",
+    "mustache": "^4.2.0"
+  }
+}

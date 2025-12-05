@@ -1,0 +1,135 @@
+meta {
+  name: push
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:4004/supplier-footprint-service/push
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "data": [
+      {
+        "id": "91715e5e-fd0b-4d1c-8fab-76290c46e6ed",
+        "standardName": "PACT",
+        "standardVersion": "3.0.2",
+        "created": "2025-03-01T09:32:20Z",
+        "status": "Active",
+        "validityPeriodStart": "2025-03-01T09:32:20Z",
+        "validityPeriodEnd": "2026-12-31T00:00:00Z",
+        "supplierId": "69585GB6-56T9-6958-E526-6FDGZJHU1326",
+        "productId": "5695872369587",
+        "precedingPfIds": [
+          "69585GB6-56T9-6958-E526-6FDGZJHU1326"
+        ],
+        "comment": "",
+        "pcf": {
+          "declaredUnitOfMeasurement": "L",
+          "declaredUnitAmount": "1",
+          "referencePeriodStart": "2024-01-01T00:00:00Z",
+          "referencePeriodEnd": "2026-01-01T00:00:00Z",
+          "primaryDataShare": "12.9",
+          "geographyRegionOrSubregion": "Western Europe",
+          "environmentalImpacts": [
+            {
+              "category": "CLCH",
+              "value": "1.63"
+            },
+            {
+              "category": "CLCF",
+              "value": "1.5"
+            },
+            {
+              "category": "CLCLM",
+              "value": "0.6"
+            },
+            {
+              "category": "RELM",
+              "value": "-0.4"
+            },
+            {
+              "category": "REPCC",
+              "value": "-1.5"
+            }
+          ],
+          "environmentalProperties": [
+            {
+              "type": "fossilCarbonContent",
+              "value": "0",
+              "unit": "kgC"
+            },
+            {
+              "type": "biogenicCarbonContent",
+              "value": "0.41"
+            }
+          ]
+        },
+        "additionalData": {
+          "ipccCharacterizationFactors": [
+            "AR"
+          ],
+          "crossSectoralStandards": [
+            "GHG-Product",
+            "ISO14067"
+          ],
+          "productOrSectorSpecificRules": [
+            {
+              "operator": "Other",
+              "ruleNames": [
+                "The Product Carbon Footprint Guideline for the Chemical Industry, v.2.0"
+              ],
+              "otherOperatorName": "Tfs"
+            }
+          ],
+  
+          "boundaryProcessesDescription": "1) Material acquisition and preprocessing, including growth of corn 2) Production: fuel consumption, electricity consumption, water consumption, process-generated direct emissions 3) Distribution and storage: transportation of the finished product from manufacturing site to storage site",
+          "secondaryEmissionFactorSources": [
+            {
+              "name": "Ecoinvent",
+              "version": "3.1"
+            }
+          ],
+          "exemptedEmissionsPercent": "0",
+          "exemptedEmissionsDescription": "",
+          "allocationRulesDescription": "Using mass allocation following the product specific rule as per PACT Framework decision-making tree",
+          "dqi": {
+            "technologicalDQR": "1.6",
+            "temporalDQR": "2.6",
+            "geographicalDQR": "1.8"
+          }
+        },
+        "extensions": [
+          {
+            "name": "shipmentId",
+            "value": "S1234567890"
+          },
+          {
+            "name": "consignmentId",
+            "value": "Cabc.def-ghi"
+          },
+          {
+            "name": "shipmentType",
+            "value": "PICKUP"
+          },
+          {
+            "name": "weight",
+            "value": "10"
+          },
+          {
+            "name": "transportChainElementId",
+            "value": "ABCDEFGHI"
+          }
+        ]
+      }
+    ]
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

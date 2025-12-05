@@ -1,0 +1,39 @@
+[user]
+	email = ye.jin@sap.com
+	name = Ye Jin
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+  required = true
+
+# Add this to your ~/.gitconfig file
+[alias]
+    # Essential shortcuts
+    s = status
+    co = checkout  
+    br = branch
+    cm = commit -m
+    pl = pull
+    ps = push
+    pu = push -u origin HEAD
+  
+    # Stash
+    sl = stash list
+    sll = stash-list
+    slll = stash-list --full
+    ss = stash save
+    sa = "!sh -c 'git stash apply stash@{$1}' -"
+    sd = "!sh -c 'git stash drop stash@{$1}' -"
+    sp = statsh pop
+    
+    # Workflow boosters  
+    unstage = reset -q HEAD --
+    discard = checkout --
+    uncommit = reset --soft HEAD^
+    
+    # Power tools
+    whoami = "!git config user.name && git config user.email"
+    lo = log --graph --decorate --pretty=oneline --abbrev-commit
+    aliases = "!git config -l | grep alias | cut -c 7-"
+

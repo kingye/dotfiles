@@ -78,10 +78,41 @@ export ZSH="$HOME/.oh-my-zsh"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode zsh-syntax-highlighting zsh-autosuggestions rust)
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions rust)
+
+
 
 source $ZSH/oh-my-zsh.sh
 
+# switch on zsh line editor(zle) vi mode
+bindkey -v
+function zle-line-init zle-keymap-select {
+    RPS1="${${KEYMAP/vicmd/NORMAL}/(main|viins)/INSERT}"
+    zle reset-prompt
+
+    if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
+		echo -ne '\e[1 q'
+	elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] || [[ ${KEYMAP} = '' ]] || [[ $1 = 'beam' ]]; then
+		echo -ne '\e[5 q'
+	fi
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+# Use beam shape cursor on startup.
+echo -ne '\e[5 q'
+
+# Use beam shape cursor for each new prompt.
+preexec() {
+	echo -ne '\e[5 q'
+}
+
+_fix_cursor() {
+	echo -ne '\e[5 q'
+}
+precmd_functions+=(_fix_cursor)
+
+KEYTIMEOUT=1
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"

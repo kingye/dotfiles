@@ -1,0 +1,43 @@
+# @xsenv={ "name": "eu20-unified-metering" } for prod eu20
+# @xsenv={ "name": "sfm-unified-metering" } for dev
+
+retrieve_usages_by_date:
+  url: ${endpoints.syncRetrieval}/v2/accounts/${meteringAccount.name}/namespaces/metering/datastreams/btp$1/events?from=${from}&to=${to}
+  headers:
+    Content-Type: application/json
+  auth:
+    cert: ${certificate}
+    key: ${key}
+
+ingest_usages:
+  url: ${endpoints.usageIngestion}/v2/accounts/${meteringAccount.name}/namespaces/metering/datastreams/btp$1/eventBatch
+  method: POST
+  headers:
+    Content-Type: application/json
+  auth:
+    cert: ${certificate}
+    key: ${key}
+  body: |
+    [
+      {
+            "id": "${measure_id}",
+            "timestamp": "${timestamp}Z",
+            "consumer": {
+                "region": "cf-eu20",
+                "btp": {
+                    "environment": "CF",
+                    "subAccount": "c645be38-509d-4335-b0a3-bf772f0bbdf2"
+                }
+            },
+            "product": {
+                "service": {
+                    "id": "c21",
+                    "plan": "standard"
+                }
+            },
+            "measure": {
+                "id": "footprint-calculated",
+                "value": 100
+            }
+        }
+    ]

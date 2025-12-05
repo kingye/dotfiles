@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "types": ["@cap-js/cds-types", "jest"],
+    "paths": {
+      "cds-models/*": ["./cds-models/*/index.ts"],
+      "cds-models": ["./cds-models/index.ts"]
+    }
+  },
+  "ts-node": {
+    "files": true
+  },
+  "include": ["srv/**/*.ts", "db/**/*.ts", "tests/**/*.ts", "bin/**/*.ts"],
+  "exclude": ["node_modules", "dist", "gen"],
+  "files": ["srv/typings/event-queue.d.ts"]
+}

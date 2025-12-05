@@ -1,0 +1,764 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Use @title: '...' on your CDS service to provide a meaningful title.",
+    "description": "Supplier Footprint Service",
+    "version": "2.0.0"
+  },
+  "x-sap-api-type": "ODATAV4",
+  "x-odata-version": "4.01",
+  "x-sap-shortText": "Use @Core.Description: '...' on your CDS service to provide a meaningful short text.",
+  "servers": [
+    {
+      "url": "/supplier-footprint-service"
+    }
+  ],
+  "tags": [],
+  "paths": {
+    "/push": {
+      "post": {
+        "summary": "Post Supplier Footprint Data via agnostic interface",
+        "tags": [
+          "Service Operations"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Collection of SupplierFootprintOutput",
+                  "properties": {
+                    "@count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "allOf": [
+                          {
+                            "$ref": "#/components/schemas/SupplierFootprintService.SupplierFootprintOutput"
+                          }
+                        ],
+                        "nullable": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "requestBody": {
+          "description": "Action parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/SupplierFootprintService.SupplierFootprintInput"
+                        }
+                      ],
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "SupplierFootprintService.AdditionalData": {
+        "title": "AdditionalData",
+        "type": "object",
+        "properties": {
+          "boundaryProcessesDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "ipccCharacterizationFactors": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "crossSectoralStandards": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "productOrSectorSpecificRules": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/SupplierFootprintService.ProductOrSectorSpecificRule"
+                }
+              ],
+              "nullable": true
+            }
+          },
+          "exemptedEmissionsPercent": {
+            "anyOf": [
+              {
+                "type": "number",
+                "format": "decimal",
+                "multipleOf": 1e-14
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "example": 0,
+            "x-sap-precision": 31,
+            "x-sap-scale": 14,
+            "nullable": true
+          },
+          "exemptedEmissionsDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "allocationRulesDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "secondaryEmissionFactorSources": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/SupplierFootprintService.EmissionFactorSource"
+                }
+              ],
+              "nullable": true
+            }
+          },
+          "dqi": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SupplierFootprintService.DataQualityIndicators"
+              }
+            ],
+            "nullable": true
+          },
+          "verification": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SupplierFootprintService.Verification"
+              }
+            ],
+            "nullable": true
+          }
+        }
+      },
+      "SupplierFootprintService.CarbonFootprint": {
+        "title": "CarbonFootprint",
+        "type": "object",
+        "properties": {
+          "declaredUnitOfMeasurement": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "The unit of measurement of the product. Together with declaredUnitAmount this defines the \"declared unit\" of the product. Emissions in this carbon footprint are expressed in kgCO2e per \"declared unit\"."
+          },
+          "declaredUnitAmount": {
+            "anyOf": [
+              {
+                "type": "number",
+                "format": "decimal",
+                "multipleOf": 1e-14
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "example": 0,
+            "x-sap-precision": 31,
+            "x-sap-scale": 14,
+            "description": "The amount of units contained within the product to which the PCF is referring."
+          },
+          "referencePeriodStart": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "description": "The start (inclusive) of the time boundary for which the PCF value is considered to be representative. Specifically, this start date represents the earliest date from which activity data was collected to include in the PCF calculation."
+          },
+          "referencePeriodEnd": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z"
+          },
+          "geographyRegionOrSubregion": {
+            "type": "string",
+            "maxLength": 50,
+            "enum": [
+              "Africa",
+              "Americas",
+              "Asia",
+              "Europe",
+              "Oceania",
+              "Australia and New Zealand",
+              "Central Asia",
+              "Eastern Asia",
+              "Eastern Europe",
+              "Latin America and the Caribbean",
+              "Melanesia",
+              "Micronesia",
+              "Northern Africa",
+              "Northern America",
+              "Northern Europe",
+              "Polynesia",
+              "South-eastern Asia",
+              "Southern Asia",
+              "Southern Europe",
+              "Sub-Saharan Africa",
+              "Western Asia",
+              "Western Europe"
+            ],
+            "nullable": true,
+            "description": "If present, the value MUST be one of the UN geographic regions or UN geographic subregions."
+          },
+          "geographyCountry": {
+            "type": "string",
+            "maxLength": 2,
+            "pattern": "^[A-Z]{2}$",
+            "nullable": true,
+            "description": "If present, the value MUST conform to the ISO 3166-1 alpha-2 country code"
+          },
+          "geographyRegion": {
+            "type": "string",
+            "maxLength": 3,
+            "pattern": "^[A-Z0-9]{1,3}$",
+            "nullable": true,
+            "description": "If present, a ISO 3166-2 country and subdivision code."
+          },
+          "primaryDataShare": {
+            "anyOf": [
+              {
+                "type": "number",
+                "format": "decimal",
+                "multipleOf": 1e-14
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "example": 0,
+            "x-sap-precision": 31,
+            "x-sap-scale": 14,
+            "nullable": true,
+            "description": "Share of primary data in the final absolute PCF value excluding biogenic CO2 uptake."
+          },
+          "environmentalImpacts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SupplierFootprintService.EnvironmentalImpacts"
+            },
+            "description": "Environmental impacts"
+          },
+          "environmentalProperties": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/SupplierFootprintService.EnvironmentalProperties"
+                }
+              ],
+              "nullable": true
+            },
+            "description": "Environmental properties"
+          }
+        }
+      },
+      "SupplierFootprintService.DataQualityIndicators": {
+        "title": "DataQualityIndicators",
+        "type": "object",
+        "properties": {
+          "technologicalDQR": {
+            "anyOf": [
+              {
+                "type": "number",
+                "format": "decimal",
+                "multipleOf": 1e-14
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "example": 0,
+            "x-sap-precision": 31,
+            "x-sap-scale": 14,
+            "nullable": true
+          },
+          "geographicalDQR": {
+            "anyOf": [
+              {
+                "type": "number",
+                "format": "decimal",
+                "multipleOf": 1e-14
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "example": 0,
+            "x-sap-precision": 31,
+            "x-sap-scale": 14,
+            "nullable": true
+          },
+          "temporalDQR": {
+            "anyOf": [
+              {
+                "type": "number",
+                "format": "decimal",
+                "multipleOf": 1e-14
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "example": 0,
+            "x-sap-precision": 31,
+            "x-sap-scale": 14,
+            "nullable": true
+          }
+        }
+      },
+      "SupplierFootprintService.EmissionFactorSource": {
+        "title": "EmissionFactorSource",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "version": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "SupplierFootprintService.EnvironmentalImpacts": {
+        "title": "EnvironmentalImpacts",
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "maxLength": 10,
+            "enum": [
+              "CLCH",
+              "CLCF",
+              "CCFL",
+              "CLCB",
+              "CLCN",
+              "CLCLU",
+              "CLCLM",
+              "RELM",
+              "RECCS",
+              "REDCC",
+              "REPCC",
+              "ADPF",
+              "ADPM"
+            ]
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "number",
+                "format": "decimal",
+                "multipleOf": 1e-14
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "example": 0,
+            "x-sap-precision": 31,
+            "x-sap-scale": 14
+          },
+          "lifecycleStage": {
+            "type": "string",
+            "maxLength": 20,
+            "enum": [
+              "Transport"
+            ],
+            "nullable": true
+          }
+        }
+      },
+      "SupplierFootprintService.EnvironmentalProperties": {
+        "title": "EnvironmentalProperties",
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "maxLength": 50
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "number",
+                "format": "decimal",
+                "multipleOf": 1e-14
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "example": 0,
+            "x-sap-precision": 31,
+            "x-sap-scale": 14
+          },
+          "unit": {
+            "type": "string",
+            "maxLength": 3,
+            "enum": [
+              "kgC",
+              "kg"
+            ],
+            "nullable": true
+          }
+        }
+      },
+      "SupplierFootprintService.Extension": {
+        "title": "Extension",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "SupplierFootprintService.ProductOrSectorSpecificRule": {
+        "title": "ProductOrSectorSpecificRule",
+        "type": "object",
+        "properties": {
+          "operator": {
+            "type": "string",
+            "enum": [
+              "PEF",
+              "EPD International",
+              "Other"
+            ],
+            "nullable": true
+          },
+          "ruleNames": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "otherOperatorName": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "SupplierFootprintService.SupplierFootprintInput": {
+        "title": "SupplierFootprintInput",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "description": "A unique identifier that a system uses to refer to the entire dataset of the PCF. This is typically an automatically-generated number by the solution to maintain the required technical references to data within the system."
+          },
+          "standardName": {
+            "type": "string",
+            "enum": [
+              "PACT",
+              "TfS",
+              "Catena-X",
+              "SBTi FLAG",
+              "PEFCR",
+              "GHG-LSRS"
+            ],
+            "description": "Name of the Standard."
+          },
+          "standardVersion": {
+            "type": "string",
+            "maxLength": 10,
+            "nullable": true,
+            "description": "Version of the Standard."
+          },
+          "precedingPfIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef",
+              "nullable": true
+            },
+            "description": "A given PCF may change over time, due to updates to the calculation. This is a list of IDs that reflect \"past versions\" of the current PCF, maintained by the solution. If defined, MUST be non-empty set of IDs."
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "description": "The date and time when the PCF was created. This is typically an automatically generated field by the solution. It SHOULD NOT be used to derive status of validity of the PCF."
+          },
+          "status": {
+            "type": "string",
+            "maxLength": 10,
+            "enum": [
+              "Active",
+              "Deprecated"
+            ],
+            "description": "The status of the PCF. Active means that the PCF is the most recent version and is the one that SHOULD be used by a data recipient, e.g. for product footprint calculations. Deprecated means that the PCF is no longer the most recent version and SHOULD NOT be used by data recipients."
+          },
+          "validityPeriodStart": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true,
+            "description": "The start date of the validity period: the time interval during which the ProductFootprint is declared as valid for use by a receiving data recipient. If no validity period is specified, the ProductFootprint is valid for 3 years after the referencePeriodEnd"
+          },
+          "validityPeriodEnd": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true,
+            "description": "The end date and time of the validity period. After this date the ProductFootprint is not valid for use anymore."
+          },
+          "supplierId": {
+            "type": "string",
+            "maxLength": 50
+          },
+          "productId": {
+            "type": "string",
+            "maxLength": 50
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true
+          },
+          "pcf": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SupplierFootprintService.CarbonFootprint"
+              }
+            ],
+            "description": "The carbon footprint of the given product."
+          },
+          "additionalData": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SupplierFootprintService.AdditionalData"
+              }
+            ],
+            "nullable": true,
+            "description": "Additional data related to the PCF."
+          },
+          "extensions": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/SupplierFootprintService.Extension"
+                }
+              ],
+              "nullable": true
+            },
+            "description": "A list of extended attribute to the standard PCF structure."
+          }
+        },
+        "description": "Supplier Footprint Data Input Structure"
+      },
+      "SupplierFootprintService.SupplierFootprintOutput": {
+        "title": "SupplierFootprintOutput",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "maxLength": 20,
+            "nullable": true
+          }
+        }
+      },
+      "SupplierFootprintService.Verification": {
+        "title": "Verification",
+        "type": "object",
+        "properties": {
+          "coverage": {
+            "type": "string",
+            "enum": [
+              "PCF calculation model",
+              "PCF program",
+              "product level"
+            ],
+            "nullable": true
+          },
+          "providerName": {
+            "type": "string",
+            "nullable": true
+          },
+          "completedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04Z",
+            "nullable": true
+          },
+          "standardName": {
+            "type": "string",
+            "nullable": true
+          },
+          "comments": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "count": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "description": "The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option."
+      },
+      "error": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "code",
+              "message"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              },
+              "target": {
+                "type": "string"
+              },
+              "details": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "target": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "innererror": {
+                "type": "object",
+                "description": "The structure of this object is service-specific"
+              }
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "top": {
+        "name": "$top",
+        "in": "query",
+        "description": "Show only the first n items, see [Paging - Top](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptiontop)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "example": 50
+      },
+      "skip": {
+        "name": "$skip",
+        "in": "query",
+        "description": "Skip the first n items, see [Paging - Skip](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionskip)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "count": {
+        "name": "$count",
+        "in": "query",
+        "description": "Include count of items, see [Count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount)",
+        "schema": {
+          "type": "boolean"
+        }
+      },
+      "search": {
+        "name": "$search",
+        "in": "query",
+        "description": "Search items by search phrases, see [Searching](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionsearch)",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "responses": {
+      "error": {
+        "description": "Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/error"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "oauth_clientcredentials": {
+        "description": "Authentication via OAuth2 with client credentials flow.",
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://example.authentication.eu20.hana.ondemand.com/oauth/token",
+            "scopes": {
+              "c21-business-data-publisher": "The role required for working with this API."
+            }
+          }
+        }
+      }
+    }
+  }
+}

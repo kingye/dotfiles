@@ -1,0 +1,35 @@
+{
+  "name": "cde",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate:typeModel": "npx @cap-js/cds-typer \"*\" --outputDirectory cds-models",
+    "watch": "cds watch",
+    "docs:api": "REDOCLY_TELEMETRY=off cds compile srv --service SupplierFootprintService -o docs --to openapi && npx @redocly/cli build-docs docs/SupplierFootprintService.openapi3.json --output=docs/public/specs.html",
+    "docs:gen": "cds compile srv --service SupplierFootprintService -o docs --to openapi"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@sap/cds": "8.9.6",
+    "tsx": "^4.20.6"
+  },
+  "devDependencies": {
+    "@cap-js/cds-typer": "0.34.0",
+    "@cap-js/cds-types": "0.11.0",
+    "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^8",
+    "@types/node": "^20.5.9",
+    "cds-swagger-ui-express": "^0.10.0",
+    "ts-loader": "^9.5.4",
+    "typescript": "^5.9.3"
+  },
+  "swagger": {
+    "basePath": "/$api-docs",
+    "apiPath": "/",
+    "diagram": true,
+    "odataVersion": "4.0"
+  }
+}

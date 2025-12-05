@@ -1,0 +1,9 @@
+disclosed-footprints:
+  url: ${endpoints.apihost}/carbondata-outbound/v2/2/footprints
+  headers:
+    Content-Type: application/json
+  auth:
+    clientid: ${uaa.clientid}
+    clientsecret: ${uaa.clientsecret}
+    url: ${uaa.url}
+  # xsenv: { name: sfm-e2e-test or sfm}

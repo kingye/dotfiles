@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "sourceMap": true,
+    "declaration": true,
+    "typeRoots": ["./node_modules/@types", "./node_modules/@cap-js"],
+    "types": ["cds-types"]
+  },
+  "include": ["gen/srv/srv/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
+}

@@ -1,0 +1,3 @@
+saas-tenants:
+  url: ${saas_registry_url}/saas-manager/v1/application/subscriptions
+# xsenv={ "name": "saas-registry" }

@@ -9,11 +9,17 @@
   {
     "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
     "bindings": {
+      // buffer
+      "] b": "pane::ActivateNextItem",
+      "[ b": "pane::ActivatePreviousItem",
+      "] p": "workspace::MovePaneRight",
+      "[ p": "workspace::MovePaneLeft",
+
       // put key-bindings here if you want them to work in normal & visual mode
       // Git
       "space g h d": "editor::ToggleSelectedDiffHunks",
-      "space g s": "git_panel::ToggleFocus",
-
+      "space g g": "git_panel::ToggleFocus",
+      "space c": "pane::CloseActiveItem",
       // Toggle inlay hints
       "space t i": "editor::ToggleInlayHints",
 
@@ -72,17 +78,9 @@
       // TODO: git diff is not ready yet, refer https://github.com/zed-industries/zed/issues/8665#issuecomment-2194000497
 
       // + Buffers
-      // Switch between buffers
-      "shift-h": "pane::ActivatePreviousItem",
-      "shift-l": "pane::ActivateNextItem",
-      // Close active panel
-      "shift-q": "pane::CloseActiveItem",
-      "ctrl-q": "pane::CloseActiveItem",
       "space b d": "pane::CloseActiveItem",
       // Close other items
-      "space b o": "pane::CloseInactiveItems",
-      // Save file
-      "ctrl-s": "workspace::Save",
+      "space b o": "pane::CloseOtherItems",
       // File finder
       "space f f": "file_finder::Toggle",
       // Project search
@@ -93,13 +91,17 @@
 
       "space g g": "git_panel::ToggleFocus",
 
-      "space f t": "terminal_panel::ToggleFocus",
+      "space t h": "terminal_panel::ToggleFocus",
 
       "space |": "pane::SplitRight",
-
-      "space -": "pane::SplitDown",
+      "|": "pane::SplitRight",
+      "\\": "pane::SplitDown",
+      "space \\": "pane::SplitDown",
       "space u L": "editor::ToggleRelativeLineNumbers",
-      "space u l": "editor::ToggleLineNumbers"
+      "space u l": "editor::ToggleLineNumbers",
+
+      // Debug
+      "space d b": ["workspace::SendKeystrokes", "f9"]
     }
   },
   // Empty pane, set of keybindings that are available when there is no active editor
@@ -172,20 +174,31 @@
       // Close project panel as project file panel on the right
       "q": "workspace::ToggleRightDock",
       // Navigate between panel
-      "space e": "workspace::ToggleLeftDock"
+      "space e": "workspace::ToggleLeftDock",
+      "space g g": "git_panel::ToggleFocus"
     }
   },
   // Panel nagivation
   {
-    "context": "ProjectPanel || Editor || Dock || RightDock || LeftDock || BottomDock || TopDock || TerminalPanel || GitPanel",
+    "context": "ProjectPanel || (Editor &&  (vim_mode == normal || vim_mode == visual))  || Dock || RightDock || LeftDock || BottomDock || TopDock || TerminalPanel || GitPanel",
     "bindings": {
       // Navigate between panel
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-l": "workspace::ActivatePaneRight",
       "ctrl-k": "workspace::ActivatePaneUp",
       "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-s x": "pane::CloseActiveItem",
       "ctrl-s s": "projects::OpenRecent",
       "ctrl-w q": "pane::CloseAllItems"
+      // Close active panel
+    }
+  },
+  {
+    "context": "ProjectPanel || (Editor &&  (vim_mode == normal || vim_mode == visual))  ||  RightDock || LeftDock || TopDock || GitPanel",
+    "bindings": {
+      // Switch between buffers
+      "shift-h": "pane::ActivatePreviousItem",
+      "shift-l": "pane::ActivateNextItem"
     }
   },
   {
