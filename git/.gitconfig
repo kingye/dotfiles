@@ -14,9 +14,9 @@
     co = checkout  
     br = branch
     cm = commit -m
-    pl = pull
-    ps = push
-    pu = push -u origin HEAD
+    p = pull
+    pp = push
+    ppu = push -u origin HEAD
   
     # Stash
     sl = stash list

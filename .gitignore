@@ -7,3 +7,5 @@ cds-models
 default-env.json
 dwc-application.json
 *.key
+datalake/downloaded-large-file.json
+datalake/large-file.json
