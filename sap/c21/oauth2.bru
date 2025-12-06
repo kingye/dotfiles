@@ -5,11 +5,21 @@ meta {
 }
 
 post {
-  url: https://kpb32h-y5c21sb16.authentication.eu10.hana.ondemand.com
-  body: none
+  url: https://kpb32h-y5c21sb16.authentication.eu10.hana.ondemand.com/oauth/token
+  body: text
   auth: inherit
+}
+
+headers {
+  Content-Type: application/x-www-form-urlencoded
+  Accept: application/json
+}
+
+body:text {
+  client_id=sb-69cdb22f-b163-45b6-8cce-f235c6211b6a!b613150|c21!b598984&client_secret=6ac8d18e-80e3-425d-b859-0bb93d9ede1b$COiW-A3qBf1DItMBYBA5H2oRHUAOHVhK2doCLFYTTSo=&grant_type=client_credentials&token_format=jwt
 }
 
 settings {
   encodeUrl: true
+  timeout: 0
 }
