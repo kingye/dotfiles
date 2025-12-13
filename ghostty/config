@@ -1,0 +1,13 @@
+macos-titlebar-style=hidden
+macos-window-shadow=false
+shell-integration=zsh
+font-size=13
+font-family= "JetBrainsMonoNL Nerd Font"
+theme = Rose Pine Moon
+adjust-cell-height = 20%
+window-padding-balance=true
+window-padding-x = 5
+window-padding-y = 0
+window-save-state=always
+mouse-hide-while-typing=true
+

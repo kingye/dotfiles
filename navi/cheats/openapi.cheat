@@ -1,0 +1,2 @@
+# create HTML documentation from OpenAPI spec
+npx @redocly/cli build-docs <source> --output=<file>

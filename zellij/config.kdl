@@ -138,20 +138,20 @@ keybinds clear-defaults=true {
         }
     }
     shared_except "locked" {
-        bind "Alt +" { Resize "Increase"; }
-        bind "Alt -" { Resize "Decrease"; }
-        bind "Alt =" { Resize "Increase"; }
-        bind "Alt [" { PreviousSwapLayout; }
-        bind "Alt ]" { NextSwapLayout; }
-        bind "Alt f" { ToggleFloatingPanes; }
+        bind "Ctrl Shift +" { Resize "Increase"; }
+        bind "Ctrl Shift -" { Resize "Decrease"; }
+        bind "Ctrl Shift =" { Resize "Increase"; }
+        bind "Ctrl Shift [" { PreviousSwapLayout; }
+        bind "Ctrl Shift ]" { NextSwapLayout; }
+        bind "Ctrl Shift f" { ToggleFloatingPanes; }
         bind "Ctrl g" { SwitchToMode "locked"; }
-        bind "Alt i" { MoveTab "left"; }
-        bind "Alt n" { NewPane; }
-        bind "Alt o" { MoveTab "right"; }
+        bind "Ctrl Shift i" { MoveTab "left"; }
+        bind "Ctrl Shift n" { NewPane; }
+        bind "Ctrl Shift o" { MoveTab "right"; }
         bind "Ctrl q" { Quit; }
     }
     shared_except "locked" "move" {
-        bind "Ctrl h" { SwitchToMode "move"; }
+        bind "Ctrl m" { SwitchToMode "move"; }
     }
     shared_except "locked" "session" {
         bind "Ctrl o" { SwitchToMode "session"; }
@@ -161,13 +161,9 @@ keybinds clear-defaults=true {
         bind "Alt down" { MoveFocus "down"; }
         bind "Alt up" { MoveFocus "up"; }
         bind "Alt right" { MoveFocusOrTab "right"; }
-        bind "Alt h" { MoveFocusOrTab "left"; }
-        bind "Alt j" { MoveFocus "down"; }
-        bind "Alt k" { MoveFocus "up"; }
-        bind "Alt l" { MoveFocusOrTab "right"; }
     }
     shared_except "locked" "scroll" "search" "tmux" {
-        bind "Ctrl b" { SwitchToMode "tmux"; }
+        bind "Ctrl a" { SwitchToMode "tmux"; }
     }
     shared_except "locked" "scroll" "search" {
         bind "Ctrl s" { SwitchToMode "scroll"; }
@@ -265,12 +261,25 @@ plugins {
     welcome-screen location="zellij:session-manager" {
         welcome_screen true
     }
+    zjstatus-hints location="https://github.com/b0o/zjstatus-hints/releases/latest/download/zjstatus-hints.wasm" {
+        // Maximum number of characters to display
+        max_length 0 // 0 = unlimited
+        // String to append when truncated
+        overflow_str "..." // default
+        // Name of the pipe for zjstatus integration
+        pipe_name "zjstatus_hints" // default
+        // Hide hints in base mode (a.k.a. default mode)
+        // E.g. if you have set default_mode to "locked", then
+        // you can hide hints in the locked mode by setting this to true
+        hide_in_base_mode false // default
+    }
 }
 
 // Plugins to load in the background when a new session starts
 // eg. "file:/path/to/my-plugin.wasm"
 // eg. "https://example.com/my-plugin.wasm"
 load_plugins {
+  zjstatus-hints
 }
  
 // Use a simplified UI without special fonts (arrow glyphs)
@@ -283,7 +292,8 @@ load_plugins {
 // Choose the theme that is specified in the themes section.
 // Default: default
 // 
-theme "catppuccin-mocha"
+// theme "catppuccin-frappe"
+theme "rose-pine-moon"
  
 // Choose the base input mode of zellij.
 // Default: normal
@@ -308,7 +318,8 @@ default_mode "normal"
 // (Requires restart)
 // 
 // layout_dir "/tmp"
- 
+
+
 // The folder in which Zellij will look for themes
 // (Requires restart)
 // 
@@ -328,7 +339,8 @@ default_mode "normal"
 //   - true (default, enabled)
 //   - false
 // 
-// pane_frames false
+pane_frames false
+hide_command_bar true
  
 // When attaching to an existing session with other users,
 // should the session be mirrored (true)
@@ -418,7 +430,7 @@ default_mode "normal"
 //   - true
 //   - false (default)
 // 
-// serialize_pane_viewport false
+serialize_pane_viewport true
  
 // Scrollback lines to serialize along with the pane viewport when serializing sessions, 0
 // defaults to the scrollback size. If this number is higher than the scrollback size, it will

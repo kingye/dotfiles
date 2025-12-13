@@ -7,22 +7,29 @@ config-version = 2
 
 # You can use it to add commands that run after AeroSpace startup.
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
+# Run Sketchybar together with AeroSpace
+# sketchybar has a built-in detection of already running process,
+# so it won't be run twice on AeroSpace restart
 after-startup-command = [
     # JankyBorders has a built-in detection of already running process,
     # so it won't be run twice on AeroSpace restart
-    'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=2.0'
+    'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=3.0 stype=square'
+
 ]
+
+# Notify Sketchybar about workspace change
+exec-on-workspace-change = []
 # Start AeroSpace at login
 start-at-login = true
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
-enable-normalization-flatten-containers = false
+enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 15 
+accordion-padding = 30 
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'tiles'
@@ -71,12 +78,12 @@ on-mode-changed = []
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-    inner.horizontal = 5
-    inner.vertical =   5
-    outer.left =       5
-    outer.bottom =     5
-    outer.top =        5
-    outer.right =      5
+    inner.horizontal = 15 
+    inner.vertical =   15 
+    outer.left =       15
+    outer.bottom =     15
+    outer.top =        40
+    outer.right =      15
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -163,8 +170,8 @@ on-mode-changed = []
     alt-x = 'workspace X'
     alt-y = 'workspace Y'
 
-    alt-backslash = 'split horizontal'
-    alt-quote = 'split vertical'
+    # alt-backslash = 'split horizontal'
+    # alt-quote = 'split vertical'
     
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
