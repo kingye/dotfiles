@@ -1,0 +1,10 @@
+% git
+
+# reset last commit but keep the changes as unstaged
+git reset --soft HEAD~1
+
+# reset the last commit
+git reset --hard HEAD~1
+
+# force sync local branch with remote branch
+git reset --hard origin/$(git branch --show-current)
