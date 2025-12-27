@@ -85,6 +85,8 @@ keybinds clear-defaults=true {
         bind "l" { MovePane "right"; }
         bind "n" { MovePane; }
         bind "p" { MovePaneBackwards; }
+        bind "[" { PreviousSwapLayout; }
+        bind "]" { NextSwapLayout; }
         bind "tab" { MovePane; }
     }
     scroll {

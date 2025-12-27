@@ -1,0 +1,4 @@
+% linux
+
+# base64 encoding
+echo -n '<input>' | base64

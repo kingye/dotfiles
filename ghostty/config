@@ -1,5 +1,5 @@
 macos-titlebar-style=hidden
-macos-window-shadow=false
+macos-window-shadow=true
 shell-integration=zsh
 font-size=13
 font-family= "JetBrainsMonoNL Nerd Font"
