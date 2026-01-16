@@ -132,7 +132,7 @@
 
   // Space + e: Toggle sidebar visibility (close entire sidebar) when in sidebar
   {
-    "key": "space e",
+    "key": "space o",
     "command": "workbench.action.toggleSidebarVisibility",
     "when": "sideBarFocus && !inputFocus"
   },
