@@ -1,0 +1,726 @@
+{
+  "sqltools.connections": [
+    {
+      "connectionTimeout": 30,
+      "hanaOptions": {
+        "encrypt": true,
+        "sslValidateCertificate": true,
+        "sslCryptoProvider": "openssl"
+      },
+      "previewLimit": 50,
+      "driver": "SAPHana",
+      "name": "d032459-hana",
+      "server": "69ad0553-636c-4870-80e9-e8ebcd5ac901.hana.prod-eu12.hanacloud.ondemand.com",
+      "port": 443,
+      "database": "24ACA179BB6142D28D2DE0F831A14104",
+      "username": "24ACA179BB6142D28D2DE0F831A14104_1T894K99U63O4DPGPNFXLP7WE_RT",
+      "password": "Wj9o9P_aKbkc3Ue.nnNjAENbUoGhO72Y_rPrsULgblu4T3lQsCtzqA4oYB72W4RjvKKvNAgqb_jkYR.uG2FYiSMH.9yKlZUn_KhpXjR0iOkiqSOqom0sxTM_5aLAouIj"
+    }
+  ],
+  "workbench.colorCustomizations": {
+    "activityBarBadge.background": "#5C6BC0",
+    "list.activeSelectionForeground": "#5C6BC0",
+    "list.inactiveSelectionForeground": "#5C6BC0",
+    "list.highlightForeground": "#5C6BC0",
+    "scrollbarSlider.activeBackground": "#5C6BC050",
+    "editorSuggestWidget.highlightForeground": "#5C6BC0",
+    "textLink.foreground": "#5C6BC0",
+    "progressBar.background": "#5C6BC0",
+    "pickerGroup.foreground": "#5C6BC0",
+    "tab.activeBorder": "#5C6BC0",
+    "notificationLink.foreground": "#5C6BC0",
+    "statusBar.background": "#005f5f",
+    "statusBar.noFolderBackground": "#005f5f",
+    "statusBar.debuggingBackground": "#005f5f",
+    "statusBar.foreground": "#ffffff",
+    "statusBar.debuggingForeground": "#ffffff"
+  },
+  "editor.fontFamily": "JetBrainsMonoNL Nerd Font",
+  "editor.fontLigatures": true,
+  "editor.fontWeight": "normal",
+  "vs-kubernetes": {
+    "vs-kubernetes.namespace": "",
+    "vs-kubernetes.kubectl-path": "/usr/local/bin/kubectl",
+    "vs-kubernetes.draft-path": "/Users/d032459/.vs-kubernetes/tools/draft/darwin-amd64/draft",
+    "vs-kubernetes.autoCleanupOnDebugTerminate": false,
+    "vs-kubernetes.helm-path": "/Users/d032459/.vs-kubernetes/tools/helm/darwin-amd64/helm",
+    "vs-kubernetes.knownKubeconfigs": [
+      "/Users/d032459/.kube/config",
+      "/Users/d032459/Documents/work/k8s-instances/vdi2.kubeconfig",
+      "/Users/d032459/Documents/work/k8s-instances/vdi.kubeconfig",
+      "/Users/d032459/Documents/work/k8s-instances/grady-vdi.kubeconfig",
+      "/Users/d032459/Documents/work/k8s-instances/dewdfglp01725.kubeconfig",
+      "/Users/d032459/Documents/work/k8s-instances/gardener-aws-ems.yaml"
+    ],
+    "vs-kubernetes.kubeconfig": "/Users/d032459/.kube/config",
+    "vs-kubernetes.helm-path.linux": "/root/.vs-kubernetes/tools/helm/linux-amd64/helm",
+    "vs-kubernetes.minikube-path.linux": "/root/.vs-kubernetes/tools/minikube/linux-amd64/minikube",
+    "vs-kubernetes.draft-path.linux": "/root/.vs-kubernetes/tools/draft/linux-amd64/draft"
+  },
+
+  "markdownlint.config": {
+    "MD013": false,
+    "MD033": {
+      "allowed_elements": ["sup"]
+    }
+  },
+  "git.enableSmartCommit": true,
+  "gitlens.advanced.messages": {
+    "suppressShowKeyBindingsNotice": true
+  },
+  "gitlens.historyExplorer.enabled": true,
+  "[go]": {
+    "editor.snippetSuggestions": "none",
+    "editor.insertSpaces": true,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
+  },
+  "go.toolsEnvVars": {
+    "GO111MODULE": "auto"
+  },
+  "go.testFlags": ["-v"],
+  "gopls": {
+    "usePlaceholders": true, // add parameter placeholders when completing a function
+    "completionDocumentation": true // for documentation in completion items
+  },
+  "go.formatTool": "goimports",
+  "materialTheme.fixIconsRunning": false,
+  "workbench.iconTheme": "Monokai Pro (Filter Spectrum) Icons",
+  "mdmath.delimiters": "gitlab",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "spellright.language": ["english"],
+  "gitlens.views.fileHistory.enabled": true,
+  "gitlens.views.lineHistory.enabled": true,
+  "git.autofetch": true,
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "java.configuration.checkProjectSettingsExclusions": false,
+  "rust-client.rustupPath": "/Users/d032459/.cargo/bin/rustup",
+  "rust-client.rlsPath": "/Users/d032459/.cargo/bin/rls",
+  "rust-client.logToFile": false,
+  "rust-client.channel": "stable",
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "editor.tabSize": 2,
+  "python.jediEnabled": false,
+  "eslint.validate": [
+    "typescript",
+    "typescriptreact",
+    "javascript",
+    "javascriptreact",
+    "html",
+    "vue"
+  ],
+  "jshint.nodePath": "/usr/local/lib/node_modules/jshint",
+  "[java]": {},
+  "vim.handleKeys": {},
+  "go.testTimeout": "300s",
+  "terminal.external.osxExec": "iTerm.app",
+  "rest-client.fontSize": 12,
+  "workbench.fontAliasing": "auto",
+  "oneDarkPro.vivid": true,
+  "oneDarkPro.editorTheme": "vscode",
+  "rust.all_features": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "azure.resourceFilter": [
+    "42f7676c-f455-423c-82f6-dc2d99791af7/6bedc034-8897-471a-a826-e78619ce061e"
+  ],
+  "git.ignoreLegacyWarning": true,
+  "todo-tree.tree.showScanModeButton": false,
+  "todo-tree.general.statusBar": "total",
+  "todo-tree.highlights.defaultHighlight": {
+    "icon": "alert",
+    "type": "text",
+    "foreground": "black",
+    "background": "white",
+    "opacity": 50,
+    "iconColour": "white"
+  },
+  "todo-tree.highlights.customHighlight": {
+    "TODO": {
+      "icon": "check",
+      "type": "line",
+      "iconClolur": "green",
+      "background": "green",
+      "foreground": "white",
+      "gutterIcon": true
+    },
+    "BUG": {
+      "foreground": "black",
+      "iconColour": "red",
+      "gutterIcon": true
+    },
+    "FIXME": {
+      "foreground": "black",
+      "iconColour": "yellow",
+      "background": "yellow",
+      "gutterIcon": true
+    }
+  },
+  "todo-tree.general.tags": [
+    "BUG",
+    "HACK",
+    "FIXME",
+    "TODO",
+    "XXX",
+    "IMPORTANT"
+  ],
+  "sync.gist": "edc3d7f54798c769851eca8531e1790c",
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "typescript.format.semicolons": "insert",
+  "typescript.implementationsCodeLens.enabled": true,
+  "cSpell.userWords": ["Livechat", "correlator", "middlewares"],
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "editor.renderControlCharacters": false,
+  "jenkins-jack.jenkins.connections": [
+    {
+      "name": "default",
+      "uri": "http://127.0.0.1:8080",
+      "username": "default",
+      "password": "default",
+      "active": true
+    }
+  ],
+  "markdown.extension.math.enabled": false,
+  "projectManager.git.baseFolders": ["/Users/d032459/Documents/work/projects"],
+  "jenkins.polling": 2,
+  "files.autoSave": "afterDelay",
+  "pgsql.connections": [
+    {
+      "host": "localhost",
+      "dbname": "postgres",
+      "user": "postgres",
+      "password": "xw0lZ2cznU",
+      "emptyPasswordInput": false,
+      "port": "30500",
+      "profileName": "local"
+    }
+  ],
+  "files.associations": {
+    "*.sql": "sql"
+  },
+  "java.semanticHighlighting.enabled": true,
+  "search.exclude": {
+    "**/dist": true,
+    "rest.md": true
+  },
+  "python.languageServer": "Pylance",
+  "yaml.schemas": {
+    "file:///Users/d032459/.vscode/extensions/atlassian.atlascode-2.8.5/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml",
+    "kubernetes": ["helm/**/*.yaml"]
+  },
+  "atlascode.jira.enabled": true,
+  "atlascode.bitbucket.enabled": false,
+  "atlascode.jira.jqlList": [
+    {
+      "enabled": true,
+      "id": "1a77b704-9d1e-4ed2-9844-dd7e52e26356",
+      "monitor": true,
+      "name": "My jira.sme.c.eu-de-2.cloud.sap Issues",
+      "query": "assignee = currentUser() AND resolution = Unresolved ORDER BY lastViewed DESC",
+      "siteId": "jira.sme.c.eu-de-2.cloud.sap"
+    },
+    {
+      "enabled": true,
+      "id": "d72d3021-51c2-40b8-9fa2-f70ca7c8352d",
+      "monitor": true,
+      "name": "CHATBOT2011",
+      "query": "project = CHAT2011 AND resolution = Unresolved  order by updated DESC",
+      "siteId": "jira.sme.c.eu-de-2.cloud.sap"
+    },
+    {
+      "enabled": true,
+      "id": "3e531fbc-1bdd-42d4-956c-d777356e46d3",
+      "monitor": true,
+      "name": "CHATBOT2011-Resolved",
+      "query": "project = CHAT2011 AND resolution != Unresolved order by updated DESC",
+      "siteId": "jira.sme.c.eu-de-2.cloud.sap"
+    }
+  ],
+  "atlascode.jira.lastCreateSiteAndProject": {
+    "siteId": "jira.sme.c.eu-de-2.cloud.sap",
+    "projectKey": "CHAT2102"
+  },
+  "atlascode.jira.startWorkBranchTemplate.customPrefixes": [
+    "fix-release",
+    "feature",
+    "fix-dev"
+  ],
+  "atlascode.jira.startWorkBranchTemplate.customTemplate": "{{{prefix}}}/{{{issueKey}}}-{{{summary}}}",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "java.project.importHint": false,
+  "settingsSync.ignoredExtensions": [],
+  "vim.easymotion": true,
+  "vim.incsearch": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.digraphs": {},
+  "vim.statusBarColorControl": true,
+  "vim.commandLineModeKeyBindingsNonRecursive": [],
+  "vim.leader": "<Space>",
+  "vim.insertModeKeyBindings": [{ "before": ["j", "k"], "after": ["<Esc>"] }],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    // NAVIGATION
+    // switch b/w buffers
+    { "before": ["<S-h>"], "commands": [":bprevious"] },
+    { "before": ["<S-l>"], "commands": [":bnext"] },
+    // splits
+    { "before": ["leader", "v"], "commands": [":vsplit"] },
+    { "before": ["leader", "s"], "commands": [":split"] },
+
+    // panes
+    {
+      "before": ["leader", "h"],
+      "commands": ["workbench.action.focusLeftGroup"]
+    },
+    {
+      "before": ["leader", "j"],
+      "commands": ["workbench.action.focusBelowGroup"]
+    },
+    {
+      "before": ["leader", "k"],
+      "commands": ["workbench.action.focusAboveGroup"]
+    },
+    {
+      "before": ["leader", "l"],
+      "commands": ["workbench.action.focusRightGroup"]
+    },
+    {
+      "before": ["leader", "e", "l"],
+      "commands": ["workbench.action.nextEditor"]
+    },
+    {
+      "before": ["leader", "e", "h"],
+      "commands": ["workbench.action.previousEditor"]
+    },
+    // NICE TO HAVE
+    {
+      "before": ["leader", "r"],
+      "commands": ["editor.action.rename"],
+      "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+    },
+    {
+      "before": ["leader", "s"],
+      "commands": ["workbench.action.findInFiles"]
+    },
+    {
+      "before": ["<leader>", "f", "/"],
+      "commands": ["workbench.action.findInFiles"]
+    },
+    {
+      "before": ["<leader>", "f", "t"],
+      "commands": ["workbench.action.terminal.toggleTerminal"]
+    },
+    {
+      "before": ["<C-s>", "s"],
+      "commands": ["workbench.action.openRecent"]
+    },
+    {
+      "before": ["<leader>", "c", "a"],
+      "commands": ["editor.action.quickFix"]
+    },
+    {
+      "before": ["<leader>", "g", "d"],
+      "commands": ["editor.action.revealDefinition"]
+    },
+    {
+      "before": ["<leader>", "g", "b"],
+      "commands": ["workbench.action.navigateBack"],
+      "when": "canNavigateBack"
+    },
+    {
+      "before": ["<leader>", "g", "D"],
+      "commands": ["editor.action.revealDeclaration"]
+    },
+    {
+      "before": ["leader", "f", "f"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["leader", "f"],
+      "commands": ["workbench.action.findInFiles"]
+    },
+    {
+      "before": ["leader", "g", "f"],
+      "commands": ["editor.action.formatDocument"]
+    },
+    {
+      "before": ["<leader>", "d", "a"],
+      "commands": ["workbench.action.debug.selectandstart"]
+    },
+    {
+      "before": ["<leader>", "d", "t"],
+      "commands": ["editor.debug.action.toggleBreakpoint"],
+      "when": "debuggersAvailable"
+    },
+    {
+      "before": ["<leader>", "d", "o"],
+      "commands": ["workbench.action.debug.stepOver"],
+      "when": "debugState == 'stopped'"
+    },
+    {
+      "before": ["<leader>", "d", "O"],
+      "commands": ["workbench.action.debug.stepOut"],
+      "when": "debugState == 'stopped'"
+    },
+    {
+      "before": ["<leader>", "d", "i"],
+      "commands": ["workbench.action.debug.stepInto"],
+      "when": "debugState != 'inactive'"
+    },
+    {
+      "before": ["<leader>", "d", "s"],
+      "commands": ["workbench.action.debug.stop"],
+      "when": "debugState != 'inactive'"
+    },
+    {
+      "before": ["<leader>", "d", "c"],
+      "commands": ["workbench.action.debug.continue"],
+      "when": "debugState == 'stopped'"
+    },
+    {
+      "before": ["<leader>", "t", "d"],
+      "commands": ["testing.debugAtCursor"]
+    }
+  ],
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "terminal.integrated.rendererType": "dom",
+  "rust-client.updateOnStartup": true,
+  "SMEChatbot.testInChatbot": "https://ua.ingress.chat.sme-inno.shoot.canary.k8s-hana.ondemand.com/cockpit/",
+  "jestTestExplorer.featureToggles": [],
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "catalogExplorer.server": "http://localhost:3000",
+  "catalogExplorer.apikey": "partner",
+  "workbench.editor.decorations.badges": true,
+  "workbench.editor.decorations.colors": true,
+  "catalogExplorer.repository.dir": "/Users/d032459/Documents/work/projects/sme-dt-repository/dt-test2-repo",
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter.notebook.ipynb"
+  },
+  "go.toolsManagement.autoUpdate": true,
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.cursorStyle": "line",
+  "editor.lineNumbers": "on",
+  "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+  "editor.wordWrap": "off",
+  "github-enterprise.uri": "https://github.tools.sap",
+  "redhat.telemetry.enabled": true,
+  "editor.semanticTokenColorCustomizations": {
+    "[Default Dark+]": {
+      "rules": {
+        "property.mandatory:xml": {
+          "bold": true
+        },
+        "string.i18n:xml": {
+          "italic": true
+        }
+      }
+    },
+    "[Default Light+]": {
+      "rules": {
+        "property.mandatory:xml": {
+          "bold": true
+        },
+        "string.i18n:xml": {
+          "italic": true
+        }
+      }
+    },
+    "[Default High Contrast]": {
+      "rules": {
+        "property.mandatory:xml": {
+          "bold": true
+        },
+        "string.i18n:xml": {
+          "italic": true
+        }
+      }
+    }
+  },
+  "sqltools.useNodeRuntime": true,
+  "cappello.cdsFolders": ["src/db", "src/srv"],
+  "cappello.sapRegistry": "http://nexus.wdf.sap.corp:8081/nexus/content/groups/build.milestones.npm",
+  "cds.checkDevKitInstalled": false,
+  "githubPullRequests.fileListLayout": "tree",
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
+  "cappello.pathToCappelloConfig": "./cappellorc.json",
+  "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
+  "vscode-neovim.mouseSelectionStartVisualMode": true,
+  "vim.useSystemClipboard": true,
+  "vva.trustedDomain": true,
+  "thunder-client.codeSnippetLanguage": "curl",
+  "hediet.vscode-drawio.theme": "atlas",
+  "hediet.vscode-drawio.customLibraries": [
+    {
+      "file": "/Users/d032459/Documents/work/Architecture/TAM/drawio/TAM-BD.xml",
+      "libName": "TAM Block Diagram",
+      "entryId": "TAM_BD"
+    },
+    {
+      "file": "/Users/d032459/Documents/work/Architecture/TAM/drawio/TAM-AD.xml",
+      "libName": "TAM Activity Diagram",
+      "entryId": "TAM_AD"
+    },
+    {
+      "file": "/Users/d032459/Documents/work/Architecture/TAM/drawio/TAM-CD.xml",
+      "libName": "TAM Class Diagramm",
+      "entryId": "TAM_CD"
+    },
+    {
+      "file": "/Users/d032459/Documents/work/Architecture/TAM/drawio/TAM-Ann.xml",
+      "libName": "TAM Annotations",
+      "entryId": "TAM_Ann"
+    }
+  ],
+  "mochaExplorer.files": "test/**/*.[jt]s",
+  "mochaExplorer.watch": "test/**/*.[jt]s",
+  "mochaExplorer.require": ["ts-node/register/transpile-only"],
+  "mochaExplorer.timeout": 100000,
+  "mochaExplorer.exit": true,
+  "mochaExplorer.logpanel": true,
+  "mochaExplorer.env": {
+    "CDS_TYPESCRIPT": "true",
+    "CDS_REQUIRES_DB_MULTITENANT": "false",
+    "CDS_REQUIRES_MULTITENANCY": "false"
+  },
+  "mocha.files.glob": "test/**/*.[jt]s",
+  "mocha.requires": ["ts-node/register/transpile-only"],
+  "mocha.sideBarOptions": {
+    "lens": false,
+    "decoration": false,
+    "autoUpdateInterval": 200000,
+    "autoUpdateTime": 200000000,
+    "showDebugTestStatus": true
+  },
+  "testExplorer.useNativeTesting": true,
+  "jest.autoRun": "off",
+  "qute.validation.enabled": true,
+  "workbench.localHistory.maxFileEntries": 1,
+  "workbench.localHistory.enabled": false,
+  "cds.trace.components": [],
+  "mochaExplorer.optsFile": "",
+  "githubPullRequests.pullBranch": "never",
+  "eslint.codeActionsOnSave.rules": null,
+  "mochaExplorer.autoload": "onStart",
+  "python.autoComplete.extraPaths": [],
+  "sap.ux.applicationModeler.disableMigrationPrompt": true,
+  "npm.keybindingsChangedWarningShown": true,
+  "SAP HANA Database Explorer.DatabaseList": [
+    {
+      "databaseName": "c21-dev-eu20-stabledata-all",
+      "databaseKey": "hanaCloud",
+      "host": "105aaabf-47b6-4800-b857-0ac272333482.hana.prod-eu20.hanacloud.ondemand.com",
+      "port": "443",
+      "identifier": "",
+      "instance": "",
+      "database": "",
+      "savePassword": true,
+      "encrypt": true,
+      "certificate": "-----BEGIN CERTIFICATE-----MIIDrzCCApegAwIBAgIQCDvgVpBCRrGhdWrJWZHHSjANBgkqhkiG9w0BAQUFADBhMQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3d3cuZGlnaWNlcnQuY29tMSAwHgYDVQQDExdEaWdpQ2VydCBHbG9iYWwgUm9vdCBDQTAeFw0wNjExMTAwMDAwMDBaFw0zMTExMTAwMDAwMDBaMGExCzAJBgNVBAYTAlVTMRUwEwYDVQQKEwxEaWdpQ2VydCBJbmMxGTAXBgNVBAsTEHd3dy5kaWdpY2VydC5jb20xIDAeBgNVBAMTF0RpZ2lDZXJ0IEdsb2JhbCBSb290IENBMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4jvhEXLeqKTTo1eqUKKPC3eQyaKl7hLOllsBCSDMAZOnTjC3U/dDxGkAV53ijSLdhwZAAIEJzs4bg7/fzTtxRuLWZscFs3YnFo97nh6Vfe63SKMI2tavegw5BmV/Sl0fvBf4q77uKNd0f3p4mVmFaG5cIzJLv07A6Fpt43C/dxC//AH2hdmoRBBYMql1GNXRor5H4idq9Joz+EkIYIvUX7Q6hL+hqkpMfT7PT19sdl6gSzeRntwi5m3OFBqOasv+zbMUZBfHWymeMr/y7vrTC0LUq7dBMtoM1O/4gdW7jVg/tRvoSSiicNoxBN33shbyTApOB6jtSj1etX+jkMOvJwIDAQABo2MwYTAOBgNVHQ8BAf8EBAMCAYYwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUA95QNVbRTLtm8KPiGxvDl7I90VUwHwYDVR0jBBgwFoAUA95QNVbRTLtm8KPiGxvDl7I90VUwDQYJKoZIhvcNAQEFBQADggEBAMucN6pIExIK+t1EnE9SsPTfrgT1eXkIoyQY/EsrhMAtudXH/vTBH1jLuG2cenTnmCmrEbXjcKChzUyImZOMkXDiqw8cvpOp/2PV5Adg06O/nVsJ8dWO41P0jmP6P6fbtGbfYmbW0W5BjfIttep3Sp+dWOIrWcBAI+0tKIJFPnlUkiaY4IBIqDfv8NZ5YBberOgOzW6sRBc4L0na4UU+Krk2U886UAb3LujEV0lsYSEY1QSteDwsOoBrp+uvFRTp2InBuThs4pFsiv9kuXclVzDAGySj4dzp30d8tbQkCAUw7C29C79Fv1C5qfPrmAESrciIxpg0X40KPMbp1ZWVbd4=-----END CERTIFICATE-----",
+      "advancedOptions": "currentSchema=BF59E67D206A4D2E8FB3DD20AD48F24F",
+      "databaseID": "e6f403df-caf8-4988-ab45-7852f2a5e30e",
+      "creationDate": "1690357477256"
+    },
+    {
+      "databaseName": "dev-eu20-phoenix-stabledata",
+      "databaseKey": "hanaCloud",
+      "host": "105aaabf-47b6-4800-b857-0ac272333482.hana.prod-eu20.hanacloud.ondemand.com",
+      "port": "443",
+      "identifier": "",
+      "instance": "",
+      "database": "",
+      "savePassword": true,
+      "encrypt": true,
+      "certificate": "",
+      "advancedOptions": "currentschema=623AF20B38DA47E7AD62F315BDD585CE",
+      "databaseID": "d74eb7aa-c0ea-4d59-a10b-09e927429cac",
+      "creationDate": "1694146340378"
+    },
+    {
+      "databaseName": "c21-dev-eu20-expfeatures-stabledata",
+      "databaseKey": "hanaCloud",
+      "host": "105aaabf-47b6-4800-b857-0ac272333482.hana.prod-eu20.hanacloud.ondemand.com",
+      "port": "443",
+      "identifier": "",
+      "instance": "",
+      "database": "",
+      "savePassword": true,
+      "encrypt": true,
+      "certificate": "-----BEGIN CERTIFICATE-----MIIDrzCCApegAwIBAgIQCDvgVpBCRrGhdWrJWZHHSjANBgkqhkiG9w0BAQUFADBhMQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3d3cuZGlnaWNlcnQuY29tMSAwHgYDVQQDExdEaWdpQ2VydCBHbG9iYWwgUm9vdCBDQTAeFw0wNjExMTAwMDAwMDBaFw0zMTExMTAwMDAwMDBaMGExCzAJBgNVBAYTAlVTMRUwEwYDVQQKEwxEaWdpQ2VydCBJbmMxGTAXBgNVBAsTEHd3dy5kaWdpY2VydC5jb20xIDAeBgNVBAMTF0RpZ2lDZXJ0IEdsb2JhbCBSb290IENBMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4jvhEXLeqKTTo1eqUKKPC3eQyaKl7hLOllsBCSDMAZOnTjC3U/dDxGkAV53ijSLdhwZAAIEJzs4bg7/fzTtxRuLWZscFs3YnFo97nh6Vfe63SKMI2tavegw5BmV/Sl0fvBf4q77uKNd0f3p4mVmFaG5cIzJLv07A6Fpt43C/dxC//AH2hdmoRBBYMql1GNXRor5H4idq9Joz+EkIYIvUX7Q6hL+hqkpMfT7PT19sdl6gSzeRntwi5m3OFBqOasv+zbMUZBfHWymeMr/y7vrTC0LUq7dBMtoM1O/4gdW7jVg/tRvoSSiicNoxBN33shbyTApOB6jtSj1etX+jkMOvJwIDAQABo2MwYTAOBgNVHQ8BAf8EBAMCAYYwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUA95QNVbRTLtm8KPiGxvDl7I90VUwHwYDVR0jBBgwFoAUA95QNVbRTLtm8KPiGxvDl7I90VUwDQYJKoZIhvcNAQEFBQADggEBAMucN6pIExIK+t1EnE9SsPTfrgT1eXkIoyQY/EsrhMAtudXH/vTBH1jLuG2cenTnmCmrEbXjcKChzUyImZOMkXDiqw8cvpOp/2PV5Adg06O/nVsJ8dWO41P0jmP6P6fbtGbfYmbW0W5BjfIttep3Sp+dWOIrWcBAI+0tKIJFPnlUkiaY4IBIqDfv8NZ5YBberOgOzW6sRBc4L0na4UU+Krk2U886UAb3LujEV0lsYSEY1QSteDwsOoBrp+uvFRTp2InBuThs4pFsiv9kuXclVzDAGySj4dzp30d8tbQkCAUw7C29C79Fv1C5qfPrmAESrciIxpg0X40KPMbp1ZWVbd4=-----END CERTIFICATE-----",
+      "advancedOptions": "currentschema=7B06E15643374D0F942A9A1C7274031E",
+      "databaseID": "1165405e-09bc-4c87-ab94-ee7a32cdc047",
+      "authenticateByOsUser": false,
+      "creationDate": "1705471841358"
+    },
+    {
+      "databaseName": "PM Test",
+      "databaseKey": "hanaCloud",
+      "host": "105aaabf-47b6-4800-b857-0ac272333482.hana.prod-eu20.hanacloud.ondemand.com",
+      "port": "443",
+      "identifier": "",
+      "instance": "",
+      "database": "",
+      "savePassword": true,
+      "encrypt": true,
+      "certificate": "-----BEGIN CERTIFICATE-----MIIDrzCCApegAwIBAgIQCDvgVpBCRrGhdWrJWZHHSjANBgkqhkiG9w0BAQUFADBhMQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3d3cuZGlnaWNlcnQuY29tMSAwHgYDVQQDExdEaWdpQ2VydCBHbG9iYWwgUm9vdCBDQTAeFw0wNjExMTAwMDAwMDBaFw0zMTExMTAwMDAwMDBaMGExCzAJBgNVBAYTAlVTMRUwEwYDVQQKEwxEaWdpQ2VydCBJbmMxGTAXBgNVBAsTEHd3dy5kaWdpY2VydC5jb20xIDAeBgNVBAMTF0RpZ2lDZXJ0IEdsb2JhbCBSb290IENBMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4jvhEXLeqKTTo1eqUKKPC3eQyaKl7hLOllsBCSDMAZOnTjC3U/dDxGkAV53ijSLdhwZAAIEJzs4bg7/fzTtxRuLWZscFs3YnFo97nh6Vfe63SKMI2tavegw5BmV/Sl0fvBf4q77uKNd0f3p4mVmFaG5cIzJLv07A6Fpt43C/dxC//AH2hdmoRBBYMql1GNXRor5H4idq9Joz+EkIYIvUX7Q6hL+hqkpMfT7PT19sdl6gSzeRntwi5m3OFBqOasv+zbMUZBfHWymeMr/y7vrTC0LUq7dBMtoM1O/4gdW7jVg/tRvoSSiicNoxBN33shbyTApOB6jtSj1etX+jkMOvJwIDAQABo2MwYTAOBgNVHQ8BAf8EBAMCAYYwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUA95QNVbRTLtm8KPiGxvDl7I90VUwHwYDVR0jBBgwFoAUA95QNVbRTLtm8KPiGxvDl7I90VUwDQYJKoZIhvcNAQEFBQADggEBAMucN6pIExIK+t1EnE9SsPTfrgT1eXkIoyQY/EsrhMAtudXH/vTBH1jLuG2cenTnmCmrEbXjcKChzUyImZOMkXDiqw8cvpOp/2PV5Adg06O/nVsJ8dWO41P0jmP6P6fbtGbfYmbW0W5BjfIttep3Sp+dWOIrWcBAI+0tKIJFPnlUkiaY4IBIqDfv8NZ5YBberOgOzW6sRBc4L0na4UU+Krk2U886UAb3LujEV0lsYSEY1QSteDwsOoBrp+uvFRTp2InBuThs4pFsiv9kuXclVzDAGySj4dzp30d8tbQkCAUw7C29C79Fv1C5qfPrmAESrciIxpg0X40KPMbp1ZWVbd4=-----END CERTIFICATE-----",
+      "advancedOptions": "currentschema=6536123FFCF04E62A216A60474B6BFBB",
+      "databaseID": "f3afafb7-9a3f-4d8c-a53b-805a057fd85a",
+      "authenticateByOsUser": false,
+      "creationDate": "1706064079461"
+    },
+    {
+      "databaseName": "c21-dev-eu20-wdio-phoenix",
+      "databaseKey": "hanaCloud",
+      "host": "105aaabf-47b6-4800-b857-0ac272333482.hana.prod-eu20.hanacloud.ondemand.com",
+      "port": "443",
+      "identifier": "",
+      "instance": "",
+      "database": "",
+      "savePassword": true,
+      "encrypt": true,
+      "certificate": "-----BEGIN CERTIFICATE-----MIIDrzCCApegAwIBAgIQCDvgVpBCRrGhdWrJWZHHSjANBgkqhkiG9w0BAQUFADBhMQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3d3cuZGlnaWNlcnQuY29tMSAwHgYDVQQDExdEaWdpQ2VydCBHbG9iYWwgUm9vdCBDQTAeFw0wNjExMTAwMDAwMDBaFw0zMTExMTAwMDAwMDBaMGExCzAJBgNVBAYTAlVTMRUwEwYDVQQKEwxEaWdpQ2VydCBJbmMxGTAXBgNVBAsTEHd3dy5kaWdpY2VydC5jb20xIDAeBgNVBAMTF0RpZ2lDZXJ0IEdsb2JhbCBSb290IENBMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4jvhEXLeqKTTo1eqUKKPC3eQyaKl7hLOllsBCSDMAZOnTjC3U/dDxGkAV53ijSLdhwZAAIEJzs4bg7/fzTtxRuLWZscFs3YnFo97nh6Vfe63SKMI2tavegw5BmV/Sl0fvBf4q77uKNd0f3p4mVmFaG5cIzJLv07A6Fpt43C/dxC//AH2hdmoRBBYMql1GNXRor5H4idq9Joz+EkIYIvUX7Q6hL+hqkpMfT7PT19sdl6gSzeRntwi5m3OFBqOasv+zbMUZBfHWymeMr/y7vrTC0LUq7dBMtoM1O/4gdW7jVg/tRvoSSiicNoxBN33shbyTApOB6jtSj1etX+jkMOvJwIDAQABo2MwYTAOBgNVHQ8BAf8EBAMCAYYwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUA95QNVbRTLtm8KPiGxvDl7I90VUwHwYDVR0jBBgwFoAUA95QNVbRTLtm8KPiGxvDl7I90VUwDQYJKoZIhvcNAQEFBQADggEBAMucN6pIExIK+t1EnE9SsPTfrgT1eXkIoyQY/EsrhMAtudXH/vTBH1jLuG2cenTnmCmrEbXjcKChzUyImZOMkXDiqw8cvpOp/2PV5Adg06O/nVsJ8dWO41P0jmP6P6fbtGbfYmbW0W5BjfIttep3Sp+dWOIrWcBAI+0tKIJFPnlUkiaY4IBIqDfv8NZ5YBberOgOzW6sRBc4L0na4UU+Krk2U886UAb3LujEV0lsYSEY1QSteDwsOoBrp+uvFRTp2InBuThs4pFsiv9kuXclVzDAGySj4dzp30d8tbQkCAUw7C29C79Fv1C5qfPrmAESrciIxpg0X40KPMbp1ZWVbd4=-----END CERTIFICATE-----",
+      "advancedOptions": "currentschema=8729800DA1A640FABD2EAA7959491C87",
+      "databaseID": "81b17981-b483-49e5-977f-5e43f70b2b50",
+      "authenticateByOsUser": false,
+      "creationDate": "1706671861189"
+    },
+    {
+      "databaseName": "d032459",
+      "databaseKey": "hanaCloud",
+      "host": "70d3d096-32e4-4683-a8d4-d5ae6ae8ce23.hna0.prod-eu20.hanacloud.ondemand.com",
+      "port": "443",
+      "identifier": "",
+      "instance": "",
+      "database": "",
+      "savePassword": true,
+      "encrypt": true,
+      "certificate": "",
+      "advancedOptions": "schema=39A0374080B340EBB48B405199DEB4A1",
+      "databaseID": "20b68bc7-21cb-44be-ac79-6c470f23ca8e",
+      "authenticateByOsUser": false,
+      "creationDate": "1741918173051"
+    }
+  ],
+  "[python]": {
+    "editor.formatOnType": true
+  },
+  "window.commandCenter": true,
+  "python.analysis.extraPaths": [],
+  "tabnine.experimentalAutoImports": true,
+  "eslint.lintTask.enable": true,
+  "errorLens.exclude": [
+    "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+  ],
+  "terminal.integrated.profiles.osx": {
+    "bash": {
+      "path": "bash",
+      "args": ["-l"],
+      "icon": "terminal-bash"
+    },
+    "fish": {
+      "path": "fish",
+      "args": ["-l"]
+    },
+    "tmux": {
+      "path": "tmux",
+      "icon": "terminal-tmux"
+    },
+    "pwsh": {
+      "path": "pwsh",
+      "icon": "terminal-powershell"
+    }
+  },
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.defaultProfile.windows": "",
+  "terminal.integrated.defaultProfile.linux": "bash",
+  "sqltools.disableNodeDetectNotifications": true,
+  "rsp-ui.enableStartServerOnActivation": [
+    {
+      "id": "redhat.vscode-community-server-connector",
+      "name": "Community Server Connector",
+      "startOnActivation": true
+    }
+  ],
+  "eslint.format.enable": true,
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "editor.suggest.showConstants": false,
+  "eslint.options": {
+    "overrideConfigFile": "./.eslintrc.json"
+  },
+  "eslint.workingDirectories": [],
+  "sonarlint.rules": {
+    "typescript:S6544": {
+      "level": "off"
+    }
+  },
+  "terminal.integrated.scrollback": 5000,
+  "jest.monitorLongRun": "",
+  "terminal.integrated.fontFamily": "monospace",
+  "hediet.vscode-drawio.resizeImages": null,
+  "github.copilot.editor.enableAutoCompletions": true,
+  "editor.formatOnSave": true,
+  "hediet.vscode-drawio.plugins": [
+    { "file": "~/Documents/work/projects/tam-drawio/tam-drawio.js" }
+  ],
+  "hediet.vscode-drawio.colorNames": {},
+  "editor.fontSize": 13,
+  "debug.javascript.defaultRuntimeExecutable": {
+    "pwa-node": "node"
+  },
+  "chat.editing.alwaysSaveWithGeneratedChanges": true,
+  "vscode-neovim.highlightGroups.highlights": {
+    "IncSearch": {
+      "backgroundColor": "theme.editor.findMatchBackground"
+    },
+    "CurSearch": {
+      "backgroundColor": "theme.editor.findMatchBackground"
+    },
+    "Search": {
+      "backgroundColor": "theme.editor.findMatchHighlightBackground"
+    },
+    "Substitute": {
+      "backgroundColor": "theme.editor.foreground",
+      "color": "theme.editor.background"
+    }
+  },
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "vscode-neovim.compositeKeys": {
+    "jj": {
+      "command": "vscode-neovim.escape"
+    }
+  },
+  "eslint.runtime": "",
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "debug.console.fontSize": 13,
+  "terminal.integrated.fontSize": 13,
+  "chat.editor.fontSize": 13,
+  "github.copilot.advanced": {},
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "chat.instructionsFilesLocations": {
+    ".github/instructions": true,
+    "/Users/D032459/.aitk/instructions/": true
+  }
+}

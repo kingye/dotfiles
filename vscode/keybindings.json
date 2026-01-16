@@ -1,0 +1,153 @@
+[
+  // ========================================
+  // Basic Vim Keybindings
+  // ========================================
+
+  // jk to escape (custom binding from your config)
+  {
+    "key": "j",
+    "command": "extension.vim_escape",
+    "when": "editorTextFocus && vim.active && !inDebugRepl && vim.mode == 'Insert' && editorLangId != 'magit'"
+  },
+
+  // Disable Ctrl+Z suspend
+  {
+    "key": "ctrl+z",
+    "command": "-undo"
+  },
+  {
+    "key": "ctrl+z",
+    "command": ""
+  },
+
+  // ========================================
+  // Window/Split Navigation (Ctrl+h/j/k/l)
+  // ========================================
+
+  {
+    "key": "ctrl+h",
+    "command": "workbench.action.navigateLeft",
+    "when": "vim.active && !inDebugRepl && !suggestWidgetVisible && !parameterHintsVisible"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.navigateDown",
+    "when": "vim.active && !inDebugRepl && !suggestWidgetVisible && !parameterHintsVisible"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.navigateUp",
+    "when": "vim.active && !inDebugRepl && !suggestWidgetVisible && !parameterHintsVisible"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "workbench.action.navigateRight",
+    "when": "vim.active && !inDebugRepl && !suggestWidgetVisible && !parameterHintsVisible"
+  },
+
+  // Ctrl+l: Leave sidebar and focus editor
+  {
+    "key": "ctrl+l",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "sideBarFocus && !inputFocus"
+  },
+
+  // Find in Files: Enter to move focus to results
+  {
+    "key": "enter",
+    "command": "search.action.focusSearchList",
+    "when": "inSearchEditor || searchViewletFocus && inputBoxFocus"
+  },
+
+  // Git View: Enter to move focus to file list
+  {
+    "key": "enter",
+    "command": "list.focusDown",
+    "when": "scmRepositoriesViewVisible && inputBoxFocus"
+  },
+
+  // ========================================
+  // Additional Vim Enhancements
+  // ========================================
+
+  // Keep search centered
+  {
+    "key": "n",
+    "command": "vim.remap",
+    "when": "vim.mode == 'Normal'",
+    "args": {
+      "after": ["n", "z", "z"]
+    }
+  },
+  {
+    "key": "N",
+    "command": "vim.remap",
+    "when": "vim.mode == 'Normal'",
+    "args": {
+      "after": ["N", "z", "z"]
+    }
+  },
+
+  // Better indenting in visual mode
+  {
+    "key": "<",
+    "command": "vim.remap",
+    "when": "vim.mode == 'Visual'",
+    "args": {
+      "after": ["<", "g", "v"]
+    }
+  },
+  {
+    "key": ">",
+    "command": "vim.remap",
+    "when": "vim.mode == 'Visual'",
+    "args": {
+      "after": [">", "g", "v"]
+    }
+  },
+
+  // Move selected lines up/down
+  {
+    "key": "shift+j",
+    "command": "editor.action.moveLinesDownAction",
+    "when": "vim.mode == 'Visual' && editorTextFocus"
+  },
+  {
+    "key": "shift+k",
+    "command": "editor.action.moveLinesUpAction",
+    "when": "vim.mode == 'Visual' && editorTextFocus"
+  },
+
+  // ========================================
+  // Leader Key Mappings (Space) - Sidebar Navigation
+  // ========================================
+  // These work when focused on sidebars (Git, Explorer, Search, etc.)
+
+  // Space + e: Open Explorer view
+  {
+    "key": "space e",
+    "command": "workbench.view.explorer",
+    "when": "vim.mode == 'Normal' && !inputFocus"
+  },
+
+  // Space + e: Toggle sidebar visibility (close entire sidebar) when in sidebar
+  {
+    "key": "space e",
+    "command": "workbench.action.toggleSidebarVisibility",
+    "when": "sideBarFocus && !inputFocus"
+  },
+
+  // Space + g + g: Switch to Git from any sidebar
+  {
+    "key": "space g g",
+    "command": "workbench.view.scm",
+    "when": "sideBarFocus && !inputFocus"
+  },
+
+  // Space + s + g: Switch to Search from any sidebar
+  {
+    "key": "space s g",
+    "command": "workbench.action.findInFiles",
+    "when": "sideBarFocus && !inputFocus"
+  }
+]
