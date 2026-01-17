@@ -123,10 +123,17 @@
   // ========================================
   // These work when focused on sidebars (Git, Explorer, Search, etc.)
 
-  // Space + e: Open Explorer view
+  // Space + e: Always focus on Files view in Explorer (not Rust Dependencies)
+  // Higher priority binding for Rust files to override rust-analyzer
   {
     "key": "space e",
-    "command": "workbench.view.explorer",
+    "command": "workbench.files.action.focusFilesExplorer",
+    "when": "vim.mode == 'Normal' && !inputFocus && editorLangId == 'rust'"
+  },
+  // General binding for all other cases
+  {
+    "key": "space e",
+    "command": "workbench.files.action.focusFilesExplorer",
     "when": "vim.mode == 'Normal' && !inputFocus"
   },
 
@@ -149,5 +156,48 @@
     "key": "space s g",
     "command": "workbench.action.findInFiles",
     "when": "sideBarFocus && !inputFocus"
+  },
+
+  // ========================================
+  // Panel Navigation (Ctrl+H/J/K/L from panels)
+  // ========================================
+  // Extend Ctrl+H/J/K/L navigation to work from terminal/problems/debug console
+
+  // Ctrl+K: Move UP from panel to editor
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.navigateUp",
+    "when": "terminalFocus || panelFocus"
+  },
+
+  // Ctrl+J: Move DOWN from editor to panel
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.navigateDown",
+    "when": "editorFocus && !suggestWidgetVisible && !parameterHintsVisible"
+  },
+
+  // Ctrl+H: Move LEFT from panel
+  {
+    "key": "ctrl+h",
+    "command": "workbench.action.navigateLeft",
+    "when": "terminalFocus || panelFocus"
+  },
+
+  // Ctrl+L: Move RIGHT from panel
+  {
+    "key": "ctrl+l",
+    "command": "workbench.action.navigateRight",
+    "when": "terminalFocus || panelFocus"
+  },
+
+  // ========================================
+  // Panel Visibility Toggle
+  // ========================================
+
+  // Ctrl+/: Toggle bottom panel visibility (terminal, debug console, problems, etc.)
+  {
+    "key": "ctrl+/",
+    "command": "workbench.action.togglePanel"
   }
 ]

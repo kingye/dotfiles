@@ -56,7 +56,10 @@ if vim.g.vscode then
   map('n', '<leader>gd', function() vscode.action('git.openChange') end, { desc = 'Git diff' })
 
   -- Explorer/Sidebar
-  map('n', '<leader>e', function() vscode.action('workbench.view.explorer') end, { desc = 'Open explorer' })
+  -- Note: workbench.files.action.focusFilesExplorer ensures we open the Files view,
+  -- not other explorer views like Rust Dependencies. This works in conjunction with
+  -- keybindings.json which has a Rust-specific override for the same behavior.
+  map('n', '<leader>e', function() vscode.action('workbench.files.action.focusFilesExplorer') end, { desc = 'Open folder' })
   map('n', '<leader>o', function() vscode.action('workbench.action.toggleSidebarVisibility') end, { desc = 'Toggle sidebar' })
 
   -- Terminal
@@ -104,4 +107,8 @@ if vim.g.vscode then
   map('n', '<C-j>', function() vscode.action('workbench.action.navigateDown') end, { desc = 'Navigate down' })
   map('n', '<C-k>', function() vscode.action('workbench.action.navigateUp') end, { desc = 'Navigate up' })
   map('n', '<C-l>', function() vscode.action('workbench.action.navigateRight') end, { desc = 'Navigate right' })
+
+  -- Buffer navigation with [b and ]b
+  map('n', '[b', function() vscode.action('workbench.action.previousEditor') end, { desc = 'Previous buffer' })
+  map('n', ']b', function() vscode.action('workbench.action.nextEditor') end, { desc = 'Next buffer' })
 end
