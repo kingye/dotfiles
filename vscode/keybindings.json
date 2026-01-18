@@ -213,5 +213,87 @@
   {
     "key": "ctrl+s s",
     "command": "workbench.action.openRecent"
+  },
+
+  // ========================================
+  // Git Operations (Ctrl+G as leader - following lazygit conventions)
+  // ========================================
+
+  // Ctrl+G G: Git status (open SCM view) - lazygit opens with 'g'
+  {
+    "key": "ctrl+g g",
+    "command": "workbench.view.scm"
+  },
+
+  // Ctrl+G F: Git fetch - lazygit: 'f'
+  {
+    "key": "ctrl+g f",
+    "command": "git.fetch"
+  },
+
+  // Ctrl+G P: Git pull - lazygit: 'p'
+  {
+    "key": "ctrl+g p",
+    "command": "git.pull"
+  },
+
+  // Ctrl+G Shift+P: Git push - lazygit: 'P' (shift+p)
+  {
+    "key": "ctrl+g shift+p",
+    "command": "git.push"
+  },
+
+  // Ctrl+G C: Git commit - lazygit: 'c'
+  {
+    "key": "ctrl+g c",
+    "command": "git.commit"
+  },
+
+  // Ctrl+G M: Cline generate commit message (AI-powered) - custom addition
+  {
+    "key": "ctrl+g m",
+    "command": "cline.generateGitCommitMessage"
+  },
+
+  // Ctrl+G A: Git stage all changes - lazygit: 'a' to stage all
+  {
+    "key": "ctrl+g a",
+    "command": "git.stageAll"
+  },
+
+  // Ctrl+G B: Git branches - lazygit uses space/enter but 'b' is intuitive
+  {
+    "key": "ctrl+g b",
+    "command": "git.checkout"
+  },
+
+  // Ctrl+G L: Git log/history - lazygit: 'l' for log
+  {
+    "key": "ctrl+g l",
+    "command": "git.viewHistory"
+  },
+
+  // Ctrl+G D: Git diff - lazygit shows diff in view
+  {
+    "key": "ctrl+g d",
+    "command": "git.openChange"
+  },
+
+  // Ctrl+G S: Git stash - lazygit: 's' for stash
+  {
+    "key": "ctrl+g s",
+    "command": "git.stash"
+  },
+
+  // Ctrl+G Shift+S: Git stash pop - lazygit: 'shift+s'
+  {
+    "key": "ctrl+g shift+s",
+    "command": "git.stashPop"
+  },
+
+  // Ctrl+G R: Git refresh/sync - lazygit: 'r' for refresh
+  {
+    "key": "ctrl+g r",
+    "command": "git.sync"
   }
 ]
