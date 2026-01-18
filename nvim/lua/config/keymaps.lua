@@ -112,4 +112,7 @@ if vim.g.vscode then
   -- Buffer navigation with [b and ]b
   map('n', '[b', function() vscode.action('workbench.action.previousEditor') end, { desc = 'Previous buffer' })
   map('n', ']b', function() vscode.action('workbench.action.nextEditor') end, { desc = 'Next buffer' })
+
+  -- start cline
+  map('n', '<leader>ccc', function() vscode.action('claude-dev.SidebarProvider.focus') end, { desc = 'Start cline' })
 end

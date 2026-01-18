@@ -49,7 +49,7 @@
   {
     "key": "ctrl+l",
     "command": "workbench.action.focusActiveEditorGroup",
-    "when": "sideBarFocus && !inputFocus"
+    "when": "sideBarFocus"
   },
 
   // Find in Files: Enter to move focus to results
@@ -215,6 +215,15 @@
     "command": "workbench.action.openRecent"
   },
 
+  {
+    "key": "ctrl+e",
+    "command": "workbench.files.action.focusFilesExplorer"
+  },
+
+  {
+    "key": "ctrl+o",
+    "command": "workbench.action.toggleSidebarVisibility"
+  }
   // ========================================
   // Git Operations (Ctrl+G as leader - following lazygit conventions)
   // ========================================
