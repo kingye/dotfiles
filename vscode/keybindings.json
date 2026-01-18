@@ -220,154 +220,43 @@
   // ========================================
   // These shortcuts work when focused on the Source Control view (Git pane)
 
-  // Space: Stage/unstage selected file or change
-  {
-    "key": "space",
-    "command": "git.stage",
-    "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && !inputFocus && scmRepository"
-  },
-  {
-    "key": "space",
-    "command": "git.unstage",
-    "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && !inputFocus && scmResourceGroup =~ /index/"
-  },
-
-  // a: Stage all changes
-  {
-    "key": "a",
-    "command": "git.stageAll",
-    "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && !inputFocus"
-  },
-
-  // u: Unstage all changes
-  {
-    "key": "u",
-    "command": "git.unstageAll",
-    "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && !inputFocus"
-  },
-
   // c: Commit (opens commit message input)
+  // First disable the default list type-to-search behavior
+  {
+    "key": "c",
+    "command": "-list.find",
+    "when": "listFocus && listSupportsFind"
+  },
   {
     "key": "c",
     "command": "git.commit",
-    "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && !inputFocus"
+    "when": "sideBarVisible && activeViewlet == 'workbench.view.scm' && !inputFocus"
   },
 
-  // C (Shift+c): Commit with amend
+  // Additional Git shortcuts for better workflow
   {
     "key": "shift+c",
-    "command": "git.commitAmend",
-    "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && !inputFocus"
+    "command": "git.commitAll",
+    "when": "sideBarVisible && activeViewlet == 'workbench.view.scm' && !inputFocus"
   },
-
-  // P (Shift+p): Push
   {
-    "key": "shift+p",
-    "command": "git.push",
-    "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && !inputFocus"
+    "key": "a",
+    "command": "git.stage",
+    "when": "sideBarVisible && activeViewlet == 'workbench.view.scm' && !inputFocus && !scmRepository"
   },
-
-  // p: Pull
+  {
+    "key": "u",
+    "command": "git.unstage",
+    "when": "sideBarVisible && activeViewlet == 'workbench.view.scm' && !inputFocus && !scmRepository"
+  },
   {
     "key": "p",
+    "command": "git.push",
+    "when": "sideBarVisible && activeViewlet == 'workbench.view.scm' && !inputFocus"
+  },
+  {
+    "key": "shift+p",
     "command": "git.pull",
-    "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && !inputFocus"
-  },
-
-  // f: Fetch
-  {
-    "key": "f",
-    "command": "git.fetch",
-    "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && !inputFocus"
-  },
-
-  // Enter or d: View diff/changes for selected file
-  {
-    "key": "enter",
-    "command": "git.openChange",
-    "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && !inputFocus"
-  },
-  {
-    "key": "d",
-    "command": "git.openChange",
-    "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && !inputFocus"
-  },
-
-  // D (Shift+d): Discard changes for selected file
-  {
-    "key": "shift+d",
-    "command": "git.clean",
-    "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && !inputFocus"
-  },
-
-  // b: Checkout branch (switch branch)
-  {
-    "key": "b",
-    "command": "git.checkout",
-    "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && !inputFocus"
-  },
-
-  // n: Create new branch
-  {
-    "key": "n",
-    "command": "git.branch",
-    "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && !inputFocus"
-  },
-
-  // l: View commit history/log
-  {
-    "key": "l",
-    "command": "git.viewHistory",
-    "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && !inputFocus"
-  },
-
-  // r: Refresh git status
-  {
-    "key": "r",
-    "command": "git.refresh",
-    "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && !inputFocus"
-  },
-
-  // s: Stash changes
-  {
-    "key": "s",
-    "command": "git.stash",
-    "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && !inputFocus"
-  },
-
-  // S (Shift+s): Pop stash
-  {
-    "key": "shift+s",
-    "command": "git.stashPop",
-    "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && !inputFocus"
-  },
-
-  // m: Merge branch
-  {
-    "key": "m",
-    "command": "git.merge",
-    "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && !inputFocus"
-  },
-
-  // R (Shift+r): Rebase
-  {
-    "key": "shift+r",
-    "command": "git.rebase",
-    "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && !inputFocus"
-  },
-
-  // t: Show git timeline
-  {
-    "key": "t",
-    "command": "timeline.focus",
-    "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && !inputFocus"
-  },
-
-  // ?: Show git commands
-  {
-    "key": "shift+/",
-    "command": "workbench.action.showCommands",
-    "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && !inputFocus",
-    "args": "git"
+    "when": "sideBarVisible && activeViewlet == 'workbench.view.scm' && !inputFocus"
   }
 ]
