@@ -61,9 +61,10 @@ if vim.g.vscode then
   -- keybindings.json which has a Rust-specific override for the same behavior.
   map('n', '<leader>e', function() vscode.action('workbench.files.action.focusFilesExplorer') end, { desc = 'Open folder' })
   map('n', '<leader>o', function() vscode.action('workbench.action.toggleSidebarVisibility') end, { desc = 'Toggle sidebar' })
+  map('n', '<leader>p', function() vscode.action('workbench.action.togglePanel') end, { desc = 'Toggle panel' })
 
   -- Terminal
-  map('n', '<leader>tt', function() vscode.action('workbench.action.terminal.toggleTerminal') end, { desc = 'Toggle terminal' })
+  map('n', '<leader>ft', function() vscode.action('workbench.action.terminal.toggleTerminal') end, { desc = 'Toggle terminal' })
   map('n', '<leader>tn', function() vscode.action('workbench.action.terminal.new') end, { desc = 'New terminal' })
 
   -- Window/Split Management

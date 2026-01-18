@@ -3,12 +3,11 @@
 # 性能优化
 
 [window]
-startup_mode = "Maximized"
 title = "Jin's Terminal"
-dynamic_title = true 
+dynamic_title = true
 decorations = "Buttonless"
 opacity = 0.95
-blur = true 
+blur = true
 decorations_theme_variant="Dark"
 option_as_alt = "Both"
 
@@ -24,9 +23,9 @@ TERM = "xterm-256color"
 normal = { family = "JetBrainsMono Nerd Font Mono", style = "Regular" }
 bold = { family = "JetBrainsMono Nerd Font Mono", style = "Bold" }
 italic = { family = "JetBrainsMono Nerd Font Mono", style = "Italic" }
-size = 13 
+size = 13
 offset = {x = 0, y = 2}
-builtin_box_drawing = true 
+builtin_box_drawing = true
 
 [cursor]
 style = { shape = "Block", blinking = "Off" }
@@ -49,4 +48,5 @@ bindings = [
     { key = "q", mods = "Command", action = "Quit" },
     { key = "n", mods = "Command|Shift", action = "SpawnNewInstance" },
     { key = "f", mods = "Command|Shift", action = "ToggleFullscreen" },
+    { key = "Slash", mods= "Control", chars= "\\x1f" }
 ]

@@ -29,6 +29,8 @@ PaperWM:bindHotkeys({
   -- increase/decrease width
   increase_width       = { { "alt" }, "=" },
   decrease_width       = { { "alt" }, "-" },
+  increase_height      = { { "alt" }, "." },
+  decrease_height      = { { "alt" }, "," },
 
   -- move focused window into / out of a column
   slurp_in             = { { "alt" }, "i" },
@@ -41,8 +43,8 @@ PaperWM:bindHotkeys({
   focus_window_1       = { { "alt" }, "'" },
 
   -- switch to a new Mission Control space
-  switch_space_l       = { { "alt" }, "," },
-  switch_space_r       = { { "alt" }, "." },
+  -- switch_space_l       = { { "alt" }, "," },
+  -- switch_space_r       = { { "alt" }, "." },
   switch_space_1       = { { "alt" }, "1" },
   switch_space_2       = { { "alt" }, "2" },
   switch_space_3       = { { "alt" }, "3" },
@@ -66,6 +68,12 @@ PaperWM:bindHotkeys({
 })
 PaperWM.window_gap    = { top = 8, bottom = 8, left = 8, right = 8 }
 PaperWM.window_ratios = { 1 / 4, 1 / 3, 1 / 2, 2 / 3, 3 / 4 }
+
+-- Make Clock, Calculator, and System Settings apps float (not tiled by PaperWM)
+PaperWM.window_filter:rejectApp("Clock")
+PaperWM.window_filter:rejectApp("Calculator")
+PaperWM.window_filter:rejectApp("System Settings")
+
 PaperWM:start()
 
 FocusMode = hs.loadSpoon("FocusMode")
@@ -83,3 +91,21 @@ FocusMode.mouseDim = false
 
 -- Start (you can also use the hotkey)
 FocusMode:start()
+
+-- CMatrix Screensaver
+CMatrixScreensaver = hs.loadSpoon("CMatrixScreensaver")
+CMatrixScreensaver.idleTimeout = 900  -- 15 minutes in seconds
+CMatrixScreensaver:bindHotkeys({
+  trigger = {{"cmd", "shift"}, "s"}
+})
+CMatrixScreensaver:start()
+
+-- Launch Clock app with Cmd+Shift+T
+hs.hotkey.bind({"cmd", "shift"}, "t", function()
+    hs.application.launchOrFocus("Clock")
+end)
+
+-- Launch Calculator app with Cmd+Shift+C
+hs.hotkey.bind({"cmd", "shift"}, "c", function()
+    hs.application.launchOrFocus("Calculator")
+end)

@@ -198,6 +198,20 @@
   // Ctrl+/: Toggle bottom panel visibility (terminal, debug console, problems, etc.)
   {
     "key": "ctrl+/",
+    "command": "workbench.action.terminal.toggleTerminal"
+  },
+  {
+    "key": "ctrl+p",
     "command": "workbench.action.togglePanel"
+  },
+
+  // ========================================
+  // Quick Open Recent
+  // ========================================
+
+  // Ctrl+S S: Open recent files/workspaces dropdown
+  {
+    "key": "ctrl+s s",
+    "command": "workbench.action.openRecent"
   }
 ]
