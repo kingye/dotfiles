@@ -213,50 +213,5 @@
   {
     "key": "ctrl+s s",
     "command": "workbench.action.openRecent"
-  },
-
-  // ========================================
-  // Git Pane (Lazygit-like shortcuts)
-  // ========================================
-  // These shortcuts work when focused on the Source Control view (Git pane)
-
-  // c: Commit (opens commit message input)
-  // First disable the default list type-to-search behavior
-  {
-    "key": "c",
-    "command": "-list.find",
-    "when": "listFocus && listSupportsFind"
-  },
-  {
-    "key": "c",
-    "command": "git.commit",
-    "when": "sideBarVisible && activeViewlet == 'workbench.view.scm' && !inputFocus"
-  },
-
-  // Additional Git shortcuts for better workflow
-  {
-    "key": "shift+c",
-    "command": "git.commitAll",
-    "when": "sideBarVisible && activeViewlet == 'workbench.view.scm' && !inputFocus"
-  },
-  {
-    "key": "a",
-    "command": "git.stage",
-    "when": "sideBarVisible && activeViewlet == 'workbench.view.scm' && !inputFocus && !scmRepository"
-  },
-  {
-    "key": "u",
-    "command": "git.unstage",
-    "when": "sideBarVisible && activeViewlet == 'workbench.view.scm' && !inputFocus && !scmRepository"
-  },
-  {
-    "key": "p",
-    "command": "git.push",
-    "when": "sideBarVisible && activeViewlet == 'workbench.view.scm' && !inputFocus"
-  },
-  {
-    "key": "shift+p",
-    "command": "git.pull",
-    "when": "sideBarVisible && activeViewlet == 'workbench.view.scm' && !inputFocus"
   }
 ]
