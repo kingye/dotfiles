@@ -7,7 +7,50 @@ local map = vim.keymap.set
 map("i", "jk", "<ESC>")
 
 --  not suspend nvim by ctrl-z
-map({'n', 'i'}, '<C-z>', '<nop>', {noremap = true})
+map({ 'n', 'i' }, '<C-z>', '<nop>', { noremap = true })
+
+-- Floating terminal (only for non-VSCode)
+if not vim.g.vscode then
+  map("n", "<leader>t|", "<cmd>vsplit | terminal<cr>", { desc = "Vsplit terminal" })
+  map("n", "<leader>t-", "<cmd>split | terminal<cr>", { desc = "Hsplit terminal" })
+end
+-- Smart pane navigation: Neovim splits OR WezTerm panes
+if not vim.g.vscode then
+  local wezterm = require('wezterm')
+
+  local function navigate_or_switch(direction)
+    -- Map direction to vim window command
+    local direction_keys = {
+      Left = 'h',
+      Right = 'l',
+      Up = 'k',
+      Down = 'j'
+    }
+
+    local key = direction_keys[direction]
+    if not key then return end
+
+    -- Get current window ID
+    local current_win = vim.fn.win_getid()
+
+    -- Try to move in Neovim
+    vim.cmd('wincmd ' .. key)
+
+    -- Check if we actually moved to a different window
+    local new_win = vim.fn.win_getid()
+
+    -- If we didn't move, we're at the edge - switch to WezTerm pane
+    if current_win == new_win then
+      wezterm.switch_pane.direction(direction)
+    end
+  end
+
+  -- Pane navigation
+  map('n', '<C-h>', function() navigate_or_switch('Left') end, { desc = 'Navigate left (Neovim/WezTerm)' })
+  map('n', '<C-j>', function() navigate_or_switch('Down') end, { desc = 'Navigate down (Neovim/WezTerm)' })
+  map('n', '<C-k>', function() navigate_or_switch('Up') end, { desc = 'Navigate up (Neovim/WezTerm)' })
+  map('n', '<C-l>', function() navigate_or_switch('Right') end, { desc = 'Navigate right (Neovim/WezTerm)' })
+end
 
 -- VSCode-specific keymaps
 if vim.g.vscode then
@@ -32,7 +75,8 @@ if vim.g.vscode then
   map('n', '<leader>bd', function() vscode.action('workbench.action.closeActiveEditor') end, { desc = 'Delete buffer' })
   map('n', '<leader>bn', function() vscode.action('workbench.action.nextEditor') end, { desc = 'Next buffer' })
   map('n', '<leader>bp', function() vscode.action('workbench.action.previousEditor') end, { desc = 'Previous buffer' })
-  map('n', '<leader>bo', function() vscode.action('workbench.action.closeOtherEditors') end, { desc = 'Close other buffers' })
+  map('n', '<leader>bo', function() vscode.action('workbench.action.closeOtherEditors') end,
+    { desc = 'Close other buffers' })
 
   -- Code Actions
   map('n', '<leader>ca', function() vscode.action('editor.action.quickFix') end, { desc = 'Code actions' })
@@ -59,17 +103,21 @@ if vim.g.vscode then
   -- Note: workbench.files.action.focusFilesExplorer ensures we open the Files view,
   -- not other explorer views like Rust Dependencies. This works in conjunction with
   -- keybindings.json which has a Rust-specific override for the same behavior.
-  map('n', '<leader>e', function() vscode.action('workbench.files.action.focusFilesExplorer') end, { desc = 'Open folder' })
-  map('n', '<leader>o', function() vscode.action('workbench.action.toggleSidebarVisibility') end, { desc = 'Toggle sidebar' })
+  map('n', '<leader>e', function() vscode.action('workbench.files.action.focusFilesExplorer') end,
+    { desc = 'Open folder' })
+  map('n', '<leader>o', function() vscode.action('workbench.action.toggleSidebarVisibility') end,
+    { desc = 'Toggle sidebar' })
   map('n', '<leader>p', function() vscode.action('workbench.action.togglePanel') end, { desc = 'Toggle panel' })
 
   -- Terminal
-  map('n', '<leader>ft', function() vscode.action('workbench.action.terminal.toggleTerminal') end, { desc = 'Toggle terminal' })
+  map('n', '<leader>ft', function() vscode.action('workbench.action.terminal.toggleTerminal') end,
+    { desc = 'Toggle terminal' })
   map('n', '<leader>tn', function() vscode.action('workbench.action.terminal.new') end, { desc = 'New terminal' })
 
   -- Window/Split Management
   -- Using <Bar> instead of | for better compatibility
-  map('n', '<leader><Bar>', function() vscode.action('workbench.action.splitEditorRight') end, { desc = 'Split vertical' })
+  map('n', '<leader><Bar>', function() vscode.action('workbench.action.splitEditorRight') end,
+    { desc = 'Split vertical' })
   map('n', '<leader>-', function() vscode.action('workbench.action.splitEditorDown') end, { desc = 'Split horizontal' })
   map('n', '<leader>wv', function() vscode.action('workbench.action.splitEditorRight') end, { desc = 'Split vertical' })
   map('n', '<leader>ws', function() vscode.action('workbench.action.splitEditorDown') end, { desc = 'Split horizontal' })
@@ -83,12 +131,15 @@ if vim.g.vscode then
 
   -- UI Toggles
   map('n', '<leader>uw', function() vscode.action('editor.action.toggleWordWrap') end, { desc = 'Toggle word wrap' })
-  map('n', '<leader>ul', function() vscode.action('editor.action.toggleRenderWhitespace') end, { desc = 'Toggle whitespace' })
-  map('n', '<leader>un', function() vscode.action('workbench.action.toggleLineNumbers') end, { desc = 'Toggle line numbers' })
+  map('n', '<leader>ul', function() vscode.action('editor.action.toggleRenderWhitespace') end,
+    { desc = 'Toggle whitespace' })
+  map('n', '<leader>un', function() vscode.action('workbench.action.toggleLineNumbers') end,
+    { desc = 'Toggle line numbers' })
   map('n', '<leader>uz', function() vscode.action('workbench.action.toggleZenMode') end, { desc = 'Toggle zen mode' })
 
   -- Quick Actions
-  map('n', '<leader><leader>', function() vscode.action('workbench.action.showCommands') end, { desc = 'Command palette' })
+  map('n', '<leader><leader>', function() vscode.action('workbench.action.showCommands') end,
+    { desc = 'Command palette' })
   -- Note: space / doesn't work well in VSCode neovim due to / being a native Vim search trigger
   -- Using space ? as alternative for find in files (? is reverse search in vim, less commonly used)
   map('n', '<leader>?', function() vscode.action('workbench.action.findInFiles') end, { desc = 'Find in files' })
