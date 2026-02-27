@@ -19,6 +19,15 @@ return {
           },
         },
       },
+      terminal = {
+        enabled = true,
+        win = {
+          position = "float",
+          border = "rounded",
+          width = 0.9,
+          height = 0.9,
+        },
+      },
       picker = {
         hidden = true,
         ignored = true, -- show files ignored by git like node_modules
