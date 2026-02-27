@@ -34,15 +34,20 @@ local config = {
       action = wezterm.action.SplitHorizontal { domain = "CurrentPaneDomain" }
     },
     -- Smart Neovim + WezTerm navigation
-    { key = 'h', mods = 'CTRL',     action = navigate('h', 'Left') },
-    { key = 'j', mods = 'CTRL',     action = navigate('j', 'Down') },
-    { key = 'k', mods = 'CTRL',     action = navigate('k', 'Up') },
-    { key = 'l', mods = 'CTRL',     action = navigate('l', 'Right') },
+    { key = 'h', mods = 'CTRL',       action = navigate('h', 'Left') },
+    { key = 'j', mods = 'CTRL',       action = navigate('j', 'Down') },
+    { key = 'k', mods = 'CTRL',       action = navigate('k', 'Up') },
+    { key = 'l', mods = 'CTRL',       action = navigate('l', 'Right') },
 
     { key = 'k', mods = 'CTRL|SHIFT', action = act.AdjustPaneSize({ 'Up', 10 }) },
     { key = 'j', mods = 'CTRL|SHIFT', action = act.AdjustPaneSize({ 'Down', 10 }) },
     { key = 'h', mods = 'CTRL|SHIFT', action = act.AdjustPaneSize({ 'Left', 10 }) },
     { key = 'l', mods = 'CTRL|SHIFT', action = act.AdjustPaneSize({ 'Right', 10 }) },
+
+
+    { key = '+', mods = 'CTRL',       action = act.IncreaseFontSize },
+    { key = '-', mods = 'CTRL',       action = act.DecreaseFontSize },
+    { key = 'r', mods = 'CTRL',       action = act.ResetFontSize },
     {
       key = "f",
       mods = 'CTRL|SHIFT',
