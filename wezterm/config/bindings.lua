@@ -45,9 +45,9 @@ local config = {
     { key = 'l', mods = 'CTRL|SHIFT', action = act.AdjustPaneSize({ 'Right', 10 }) },
 
 
-    { key = '+', mods = 'CTRL',       action = act.IncreaseFontSize },
-    { key = '-', mods = 'CTRL',       action = act.DecreaseFontSize },
-    { key = 'r', mods = 'CTRL',       action = act.ResetFontSize },
+    { key = '+', mods = 'CTRL|SHIFT', action = act.IncreaseFontSize },
+    { key = '-', mods = 'CTRL|SHIFT', action = act.DecreaseFontSize },
+    { key = 'r', mods = 'CTRL|SHIFT', action = act.ResetFontSize },
     {
       key = "f",
       mods = 'CTRL|SHIFT',
