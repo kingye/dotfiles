@@ -10,3 +10,6 @@ dwc-application.json
 datalake/downloaded-large-file.json
 datalake/large-file.json
 zellij/plugins
+
+# Hammerspoon Spoons
+hammerspoon/Spoons/PaperWM.spoon
