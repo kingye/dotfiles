@@ -10,5 +10,5 @@ vim.g.maplocalleader = "\\"
 if vim.g.vscode then
   -- Ensure space works immediately in insert mode and other non-normal modes
   -- This is handled by the neovim extension, but we make sure leader is set
-  vim.opt.timeoutlen = 500  -- Shorter timeout for better responsiveness
+  vim.opt.timeoutlen = 500 -- Shorter timeout for better responsiveness
 end

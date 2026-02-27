@@ -1,13 +1,14 @@
 return {
   -- add gruvbox
   -- { "catppuccin/nvim" },
-  {"rose-pine/neovim"},
+  { "rose-pine/neovim" },
   -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",
     opts = {
       -- colorscheme = "catppuccin",
       colorscheme = "rose-pine-moon",
+      transparent = true,
     },
   }
 }
