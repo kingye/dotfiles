@@ -222,7 +222,8 @@
 
   {
     "key": "ctrl+o",
-    "command": "workbench.action.toggleSidebarVisibility"
+    "command": "workbench.action.toggleSidebarVisibility
+"
   }
   // ========================================
   // Git Operations (Ctrl+G as leader - following lazygit conventions)

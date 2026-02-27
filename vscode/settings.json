@@ -4,7 +4,7 @@
   // ========================================
 
   "extensions.experimental.affinity": {
-    "asvetliakov.vscode-neovim": 1
+    "asvetliakov.vscode-neovim": 1,
   },
 
   // Enable Neovim integration
@@ -21,49 +21,49 @@
       "before": ["<leader>", "/"],
       "commands": [
         {
-          "command": "workbench.action.findInFiles"
-        }
-      ]
+          "command": "workbench.action.findInFiles",
+        },
+      ],
     },
     {
       "before": ["<leader>", "|"],
       "commands": [
         {
-          "command": "workbench.action.splitEditorRight"
-        }
-      ]
+          "command": "workbench.action.splitEditorRight",
+        },
+      ],
     },
     {
       "before": ["<leader>", "s", "g"],
       "commands": [
         {
-          "command": "workbench.action.findInFiles"
-        }
-      ]
+          "command": "workbench.action.findInFiles",
+        },
+      ],
     },
     {
       "before": ["<leader>", "g", "g"],
       "commands": [
         {
-          "command": "workbench.view.scm"
-        }
-      ]
+          "command": "workbench.view.scm",
+        },
+      ],
     },
     {
       "before": ["<leader>", "e"],
       "commands": [
         {
-          "command": "workbench.view.explorer"
-        }
-      ]
-    }
+          "command": "workbench.view.explorer",
+        },
+      ],
+    },
   ],
 
   // Neovim configuration for jk escape
   "vscode-neovim.compositeKeys": {
     "jk": {
-      "command": "vscode-neovim.escape"
-    }
+      "command": "vscode-neovim.escape",
+    },
   },
 
   // Leader key timeout (milliseconds) - shorter timeout for better responsiveness
@@ -137,52 +137,52 @@
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
       "source.organizeImports": "explicit",
-      "source.fixAll.eslint": "explicit"
-    }
+      "source.fixAll.eslint": "explicit",
+    },
   },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
       "source.organizeImports": "explicit",
-      "source.fixAll.eslint": "explicit"
-    }
+      "source.fixAll.eslint": "explicit",
+    },
   },
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
   },
   "[javascriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
   },
 
   // JSON
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
   },
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
   },
 
   // Markdown
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
-    "editor.wordWrap": "on"
+    "editor.wordWrap": "on",
   },
 
   // Rust
   "[rust]": {
     "editor.defaultFormatter": "rust-lang.rust-analyzer",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
   },
 
   // TOML
   "[toml]": {
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
   },
 
   // ========================================
@@ -194,7 +194,7 @@
     "javascript",
     "javascriptreact",
     "typescript",
-    "typescriptreact"
+    "typescriptreact",
   ],
   "eslint.format.enable": false,
 
@@ -212,7 +212,7 @@
     "*": true,
     "yaml": true,
     "plaintext": false,
-    "markdown": true
+    "markdown": true,
   },
 
   // ========================================
@@ -230,7 +230,7 @@
     "**/build": true,
     "**/.next": true,
     "**/.nuxt": true,
-    "**/target": true
+    "**/target": true,
   },
 
   "search.exclude": {
@@ -242,7 +242,7 @@
     "**/.next": true,
     "**/.nuxt": true,
     "**/target": true,
-    "**/*.lock": true
+    "**/*.lock": true,
   },
 
   "files.watcherExclude": {
@@ -253,6 +253,7 @@
     "**/build/**": true,
     "**/.next/**": true,
     "**/.nuxt/**": true,
-    "**/target/**": true
-  }
+    "**/target/**": true,
+  },
+  "comments.openView": "never",
 }
