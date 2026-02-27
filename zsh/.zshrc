@@ -113,6 +113,37 @@ _fix_cursor() {
 precmd_functions+=(_fix_cursor)
 
 KEYTIMEOUT=1
+
+# Sync ZLE yank/paste with macOS system clipboard
+function x11-clip-wrap-widgets() {
+    local copy_or_paste=$1
+    shift
+    for widget in $@; do
+        if [[ $copy_or_paste == "copy" ]]; then
+            eval "
+            function _x11-clip-wrapped-$widget() {
+                zle .$widget
+                echo -n \$CUTBUFFER | pbcopy
+            }
+            "
+        else
+            eval "
+            function _x11-clip-wrapped-$widget() {
+                CUTBUFFER=\$(pbpaste)
+                zle .$widget
+            }
+            "
+        fi
+        zle -N $widget _x11-clip-wrapped-$widget
+    done
+}
+
+# Wrap yank operations to copy to system clipboard
+x11-clip-wrap-widgets copy vi-yank vi-yank-eol vi-delete vi-backward-delete-char vi-delete-char vi-change vi-change-eol vi-change-whole-line vi-substitute
+
+# Wrap paste operations to paste from system clipboard
+x11-clip-wrap-widgets paste vi-put-after vi-put-before put-replace-selection
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -139,7 +170,7 @@ KEYTIMEOUT=1
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 lazy_load_nvm() {
-  unset -f node npm nvm
+  unset -f node npm nvm iflow nvim ts-node
   export NVM_DIR="$HOME/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
   # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -147,7 +178,9 @@ lazy_load_nvm() {
 node() { lazy_load_nvm; node "$@"; }
 npm() { lazy_load_nvm; npm "$@"; }
 nvm() { lazy_load_nvm; nvm "$@"; }
-
+iflow() { lazy_load_nvm; iflow "$@"; }
+ts-node() { lazy_load_nvm; ts-node "$@"; }
+nvim() { lazy_load_nvm; nvim "$@"; }
 
 export SILICONFLOW_API_KEY="REDACTED"
 
@@ -161,3 +194,10 @@ bindkey '^r' atuin-up-search-viins
 alias g='git'
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# setup fzf shell integration
+eval "$(fzf --zsh)"
+
+
+alias ls="eza --icons=always"
+export PATH="$HOME/.local/bin:$PATH"
