@@ -92,20 +92,12 @@ FocusMode.mouseDim = false
 -- Start (you can also use the hotkey)
 FocusMode:start()
 
--- CMatrix Screensaver
-CMatrixScreensaver = hs.loadSpoon("CMatrixScreensaver")
-CMatrixScreensaver.idleTimeout = 900  -- 15 minutes in seconds
-CMatrixScreensaver:bindHotkeys({
-  trigger = {{"cmd", "shift"}, "s"}
-})
-CMatrixScreensaver:start()
-
 -- Launch Clock app with Cmd+Shift+T
-hs.hotkey.bind({"cmd", "shift"}, "t", function()
-    hs.application.launchOrFocus("Clock")
+hs.hotkey.bind({ "cmd", "shift" }, "t", function()
+  hs.application.launchOrFocus("Clock")
 end)
 
 -- Launch Calculator app with Cmd+Shift+C
-hs.hotkey.bind({"cmd", "shift"}, "c", function()
-    hs.application.launchOrFocus("Calculator")
+hs.hotkey.bind({ "cmd", "shift" }, "c", function()
+  hs.application.launchOrFocus("Calculator")
 end)
