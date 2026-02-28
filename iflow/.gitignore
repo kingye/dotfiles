@@ -1,0 +1,35 @@
+# iFlow configuration files to exclude from git
+
+# Authentication and sensitive data
+oauth_creds.json
+iflow_accounts.json
+installation_id
+
+# Cache and temporary files (entire directories)
+cache/
+tmp/
+log/
+
+# History and logs
+history/
+
+# Project-specific data (may contain sensitive information)
+projects/
+
+# Specific sensitive config files (if any exist)
+config/oauth.json
+config/accounts.json
+config/credentials.json
+
+# Files that may contain sensitive information or are machine-specific
+*.log
+*.tmp
+*.cache
+*.lock
+
+# Exclude all contents of temporary directories
+tmp/**/*
+
+# System files
+.DS_Store
+Thumbs.db
