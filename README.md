@@ -65,6 +65,13 @@ Modern collaborative code editor.
 
 ## Window Management
 
+### OmniWM
+Modern tiling window manager for macOS with gesture support.
+- Config: `omniwm/settings.json`
+- Features: Multiple layout types (niri, dwindle), workspace management, hotkey bindings
+- Default layout: niri
+- Gap size: 8px, Border width: 2px
+
 ### AeroSpace
 Tiling window manager for macOS.
 - Config: `aerospace/`
