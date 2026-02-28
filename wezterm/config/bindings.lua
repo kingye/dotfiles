@@ -79,6 +79,16 @@ local config = {
       action = wezterm.action.TogglePaneZoomState
     },
     {
+      key = ' ',
+      mods = 'LEADER',
+      action = wezterm.action.PaneSelect { mode = 'SwapWithActive' }
+    },
+    {
+      key = 'm',
+      mods = 'LEADER',
+      action = wezterm.action.PaneSelect { mode = 'SwapWithActiveKeepFocus' }
+    },
+    {
       key = 'y',
       mods = 'LEADER',
       action = 'ActivateCopyMode'
@@ -89,32 +99,32 @@ local config = {
       action = wezterm.action { SpawnTab = "CurrentPaneDomain" }
     },
     {
-      key = 'n',
+      key = 'k',
+      mods = 'LEADER',
+      action = wezterm.action.ActivateWindowRelative(-1)
+    },
+    {
+      key = 'j',
+      mods = 'LEADER',
+      action = wezterm.action.ActivateWindowRelative(1)
+    },
+    {
+      key = 'l',
       mods = 'LEADER',
       action = wezterm.action.ActivateTabRelative(1)
     },
     {
-      key = 'p',
+      key = 'h',
       mods = 'LEADER',
       action = wezterm.action.ActivateTabRelative(-1)
-    },
-    {
-      key = ']',
-      mods = 'LEADER',
-      action = wezterm.action.ActivateTabRelative(1)
     },
     {
       key = '[',
       mods = 'LEADER',
-      action = wezterm.action.ActivateTabRelative(-1)
-    },
-    {
-      key = '{',
-      mods = 'LEADER',
       action = wezterm.action.MoveTabRelative(-1)
     },
     {
-      key = '}',
+      key = ']',
       mods = 'LEADER',
       action = wezterm.action.MoveTabRelative(1)
     },
@@ -133,6 +143,17 @@ local config = {
       mods = 'LEADER',
       action = wezterm.action.SpawnWindow
     },
+    -- Switch windows by number
+    { key = '0', mods = 'LEADER', action = wezterm.action.ActivateWindow(0) },
+    { key = '1', mods = 'LEADER', action = wezterm.action.ActivateWindow(1) },
+    { key = '2', mods = 'LEADER', action = wezterm.action.ActivateWindow(2) },
+    { key = '3', mods = 'LEADER', action = wezterm.action.ActivateWindow(3) },
+    { key = '4', mods = 'LEADER', action = wezterm.action.ActivateWindow(4) },
+    { key = '5', mods = 'LEADER', action = wezterm.action.ActivateWindow(5) },
+    { key = '6', mods = 'LEADER', action = wezterm.action.ActivateWindow(6) },
+    { key = '7', mods = 'LEADER', action = wezterm.action.ActivateWindow(7) },
+    { key = '8', mods = 'LEADER', action = wezterm.action.ActivateWindow(8) },
+    { key = '9', mods = 'LEADER', action = wezterm.action.ActivateWindow(9) },
     -- Rotate panes
     {
       key = 'o',
