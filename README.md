@@ -12,6 +12,7 @@ This repository contains configuration files and settings for various developmen
 Modern GPU-accelerated terminal emulator with extensive Lua-based configuration.
 - Config: `wezterm/`
 - Features: Custom keybindings, font size controls, workspace management
+- Documentation: See [wezterm/README.md](wezterm/README.md) for detailed keybindings and configuration
 
 ### Ghostty
 Fast, native macOS terminal emulator.
