@@ -1584,7 +1584,7 @@
   "hotkeysEnabled" : true,
   "menuAnywhereNativeEnabled" : true,
   "menuAnywherePaletteEnabled" : true,
-  "menuAnywherePosition" : "cursor",
+  "menuAnywherePosition" : "centered",
   "menuAnywhereShowShortcuts" : true,
   "monitorBarSettings" : [
 
@@ -1605,13 +1605,13 @@
   ],
   "moveMouseToFocusedWindow" : false,
   "niriAlwaysCenterSingleColumn" : true,
-  "niriCenterFocusedColumn" : "never",
+  "niriCenterFocusedColumn" : "onOverflow",
   "niriColumnWidthPresets" : [
     0.3333333333333333,
     0.5,
     0.6666666666666666
   ],
-  "niriInfiniteLoop" : false,
+  "niriInfiniteLoop" : true,
   "niriMaxVisibleColumns" : 2,
   "niriMaxWindowsPerColumn" : 3,
   "niriSingleWindowAspectRatio" : "4:3",
