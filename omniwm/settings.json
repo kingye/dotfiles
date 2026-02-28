@@ -5,8 +5,8 @@
   ],
   "appearanceMode" : "automatic",
   "borderColorAlpha" : 1,
-  "borderColorBlue" : 1,
-  "borderColorGreen" : 0.5,
+  "borderColorBlue" : 0.8239073157310486,
+  "borderColorGreen" : 0.4142591953277588,
   "borderColorRed" : 0,
   "borderWidth" : 2,
   "bordersEnabled" : true,
@@ -242,8 +242,8 @@
     },
     {
       "binding" : {
-        "keyCode" : 43,
-        "modifiers" : 2048
+        "keyCode" : 4294967295,
+        "modifiers" : 0
       },
       "command" : {
         "workspaceBackAndForth" : {
@@ -254,8 +254,8 @@
     },
     {
       "binding" : {
-        "keyCode" : 47,
-        "modifiers" : 2048
+        "keyCode" : 4294967295,
+        "modifiers" : 0
       },
       "command" : {
         "switchWorkspaceNext" : {
@@ -626,8 +626,8 @@
     },
     {
       "binding" : {
-        "keyCode" : 4294967295,
-        "modifiers" : 0
+        "keyCode" : 47,
+        "modifiers" : 2560
       },
       "command" : {
         "moveToMonitor" : {
@@ -638,8 +638,8 @@
     },
     {
       "binding" : {
-        "keyCode" : 4294967295,
-        "modifiers" : 0
+        "keyCode" : 43,
+        "modifiers" : 2560
       },
       "command" : {
         "moveToMonitor" : {
@@ -662,8 +662,8 @@
     },
     {
       "binding" : {
-        "keyCode" : 4,
-        "modifiers" : 6144
+        "keyCode" : 4294967295,
+        "modifiers" : 0
       },
       "command" : {
         "focusMonitor" : {
@@ -674,8 +674,8 @@
     },
     {
       "binding" : {
-        "keyCode" : 37,
-        "modifiers" : 6144
+        "keyCode" : 4294967295,
+        "modifiers" : 0
       },
       "command" : {
         "focusMonitor" : {
@@ -686,8 +686,8 @@
     },
     {
       "binding" : {
-        "keyCode" : 40,
-        "modifiers" : 6144
+        "keyCode" : 4294967295,
+        "modifiers" : 0
       },
       "command" : {
         "focusMonitor" : {
@@ -698,8 +698,8 @@
     },
     {
       "binding" : {
-        "keyCode" : 38,
-        "modifiers" : 6144
+        "keyCode" : 4294967295,
+        "modifiers" : 0
       },
       "command" : {
         "focusMonitor" : {
@@ -710,8 +710,8 @@
     },
     {
       "binding" : {
-        "keyCode" : 45,
-        "modifiers" : 6144
+        "keyCode" : 47,
+        "modifiers" : 2048
       },
       "command" : {
         "focusMonitorNext" : {
@@ -722,8 +722,8 @@
     },
     {
       "binding" : {
-        "keyCode" : 35,
-        "modifiers" : 6144
+        "keyCode" : 43,
+        "modifiers" : 2048
       },
       "command" : {
         "focusMonitorPrevious" : {
@@ -746,8 +746,8 @@
     },
     {
       "binding" : {
-        "keyCode" : 4,
-        "modifiers" : 6656
+        "keyCode" : 4294967295,
+        "modifiers" : 0
       },
       "command" : {
         "moveColumnToMonitor" : {
@@ -758,8 +758,8 @@
     },
     {
       "binding" : {
-        "keyCode" : 37,
-        "modifiers" : 6656
+        "keyCode" : 4294967295,
+        "modifiers" : 0
       },
       "command" : {
         "moveColumnToMonitor" : {
@@ -770,8 +770,8 @@
     },
     {
       "binding" : {
-        "keyCode" : 40,
-        "modifiers" : 6656
+        "keyCode" : 4294967295,
+        "modifiers" : 0
       },
       "command" : {
         "moveColumnToMonitor" : {
@@ -782,8 +782,8 @@
     },
     {
       "binding" : {
-        "keyCode" : 38,
-        "modifiers" : 6656
+        "keyCode" : 4294967295,
+        "modifiers" : 0
       },
       "command" : {
         "moveColumnToMonitor" : {
@@ -818,8 +818,8 @@
     },
     {
       "binding" : {
-        "keyCode" : 4294967295,
-        "modifiers" : 0
+        "keyCode" : 43,
+        "modifiers" : 6656
       },
       "command" : {
         "moveWorkspaceToMonitor" : {
@@ -830,8 +830,8 @@
     },
     {
       "binding" : {
-        "keyCode" : 4294967295,
-        "modifiers" : 0
+        "keyCode" : 47,
+        "modifiers" : 6656
       },
       "command" : {
         "moveWorkspaceToMonitor" : {
@@ -1558,8 +1558,8 @@
     },
     {
       "binding" : {
-        "keyCode" : 4294967295,
-        "modifiers" : 0
+        "keyCode" : 15,
+        "modifiers" : 2048
       },
       "command" : {
         "toggleWorkspaceLayout" : {
@@ -1640,6 +1640,14 @@
   "workspaceBarXOffset" : 0,
   "workspaceBarYOffset" : 0,
   "workspaceConfigurations" : [
-
+    {
+      "id" : "D9700DD7-1C72-4F0E-BB27-FAC1A6C969D6",
+      "isPersistent" : false,
+      "layoutType" : "niri",
+      "monitorAssignment" : {
+        "type" : "any"
+      },
+      "name" : "2"
+    }
   ]
 }
