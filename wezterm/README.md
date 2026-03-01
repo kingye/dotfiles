@@ -21,10 +21,12 @@ The leader key is `Ctrl+s`. Press this combination first, then the command key w
 The keybindings follow a tmux-inspired pattern with logical improvements:
 
 **Leader Key System:**
+
 - **`Leader`** (`Ctrl+s`) - Primary prefix for all terminal multiplexing operations
 - **Timeout**: 5 seconds to press the command key after leader
 
 **Key Grouping Logic:**
+
 - **Pane Splits** - Visual characters (tmux-compatible):
   - `"` = Vertical split (looks like vertical divider)
   - `%` = Horizontal split (horizontal line through %)
@@ -58,6 +60,7 @@ The keybindings follow a tmux-inspired pattern with logical improvements:
   - `Leader` + `f` then `+`/`-`/`r` = Key table mode for continuous resizing
 
 **Operation Pattern:**
+
 - **Leader + action** - Single command execution
 - **Leader + mode key** - Enter key table for continuous operations (font resize, pane resize)
 - **Ctrl + key** - Direct actions without leader (navigation, scrolling)

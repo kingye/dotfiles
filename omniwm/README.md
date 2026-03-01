@@ -27,12 +27,14 @@ This directory contains the configuration for OmniWM, a window manager for macOS
 The keybindings follow a consistent and logical pattern:
 
 **Modifier System:**
+
 - **`Opt`** (⌥) - Primary modifier for all window manager operations
 - **`Opt+Shift`** - Moves or relocates (windows, columns, workspaces)
 - **`Opt+Ctrl`** - Direct access to numbered items (columns by index)
 - **`Opt+Ctrl+Shift`** - Advanced operations (moving workspaces between monitors)
 
 **Key Grouping Logic:**
+
 - **Numbers (1-9)** - Workspace selection and movement
 - **HJKL** - Vim-style directional navigation (Left/Down/Up/Right)
 - **Brackets `[` `]`** - Column operations (navigation and movement)
@@ -53,6 +55,7 @@ The keybindings follow a consistent and logical pattern:
   - `R` = Rotate/toggle layout
 
 **Operation Pattern:**
+
 - **Base key** - Focus/navigate to target
 - **Base + Shift** - Move/relocate to target
 - **Base + Ctrl** - Direct selection by number
