@@ -214,6 +214,7 @@ The keybindings follow a consistent and logical pattern:
 ## macOS Virtual Key Code Reference
 
 ### Letters
+
 | KeyCode | Key | KeyCode | Key | KeyCode | Key | KeyCode | Key |
 |---------|-----|---------|-----|---------|-----|---------|-----|
 | 0 | A | 11 | B | 8 | C | 2 | D |
@@ -222,45 +223,42 @@ The keybindings follow a consistent and logical pattern:
 | 46 | M | 45 | N | 31 | O | 35 | P |
 | 12 | Q | 15 | R | 1 | S | 17 | T |
 | 32 | U | 9 | V | 13 | W | 7 | X |
-| 16 | Y | 6 | Z |
+| 16 | Y | 6 | Z | | | | |
 
 ### Numbers
-| KeyCode | Key | KeyCode | Key |
-|---------|-----|---------|-----|
-| 18 | 1 | 19 | 2 |
-| 20 | 3 | 21 | 4 |
-| 23 | 5 | 22 | 6 |
-| 26 | 7 | 28 | 8 |
-| 25 | 9 | 29 | 0 |
+
+| KeyCode | Key | KeyCode | Key | KeyCode | Key | KeyCode | Key |
+|---------|-----|---------|-----|---------|-----|---------|-----|
+| 18 | 1 | 19 | 2 | 20 | 3 | 21 | 4 |
+| 23 | 5 | 22 | 6 | 26 | 7 | 28 | 8 |
+| 25 | 9 | 29 | 0 | | | | |
 
 ### Special Characters
-| KeyCode | Key | KeyCode | Key |
-|---------|-----|---------|-----|
-| 33 | [ | 30 | ] |
-| 43 | , | 47 | . |
-| 27 | - | 24 | = |
-| 41 | ; | 39 | ' |
-| 44 | / | 42 | \\ |
-| 50 | ` |
+
+| KeyCode | Key | KeyCode | Key | KeyCode | Key | KeyCode | Key |
+|---------|-----|---------|-----|---------|-----|---------|-----|
+| 33 | [ | 30 | ] | 43 | , | 47 | . |
+| 27 | - | 24 | = | 41 | ; | 39 | ' |
+| 44 | / | 42 | \\ | 50 | ` | | |
 
 ### Other Keys
-| KeyCode | Key |
-|---------|-----|
-| 36 | Return |
-| 48 | Tab |
-| 49 | Space |
-| 51 | Delete |
-| 53 | Escape |
+
+| KeyCode | Key | KeyCode | Key | KeyCode | Key | KeyCode | Key |
+|---------|-----|---------|-----|---------|-----|---------|-----|
+| 36 | Return | 48 | Tab | 49 | Space | 51 | Delete |
+| 53 | Escape | | | | | | |
 
 ### Modifier Values
-| Modifier | Value |
-|----------|-------|
-| Option (⌥) | 2048 |
-| Option + Shift | 2560 |
-| Option + Control | 6144 |
-| Option + Control + Shift | 6656 |
+
+| Modifier | Value | | | | | | |
+|----------|-------|---|---|---|---|---|---|
+| Option (⌥) | 2048 | | | | | | |
+| Option + Shift | 2560 | | | | | | |
+| Option + Control | 6144 | | | | | | |
+| Option + Control + Shift | 6656 | | | | | | |
 
 ### Special Value
+
 - **4294967295** with modifier **0** = Unbound keybinding
 
 ## Notes
