@@ -242,8 +242,8 @@
     },
     {
       "binding" : {
-        "keyCode" : 4294967295,
-        "modifiers" : 0
+        "keyCode" : 35,
+        "modifiers" : 2048
       },
       "command" : {
         "workspaceBackAndForth" : {
@@ -326,7 +326,7 @@
     },
     {
       "binding" : {
-        "keyCode" : 35,
+        "keyCode" : 48,
         "modifiers" : 2048
       },
       "command" : {
@@ -1378,8 +1378,8 @@
     },
     {
       "binding" : {
-        "keyCode" : 4294967295,
-        "modifiers" : 0
+        "keyCode" : 18,
+        "modifiers" : 6656
       },
       "command" : {
         "summonWorkspace" : {
@@ -1390,8 +1390,8 @@
     },
     {
       "binding" : {
-        "keyCode" : 4294967295,
-        "modifiers" : 0
+        "keyCode" : 19,
+        "modifiers" : 6656
       },
       "command" : {
         "summonWorkspace" : {
@@ -1402,8 +1402,8 @@
     },
     {
       "binding" : {
-        "keyCode" : 4294967295,
-        "modifiers" : 0
+        "keyCode" : 20,
+        "modifiers" : 6656
       },
       "command" : {
         "summonWorkspace" : {
@@ -1414,8 +1414,8 @@
     },
     {
       "binding" : {
-        "keyCode" : 4294967295,
-        "modifiers" : 0
+        "keyCode" : 21,
+        "modifiers" : 6656
       },
       "command" : {
         "summonWorkspace" : {
@@ -1426,8 +1426,8 @@
     },
     {
       "binding" : {
-        "keyCode" : 4294967295,
-        "modifiers" : 0
+        "keyCode" : 23,
+        "modifiers" : 6656
       },
       "command" : {
         "summonWorkspace" : {
@@ -1438,8 +1438,8 @@
     },
     {
       "binding" : {
-        "keyCode" : 4294967295,
-        "modifiers" : 0
+        "keyCode" : 22,
+        "modifiers" : 6656
       },
       "command" : {
         "summonWorkspace" : {
@@ -1450,8 +1450,8 @@
     },
     {
       "binding" : {
-        "keyCode" : 4294967295,
-        "modifiers" : 0
+        "keyCode" : 26,
+        "modifiers" : 6656
       },
       "command" : {
         "summonWorkspace" : {
@@ -1462,8 +1462,8 @@
     },
     {
       "binding" : {
-        "keyCode" : 4294967295,
-        "modifiers" : 0
+        "keyCode" : 28,
+        "modifiers" : 6656
       },
       "command" : {
         "summonWorkspace" : {
@@ -1474,8 +1474,8 @@
     },
     {
       "binding" : {
-        "keyCode" : 4294967295,
-        "modifiers" : 0
+        "keyCode" : 25,
+        "modifiers" : 6656
       },
       "command" : {
         "summonWorkspace" : {
@@ -1498,8 +1498,8 @@
     },
     {
       "binding" : {
-        "keyCode" : 4294967295,
-        "modifiers" : 0
+        "keyCode" : 3,
+        "modifiers" : 2560
       },
       "command" : {
         "raiseAllFloatingWindows" : {
