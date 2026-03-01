@@ -99,33 +99,33 @@ local config = {
       action = wezterm.action { SpawnTab = "CurrentPaneDomain" }
     },
     {
-      key = 'k',
+      key = ',',
       mods = 'LEADER',
       action = wezterm.action.ActivateWindowRelative(-1)
     },
     {
-      key = 'j',
+      key = '.',
       mods = 'LEADER',
       action = wezterm.action.ActivateWindowRelative(1)
     },
     {
-      key = 'l',
+      key = ']',
       mods = 'LEADER',
       action = wezterm.action.ActivateTabRelative(1)
     },
     {
-      key = 'h',
+      key = '[',
       mods = 'LEADER',
       action = wezterm.action.ActivateTabRelative(-1)
     },
     {
-      key = '[',
-      mods = 'LEADER',
+      key = '{',
+      mods = 'LEADER|SHIFT',
       action = wezterm.action.MoveTabRelative(-1)
     },
     {
-      key = ']',
-      mods = 'LEADER',
+      key = '}',
+      mods = 'LEADER|SHIFT',
       action = wezterm.action.MoveTabRelative(1)
     },
     {
