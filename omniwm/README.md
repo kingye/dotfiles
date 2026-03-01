@@ -72,24 +72,8 @@ The keybindings follow a consistent and logical pattern:
 
 | Keybinding | Action |
 |------------|--------|
-| `Opt+1` | Switch to workspace 1 |
-| `Opt+2` | Switch to workspace 2 |
-| `Opt+3` | Switch to workspace 3 |
-| `Opt+4` | Switch to workspace 4 |
-| `Opt+5` | Switch to workspace 5 |
-| `Opt+6` | Switch to workspace 6 |
-| `Opt+7` | Switch to workspace 7 |
-| `Opt+8` | Switch to workspace 8 |
-| `Opt+9` | Switch to workspace 9 |
-| `Opt+Shift+1` | Move window to workspace 1 |
-| `Opt+Shift+2` | Move window to workspace 2 |
-| `Opt+Shift+3` | Move window to workspace 3 |
-| `Opt+Shift+4` | Move window to workspace 4 |
-| `Opt+Shift+5` | Move window to workspace 5 |
-| `Opt+Shift+6` | Move window to workspace 6 |
-| `Opt+Shift+7` | Move window to workspace 7 |
-| `Opt+Shift+8` | Move window to workspace 8 |
-| `Opt+Shift+9` | Move window to workspace 9 |
+| `Opt+1-9` | Switch to workspace 1-9 |
+| `Opt+Shift+1-9` | Move window to workspace 1-9 |
 | `Opt+R` | Toggle workspace layout |
 
 ### Window Focus
@@ -133,15 +117,7 @@ The keybindings follow a consistent and logical pattern:
 
 | Keybinding | Action |
 |------------|--------|
-| `Opt+Ctrl+1` | Focus column 1 |
-| `Opt+Ctrl+2` | Focus column 2 |
-| `Opt+Ctrl+3` | Focus column 3 |
-| `Opt+Ctrl+4` | Focus column 4 |
-| `Opt+Ctrl+5` | Focus column 5 |
-| `Opt+Ctrl+6` | Focus column 6 |
-| `Opt+Ctrl+7` | Focus column 7 |
-| `Opt+Ctrl+8` | Focus column 8 |
-| `Opt+Ctrl+9` | Focus column 9 |
+| `Opt+Ctrl+1-9` | Focus column 1-9 |
 
 ### Window Sizing
 
@@ -169,15 +145,7 @@ The keybindings follow a consistent and logical pattern:
 | `Opt+Shift+.` | Move window to monitor down |
 | `Opt+Ctrl+Shift+,` | Move workspace to monitor up |
 | `Opt+Ctrl+Shift+.` | Move workspace to monitor down |
-| `Opt+Ctrl+Shift+1` | Summon workspace 1 to current monitor |
-| `Opt+Ctrl+Shift+2` | Summon workspace 2 to current monitor |
-| `Opt+Ctrl+Shift+3` | Summon workspace 3 to current monitor |
-| `Opt+Ctrl+Shift+4` | Summon workspace 4 to current monitor |
-| `Opt+Ctrl+Shift+5` | Summon workspace 5 to current monitor |
-| `Opt+Ctrl+Shift+6` | Summon workspace 6 to current monitor |
-| `Opt+Ctrl+Shift+7` | Summon workspace 7 to current monitor |
-| `Opt+Ctrl+Shift+8` | Summon workspace 8 to current monitor |
-| `Opt+Ctrl+Shift+9` | Summon workspace 9 to current monitor |
+| `Opt+Ctrl+Shift+1-9` | Summon workspace 1-9 to current monitor |
 
 ### Menu & Utilities
 
