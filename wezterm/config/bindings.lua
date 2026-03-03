@@ -44,6 +44,9 @@ local config = {
     { key = 'h', mods = 'CTRL|SHIFT', action = act.AdjustPaneSize({ 'Left', 10 }) },
     { key = 'l', mods = 'CTRL|SHIFT', action = act.AdjustPaneSize({ 'Right', 10 }) },
 
+    -- Clipboard
+    { key = 'v', mods = 'CMD', action = act.PasteFrom('Clipboard') },
+    { key = 'c', mods = 'CMD', action = act.CopyTo('Clipboard') },
 
     { key = '+', mods = 'CTRL|SHIFT', action = act.IncreaseFontSize },
     { key = '-', mods = 'CTRL|SHIFT', action = act.DecreaseFontSize },

@@ -132,6 +132,13 @@ The keybindings follow a tmux-inspired pattern with logical improvements:
 | `Ctrl+Shift+u` | Scroll up half page | - |
 | `Ctrl+Shift+d` | Scroll down half page | - |
 
+### Clipboard
+
+| Keybinding | Action | tmux |
+|------------|--------|------|
+| `Cmd+V` | Paste from clipboard | - |
+| `Cmd+C` | Copy to clipboard | - |
+
 ### Other
 
 | Keybinding | Action | tmux |
