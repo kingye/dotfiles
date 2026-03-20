@@ -170,7 +170,7 @@ x11-clip-wrap-widgets paste vi-put-after vi-put-before put-replace-selection
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 lazy_load_nvm() {
-  unset -f node npm nvm iflow nvim ts-node
+  unset -f node npm nvm iflow nvim ts-node opencode
   export NVM_DIR="$HOME/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
   # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -181,6 +181,7 @@ nvm() { lazy_load_nvm; nvm "$@"; }
 iflow() { lazy_load_nvm; iflow "$@"; }
 ts-node() { lazy_load_nvm; ts-node "$@"; }
 nvim() { lazy_load_nvm; nvim "$@"; }
+opencode() {lazy_load_nvm; opencode "$@"; }
 
 export SILICONFLOW_API_KEY="REDACTED"
 

@@ -21,7 +21,7 @@ local function navigate(direction_key, direction_name)
 end
 
 local config = {
-  leader = { key = 's', mods = 'CTRL', timeout_milliseconds = 5000 },
+  leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 5000 },
   keys = {
     {
       key = '"',
@@ -33,20 +33,20 @@ local config = {
       mods = 'LEADER',
       action = wezterm.action.SplitHorizontal { domain = "CurrentPaneDomain" }
     },
-    -- Smart Neovim + WezTerm navigation
-    { key = 'h', mods = 'CTRL',       action = navigate('h', 'Left') },
-    { key = 'j', mods = 'CTRL',       action = navigate('j', 'Down') },
-    { key = 'k', mods = 'CTRL',       action = navigate('k', 'Up') },
-    { key = 'l', mods = 'CTRL',       action = navigate('l', 'Right') },
-
-    { key = 'k', mods = 'CTRL|SHIFT', action = act.AdjustPaneSize({ 'Up', 10 }) },
-    { key = 'j', mods = 'CTRL|SHIFT', action = act.AdjustPaneSize({ 'Down', 10 }) },
-    { key = 'h', mods = 'CTRL|SHIFT', action = act.AdjustPaneSize({ 'Left', 10 }) },
-    { key = 'l', mods = 'CTRL|SHIFT', action = act.AdjustPaneSize({ 'Right', 10 }) },
+    -- Smart Neovim + WezTerm navigation : swtiched off for using tmux
+    -- { key = 'h', mods = 'CTRL',       action = navigate('h', 'Left') },
+    -- { key = 'j', mods = 'CTRL',       action = navigate('j', 'Down') },
+    -- { key = 'k', mods = 'CTRL',       action = navigate('k', 'Up') },
+    -- { key = 'l', mods = 'CTRL',       action = navigate('l', 'Right') },
+    --
+    -- { key = 'k', mods = 'CTRL|SHIFT', action = act.AdjustPaneSize({ 'Up', 10 }) },
+    -- { key = 'j', mods = 'CTRL|SHIFT', action = act.AdjustPaneSize({ 'Down', 10 }) },
+    -- { key = 'h', mods = 'CTRL|SHIFT', action = act.AdjustPaneSize({ 'Left', 10 }) },
+    -- { key = 'l', mods = 'CTRL|SHIFT', action = act.AdjustPaneSize({ 'Right', 10 }) },
 
     -- Clipboard
-    { key = 'v', mods = 'CMD', action = act.PasteFrom('Clipboard') },
-    { key = 'c', mods = 'CMD', action = act.CopyTo('Clipboard') },
+    { key = 'v', mods = 'CMD',        action = act.PasteFrom('Clipboard') },
+    { key = 'c', mods = 'CMD',        action = act.CopyTo('Clipboard') },
 
     { key = '+', mods = 'CTRL|SHIFT', action = act.IncreaseFontSize },
     { key = '-', mods = 'CTRL|SHIFT', action = act.DecreaseFontSize },

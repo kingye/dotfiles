@@ -73,7 +73,8 @@ PaperWM.window_ratios = { 1 / 4, 1 / 3, 1 / 2, 2 / 3, 3 / 4 }
 PaperWM.window_filter:rejectApp("Clock")
 PaperWM.window_filter:rejectApp("Calculator")
 PaperWM.window_filter:rejectApp("System Settings")
-
+PaperWM.window_filter:rejectApp("Cisco Secure Client")
+-- PaperWM.window_filter:rejectApp("Podman Desktop")
 PaperWM:start()
 
 FocusMode = hs.loadSpoon("FocusMode")

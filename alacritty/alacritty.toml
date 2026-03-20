@@ -1,6 +1,8 @@
 # This is the Alacritty configuration file. It is written in TOML format.
 # ~/.config/alacritty/alacritty.toml
 # 性能优化
+[general]
+live_config_reload = true
 
 [window]
 title = "Jin's Terminal"
@@ -8,7 +10,7 @@ dynamic_title = true
 decorations = "Buttonless"
 opacity = 0.95
 blur = true
-decorations_theme_variant="Dark"
+decorations_theme_variant = "Dark"
 option_as_alt = "Both"
 
 [scrolling]
@@ -24,7 +26,7 @@ normal = { family = "JetBrainsMono Nerd Font Mono", style = "Regular" }
 bold = { family = "JetBrainsMono Nerd Font Mono", style = "Bold" }
 italic = { family = "JetBrainsMono Nerd Font Mono", style = "Italic" }
 size = 13
-offset = {x = 0, y = 2}
+offset = { x = 0, y = 2 }
 builtin_box_drawing = true
 
 [cursor]
@@ -33,20 +35,20 @@ unfocused_hollow = true
 thickness = 0.15
 
 [terminal]
-shell={ program = "/bin/zsh", args = ["-l"] }
+shell = { program = "/bin/zsh", args = ["-l"] }
 
 # Cmd is the leader key for macOS
 [keyboard]
 bindings = [
-    { key = "v", mods = "Command", action = "Paste" },
-    { key = "c", mods = "Command", action = "Copy" },
-    { key = "+", mods = "Command", action = "IncreaseFontSize" },
-    { key = "-", mods = "Command", action = "DecreaseFontSize" },
-    { key = "0", mods = "Command", action = "ResetFontSize" },
-    { key = "M", mods = "Command", action = "ToggleMaximized" },
-    { key = "h", mods = "Command", action = "Hide" },
-    { key = "q", mods = "Command", action = "Quit" },
-    { key = "n", mods = "Command|Shift", action = "SpawnNewInstance" },
-    { key = "f", mods = "Command|Shift", action = "ToggleFullscreen" },
-    { key = "Slash", mods= "Control", chars= "\\x1f" }
+  { key = "v", mods = "Command", action = "Paste" },
+  { key = "c", mods = "Command", action = "Copy" },
+  { key = "+", mods = "Command", action = "IncreaseFontSize" },
+  { key = "-", mods = "Command", action = "DecreaseFontSize" },
+  { key = "0", mods = "Command", action = "ResetFontSize" },
+  { key = "M", mods = "Command", action = "ToggleMaximized" },
+  { key = "h", mods = "Command", action = "Hide" },
+  { key = "q", mods = "Command", action = "Quit" },
+  { key = "n", mods = "Command|Shift", action = "SpawnNewInstance" },
+  { key = "f", mods = "Command|Shift", action = "ToggleFullscreen" },
+  { key = "Slash", mods = "Control", chars = "\\x1f" },
 ]

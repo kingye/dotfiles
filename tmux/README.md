@@ -58,9 +58,31 @@ prefix + alt + u
 7. `<leader> + ' '`: 切换窗格布局
 8. `<leader> + {`: 向左移动窗格
 9. `<leader> + }`: 向右移动窗格
-10. '<leader> + x': 关闭当前窗格
-11. `:resize-pane -L 10`: resize split
-12. `<leader> + z`: 最大化/还原当前窗格
+10. `<leader> + x`: 关闭当前窗格
+11. `<leader> + q`: 显示窗格编号
+11. `<leader> + z`: 最大化/还原当前窗格
+
+### Resize pane
+
+- `<leader>` + hold `Ctrl` + arrow — resize incrementally
+- `<leader>` + `Alt` + arrow — resize in larger steps (5 cells)
+- `:resize-pane -L/R/U/D <n>` — resize by n cells in given direction
+
+### Swap pane
+
+- `<leader> + {` — swap current pane with the previous one
+- `<leader> + }` — swap current pane with the next one
+- `<leader> + Ctrl+o` — rotate all panes forward
+- `<leader> + Alt+o` — rotate all panes backward
+- `:swap-pane -s <src> -t <dst>` — swap two specific panes (use `<leader> q` to see pane numbers)
+
+### Move pane to a window
+
+- `<leader> + !` — break current pane into a new window
+- `:move-pane -t :<n>` — move current pane to window n
+- `:move-pane -t <n>.<p>` — move current pane to window n after pane p
+- `:join-pane -s :<n>` — pull pane from window n into current window
+- `:join-pane -s <n>.<p>` — pull specific pane from window n into current window
 
 [tmux-pain-control](https://github.com/tmux-plugins/tmux-pain-control)
 

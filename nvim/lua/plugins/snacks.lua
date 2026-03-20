@@ -45,6 +45,12 @@ return {
           },
         },
       },
+      zen = {
+        enabled = true,
+        win = {
+          border = "rounded",
+        },
+      },
     },
   },
 }
