@@ -217,14 +217,15 @@ alias g='git'
 
 # setup fzf shell integration
 if command -v fzf &>/dev/null; then
-  # fzf 0.48+ supports --zsh, older versions use separate scripts
-  if [[ "$(fzf --version 2>/dev/null | cut -d. -f1-2)" > "0.47" ]]; then
-    eval "$(fzf --zsh)"
+  FZF_ZSH_OUTPUT="$(fzf --zsh 2>/dev/null)"
+  if [[ $? -eq 0 && -n "$FZF_ZSH_OUTPUT" ]]; then
+    eval "$FZF_ZSH_OUTPUT"
   elif [[ -f ~/.fzf.zsh ]]; then
     source ~/.fzf.zsh
   elif [[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]]; then
     source /usr/share/doc/fzf/examples/key-bindings.zsh
   fi
+  unset FZF_ZSH_OUTPUT
 fi
 
 
