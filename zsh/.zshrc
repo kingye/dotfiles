@@ -8,10 +8,10 @@
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-
+. "$HOME/.cargo/env"
+export CARGO_BUILD_JOBS=1
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -78,7 +78,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions rust)
+plugins=(git rust)
 
 
 
@@ -184,7 +184,13 @@ nvim() { lazy_load_nvm; nvim "$@"; }
 opencode() {lazy_load_nvm; opencode "$@"; }
 
 export SILICONFLOW_API_KEY="REDACTED"
-
+# Linux-specific
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+# macOS-specific
+if [[ "$OSTYPE" == "darwin"* ]]; then
+fi
 # zoxide is a smart cd command
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
@@ -202,3 +208,6 @@ eval "$(fzf --zsh)"
 
 alias ls="eza --icons=always"
 export PATH="$HOME/.local/bin:$HOME/.bun/bin:$PATH"
+
+. "$HOME/.atuin/bin/env"
+
