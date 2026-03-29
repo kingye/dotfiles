@@ -171,3 +171,5 @@ Most configurations use the **Catppuccin** color scheme for consistency across t
 - This setup is designed for macOS (Darwin)
 - Some configurations may require additional setup or dependencies
 - Review individual config directories for tool-specific documentation
+
+
