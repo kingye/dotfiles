@@ -7,13 +7,13 @@
     "anthropic": {
       "options": {
         "baseURL": "http://localhost:6655/anthropic/v1",
-        "apiKey": "REDACTED"
+        "apiKey": "{env:ANTHROPIC_API_KEY}"
       }
     },
     "ark": {
       "options": {
         "baseURL": "https://ark.cn-beijing.volces.com/api/coding/v3",
-        "apiKey": "REDACTED"
+        "apiKey": "{env:ARK_API_KEY}"
       },
       "models": {
         "glm-4-7": {

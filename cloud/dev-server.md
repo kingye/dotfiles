@@ -112,8 +112,7 @@ sudo apt install -y \
   unzip \
   ripgrep \
   fd-find \
-  tmux \
-  fzf
+  tmux
 ```
 
 Notes:
@@ -121,7 +120,6 @@ Notes:
 - `libclang-dev` — needed to compile `tree-sitter-cli` via cargo
 - `ripgrep` and `fd-find` — needed by Neovim Telescope
 - `tmux` — terminal multiplexer
-- `fzf` — fuzzy finder (if apt version is too old, see Phase 4.6)
 
 ### 2.3 (Optional) Set up GitHub mirror for China servers
 
@@ -225,11 +223,16 @@ sudo install lazygit /usr/local/bin
 rm lazygit lazygit.tar.gz
 ```
 
-#### fzf (if apt version is too old)
+#### fzf (fuzzy finder)
+
+Debian apt ships fzf 0.38 which is too old (doesn't support `fzf --zsh`). Install from git:
+
 ```bash
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 ```
+
+Answer yes to all prompts during installation.
 
 ### 4.4 tree-sitter-cli (via cargo, avoids glibc mismatch)
 
@@ -266,7 +269,18 @@ nvm install 22
 
 Note: nvm is lazy-loaded in the `.zshrc` — the first call to `node`, `npm`, or `nvim` triggers the nvm load.
 
-### 4.7 Load cargo env in .zprofile
+### 4.7 OpenCode (AI coding assistant)
+
+```bash
+curl -fsSL https://opencode.ai/install | bash
+```
+
+Verify:
+```bash
+opencode --version
+```
+
+### 4.8 Load cargo env in .zprofile
 
 Important for tmux and Neovim to find Rust binaries:
 
