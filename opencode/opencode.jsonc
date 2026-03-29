@@ -10,6 +10,38 @@
         "apiKey": "REDACTED"
       }
     },
+    "ark": {
+      "options": {
+        "baseURL": "https://ark.cn-beijing.volces.com/api/coding/v3",
+        "apiKey": "REDACTED"
+      },
+      "models": {
+        "glm-4-7": {
+          "name": "glm-4-7"
+        },
+        "doubao-seed-2.0-code": {
+          "name": "doubao-seed-2.0-code"
+        },
+        "doubao-seed-2.0-pro": {
+          "name": "doubao-seed-2.0-pro"
+        },
+        "doubao-seed-2.0-lite": {
+          "name": "doubao-seed-2.0-lite"
+        },
+        "doubao-seed-code": {
+          "name": "doubao-seed-code"
+        },
+        "minimax-m2.5": {
+          "name": "minimax-m2.5"
+        },
+        "deepseek-v3.2": {
+          "name": "deepseek-v3.2"
+        },
+        "kimi-k2.5": {
+          "name": "kimi-k2.5"
+        }
+      }
+    },
     "SiliconFlow": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "SiliconFlow",

@@ -201,4 +201,4 @@ eval "$(fzf --zsh)"
 
 
 alias ls="eza --icons=always"
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.bun/bin:$PATH"
