@@ -2,7 +2,7 @@
 
 A step-by-step checklist for setting up a new Debian cloud server for Rust/Node.js development.
 
-Dotfiles repo: `https://github.com/YOUR_USER/dotfiles`
+Dotfiles repo: `https://gitcode.com/kingye/dotfiles`
 
 ---
 
@@ -111,13 +111,17 @@ sudo apt install -y \
   libclang-dev \
   unzip \
   ripgrep \
-  fd-find
+  fd-find \
+  tmux \
+  fzf
 ```
 
 Notes:
 - `build-essential` — C compiler, needed for treesitter and cargo builds
 - `libclang-dev` — needed to compile `tree-sitter-cli` via cargo
 - `ripgrep` and `fd-find` — needed by Neovim Telescope
+- `tmux` — terminal multiplexer
+- `fzf` — fuzzy finder (if apt version is too old, see Phase 4.6)
 
 ### 2.3 (Optional) Set up GitHub mirror for China servers
 
@@ -160,9 +164,123 @@ Note: These are installed but not in the current plugins list (`plugins=(git rus
 
 ---
 
-## Phase 4: Clone Dotfiles & Symlink
+## Phase 4: Dev Tools
 
-### 4.1 Set up Git credential store (HTTPS + access token)
+Install all tools **before** symlinking dotfiles, because `.zshrc` references them.
+
+### 4.1 Rust + rust-analyzer
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source "$HOME/.cargo/env"
+rustup component add rust-analyzer
+```
+
+Verify:
+```bash
+rustc --version
+rust-analyzer --version
+```
+
+### 4.2 Neovim 0.11
+
+```bash
+curl -LO https://github.com/neovim/neovim/releases/download/v0.11.5/nvim-linux-x86_64.tar.gz
+tar xzf nvim-linux-x86_64.tar.gz
+sudo mv nvim-linux-x86_64 /opt/nvim
+sudo ln -sf /opt/nvim/bin/nvim /usr/local/bin/nvim
+rm nvim-linux-x86_64.tar.gz
+```
+
+For ARM64 servers, use `nvim-linux-arm64.tar.gz` instead.
+
+### 4.3 CLI tools
+
+#### Starship (prompt)
+```bash
+curl -sS https://starship.rs/install.sh | sh
+```
+
+#### zoxide (smart cd)
+```bash
+curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+```
+
+#### atuin (shell history)
+```bash
+curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
+```
+
+#### eza (modern ls)
+```bash
+cargo install eza
+```
+
+#### lazygit (git TUI)
+```bash
+LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+tar xf lazygit.tar.gz lazygit
+sudo install lazygit /usr/local/bin
+rm lazygit lazygit.tar.gz
+```
+
+#### fzf (if apt version is too old)
+```bash
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+```
+
+### 4.4 tree-sitter-cli (via cargo, avoids glibc mismatch)
+
+```bash
+cargo install tree-sitter-cli
+```
+
+If Mason auto-installs its own tree-sitter later, replace it with a symlink:
+```bash
+rm -f ~/.local/share/nvim/mason/bin/tree-sitter
+mkdir -p ~/.local/share/nvim/mason/bin
+ln -s ~/.cargo/bin/tree-sitter ~/.local/share/nvim/mason/bin/tree-sitter
+```
+
+### 4.5 tmux plugins (TPM)
+
+```bash
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
+
+Start tmux, then install plugins:
+```bash
+tmux
+# Inside tmux: press prefix (Ctrl+s) then Shift+I to install plugins
+```
+
+### 4.6 Node.js via nvm (optional)
+
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+source ~/.bashrc
+nvm install 22
+```
+
+Note: nvm is lazy-loaded in the `.zshrc` — the first call to `node`, `npm`, or `nvim` triggers the nvm load.
+
+### 4.7 Load cargo env in .zprofile
+
+Important for tmux and Neovim to find Rust binaries:
+
+```bash
+echo '[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"' >> ~/.zprofile
+```
+
+---
+
+## Phase 5: Clone Dotfiles & Symlink
+
+All tools are now installed, so `.zshrc` will load without errors.
+
+### 5.1 Set up Git credential store (HTTPS + access token)
 
 ```bash
 git config --global credential.helper store
@@ -170,14 +288,14 @@ git config --global credential.helper store
 
 The first time you `git clone`/`pull`/`push`, enter your username and **personal access token** as the password. Git will save it to `~/.git-credentials` and never ask again.
 
-### 4.2 Clone dotfiles
+### 5.2 Clone dotfiles
 
 ```bash
 mkdir -p ~/projects
 git clone https://gitcode.com/kingye/dotfiles.git ~/projects/dotfiles
 ```
 
-### 4.3 Create symlinks
+### 5.3 Create symlinks
 
 ```bash
 DOTFILES=~/projects/dotfiles
@@ -188,9 +306,6 @@ ln -sf $DOTFILES/zsh/.zshrc ~/.zshrc
 # Tmux
 ln -sf $DOTFILES/tmux/.tmux.conf ~/.tmux.conf
 
-# Neovim (will be overwritten in Phase 5 after LazyVim starter clone)
-# See Phase 5.3 for the correct order
-
 # Starship
 mkdir -p ~/.config
 ln -sf $DOTFILES/starship/starship.toml ~/.config/starship.toml
@@ -200,14 +315,31 @@ mkdir -p ~/.config/atuin
 ln -sf $DOTFILES/atuin/config.toml ~/.config/atuin/config.toml
 ```
 
-### 4.4 Create .zshrc.local for secrets
+### 5.4 LazyVim + dotfiles nvim config
+
+```bash
+DOTFILES=~/projects/dotfiles
+
+# First, clone LazyVim starter to bootstrap plugin installation
+git clone https://github.com/LazyVim/starter ~/.config/nvim
+rm -rf ~/.config/nvim/.git
+
+# Launch nvim once to install all plugins, then quit
+nvim --headless "+Lazy! sync" +qa
+
+# Now replace with your dotfiles nvim config
+rm -rf ~/.config/nvim
+ln -sf $DOTFILES/nvim ~/.config/nvim
+```
+
+### 5.5 Create .zshrc.local for secrets
 
 ```bash
 cp $DOTFILES/zsh/.zshrc.local.example ~/.zshrc.local
 # Edit ~/.zshrc.local and fill in your API keys
 ```
 
-### 4.5 Configure git identity (not symlinked — different per machine)
+### 5.6 Configure git identity (not symlinked — different per machine)
 
 ```bash
 git config --global user.name "Your Name"
@@ -225,143 +357,10 @@ git config --global alias.pp push
 git config --global alias.lo "log --graph --decorate --pretty=oneline --abbrev-commit"
 ```
 
-### 4.6 Reload zsh
+### 5.7 Reload zsh
 
 ```bash
 source ~/.zshrc
-```
-
----
-
-## Phase 5: Dev Tools
-
-### 5.1 Rust + rust-analyzer
-
-```bash
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-source "$HOME/.cargo/env"
-rustup component add rust-analyzer
-```
-
-Verify:
-```bash
-rustc --version
-rust-analyzer --version
-```
-
-### 5.2 Neovim 0.11
-
-```bash
-curl -LO https://github.com/neovim/neovim/releases/download/v0.11.5/nvim-linux-x86_64.tar.gz
-tar xzf nvim-linux-x86_64.tar.gz
-sudo mv nvim-linux-x86_64 /opt/nvim
-sudo ln -sf /opt/nvim/bin/nvim /usr/local/bin/nvim
-rm nvim-linux-x86_64.tar.gz
-```
-
-For ARM64 servers, use `nvim-linux-arm64.tar.gz` instead.
-
-### 5.3 LazyVim + dotfiles nvim config
-
-```bash
-DOTFILES=~/projects/dotfiles
-
-# First, clone LazyVim starter to bootstrap plugin installation
-git clone https://github.com/LazyVim/starter ~/.config/nvim
-rm -rf ~/.config/nvim/.git
-
-# Launch nvim once to install all plugins, then quit
-nvim --headless "+Lazy! sync" +qa
-
-# Now replace with your dotfiles nvim config
-rm -rf ~/.config/nvim
-ln -sf $DOTFILES/nvim ~/.config/nvim
-```
-
-### 5.4 tree-sitter-cli (via cargo, avoids glibc mismatch)
-
-```bash
-cargo install tree-sitter-cli
-```
-
-If Mason auto-installs its own tree-sitter, replace it with a symlink:
-```bash
-rm -f ~/.local/share/nvim/mason/bin/tree-sitter
-mkdir -p ~/.local/share/nvim/mason/bin
-ln -s ~/.cargo/bin/tree-sitter ~/.local/share/nvim/mason/bin/tree-sitter
-```
-
-### 5.5 tmux + TPM
-
-```bash
-sudo apt install -y tmux
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-```
-
-Start tmux, then install plugins:
-```bash
-tmux
-# Inside tmux: press prefix (Ctrl+s) then Shift+I to install plugins
-```
-
-### 5.6 CLI tools
-
-#### Starship (prompt)
-```bash
-curl -sS https://starship.rs/install.sh | sh
-```
-
-#### zoxide (smart cd)
-```bash
-curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
-```
-
-#### atuin (shell history)
-```bash
-curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
-```
-
-#### fzf (fuzzy finder)
-```bash
-sudo apt install -y fzf
-```
-
-Or if the apt version is too old:
-```bash
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
-```
-
-#### eza (modern ls)
-```bash
-cargo install eza
-```
-
-#### lazygit (git TUI)
-```bash
-LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
-tar xf lazygit.tar.gz lazygit
-sudo install lazygit /usr/local/bin
-rm lazygit lazygit.tar.gz
-```
-
-### 5.7 Node.js via nvm (optional)
-
-```bash
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-source ~/.zshrc
-nvm install 22
-```
-
-Note: nvm is lazy-loaded in the `.zshrc` — the first call to `node`, `npm`, or `nvim` triggers the nvm load.
-
-### 5.8 Load cargo env in .zprofile
-
-Important for tmux and Neovim to find Rust binaries:
-
-```bash
-echo '[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"' >> ~/.zprofile
 ```
 
 ---
@@ -438,13 +437,13 @@ tree-sitter: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.39' not found
 
 **Cause:** Mason auto-installs a tree-sitter binary compiled against a newer glibc.
 
-**Fix:** Already handled in Phase 5.4 — install via cargo and symlink over Mason's copy.
+**Fix:** Already handled in Phase 4.4 — install via cargo and symlink over Mason's copy.
 
 ### "rust-analyzer not found in PATH"
 
 **Cause:** Neovim's `$PATH` doesn't include `~/.cargo/bin`.
 
-**Fix:** Ensure `.zprofile` sources cargo env (Phase 5.8), then restart tmux:
+**Fix:** Ensure `.zprofile` sources cargo env (Phase 4.7), then restart tmux:
 ```bash
 tmux kill-server
 tmux

@@ -216,7 +216,14 @@ alias g='git'
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # setup fzf shell integration
-command -v fzf &>/dev/null && eval "$(fzf --zsh)"
+if command -v fzf &>/dev/null; then
+  # fzf 0.48+ supports --zsh, older versions use separate scripts
+  if fzf --zsh &>/dev/null; then
+    eval "$(fzf --zsh)"
+  elif [[ -f ~/.fzf.zsh ]]; then
+    source ~/.fzf.zsh
+  fi
+fi
 
 
 alias ls="eza --icons=always"
