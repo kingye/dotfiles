@@ -1,0 +1,4 @@
+# ~/.zshrc.local — machine-specific secrets (NOT tracked in git)
+# Copy this file to ~/.zshrc.local and fill in your keys
+
+export SILICONFLOW_API_KEY="your-api-key-here"

@@ -8,8 +8,15 @@
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-. "$HOME/.cargo/env"
-export CARGO_BUILD_JOBS=1
+
+# Cargo/Rust environment
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
+
+# Limit cargo parallelism on Linux (low-RAM cloud servers)
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  export CARGO_BUILD_JOBS=1
+fi
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 # Set name of the theme to load --- if set to "random", it will
@@ -114,35 +121,37 @@ precmd_functions+=(_fix_cursor)
 
 KEYTIMEOUT=1
 
-# Sync ZLE yank/paste with macOS system clipboard
-function x11-clip-wrap-widgets() {
-    local copy_or_paste=$1
-    shift
-    for widget in $@; do
-        if [[ $copy_or_paste == "copy" ]]; then
-            eval "
-            function _x11-clip-wrapped-$widget() {
-                zle .$widget
-                echo -n \$CUTBUFFER | pbcopy
-            }
-            "
-        else
-            eval "
-            function _x11-clip-wrapped-$widget() {
-                CUTBUFFER=\$(pbpaste)
-                zle .$widget
-            }
-            "
-        fi
-        zle -N $widget _x11-clip-wrapped-$widget
-    done
-}
+# Sync ZLE yank/paste with system clipboard (macOS only)
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  function x11-clip-wrap-widgets() {
+      local copy_or_paste=$1
+      shift
+      for widget in $@; do
+          if [[ $copy_or_paste == "copy" ]]; then
+              eval "
+              function _x11-clip-wrapped-$widget() {
+                  zle .$widget
+                  echo -n \$CUTBUFFER | pbcopy
+              }
+              "
+          else
+              eval "
+              function _x11-clip-wrapped-$widget() {
+                  CUTBUFFER=\$(pbpaste)
+                  zle .$widget
+              }
+              "
+          fi
+          zle -N $widget _x11-clip-wrapped-$widget
+      done
+  }
 
-# Wrap yank operations to copy to system clipboard
-x11-clip-wrap-widgets copy vi-yank vi-yank-eol vi-delete vi-backward-delete-char vi-delete-char vi-change vi-change-eol vi-change-whole-line vi-substitute
+  # Wrap yank operations to copy to system clipboard
+  x11-clip-wrap-widgets copy vi-yank vi-yank-eol vi-delete vi-backward-delete-char vi-delete-char vi-change vi-change-eol vi-change-whole-line vi-substitute
 
-# Wrap paste operations to paste from system clipboard
-x11-clip-wrap-widgets paste vi-put-after vi-put-before put-replace-selection
+  # Wrap paste operations to paste from system clipboard
+  x11-clip-wrap-widgets paste vi-put-after vi-put-before put-replace-selection
+fi
 
 # User configuration
 
@@ -183,31 +192,35 @@ ts-node() { lazy_load_nvm; ts-node "$@"; }
 nvim() { lazy_load_nvm; nvim "$@"; }
 opencode() {lazy_load_nvm; opencode "$@"; }
 
-export SILICONFLOW_API_KEY="REDACTED"
-# Linux-specific
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+# Source local secrets (API keys, tokens — not tracked in git)
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+# Homebrew
+if [[ -f /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -f /home/linuxbrew/.linuxbrew/bin/brew ]]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
-# macOS-specific
-if [[ "$OSTYPE" == "darwin"* ]]; then
+
+# Tool inits (only if installed)
+command -v zoxide &>/dev/null && eval "$(zoxide init zsh)"
+command -v starship &>/dev/null && eval "$(starship init zsh)"
+if command -v atuin &>/dev/null; then
+  export ATUIN_NOBIND="true"
+  eval "$(atuin init zsh)"
+  bindkey '^r' atuin-up-search-viins
 fi
-# zoxide is a smart cd command
-eval "$(zoxide init zsh)"
-eval "$(starship init zsh)"
-export ATUIN_NOBIND="true"
-eval "$(atuin init zsh)"
-bindkey '^r' atuin-up-search-viins
 
 alias g='git'
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # setup fzf shell integration
-eval "$(fzf --zsh)"
+command -v fzf &>/dev/null && eval "$(fzf --zsh)"
 
 
 alias ls="eza --icons=always"
 export PATH="$HOME/.local/bin:$HOME/.bun/bin:$PATH"
 
-. "$HOME/.atuin/bin/env"
-
+# Atuin env (curl-installed atuin puts binary here)
+[[ -f "$HOME/.atuin/bin/env" ]] && . "$HOME/.atuin/bin/env"
