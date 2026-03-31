@@ -496,3 +496,82 @@ rustup update stable
 ### Not needed on cloud server (desktop-only)
 
 wezterm, alacritty, ghostty, aerospace, hammerspoon, karabiner, omniwm, vscode, zed, yazi
+
+---
+
+## File Transfer Methods
+
+All commands below are run **from your macOS terminal**.
+
+### Method 1: scp (Simple - one-time transfers)
+
+```bash
+# Copy single file
+scp /path/to/local/file.txt jiny@SERVER_IP:/remote/path/
+
+# Copy directory recursively
+scp -r /path/to/local/dir jiny@SERVER_IP:/remote/path/
+
+# Copy to home directory
+scp -r /path/to/local/dir jiny@SERVER_IP:~/
+```
+
+### Method 2: rsync (Recommended - better for large dirs)
+
+```bash
+# Copy directory with progress, compression, and resume support
+rsync -avz --progress /path/to/local/dir/ jiny@SERVER_IP:/remote/path/
+
+# Exclude certain files/patterns
+rsync -avz --progress --exclude='node_modules' --exclude='.git' \
+  /path/to/local/dir/ jiny@SERVER_IP:/remote/path/
+
+# Dry run first to see what will be copied
+rsync -avz --progress --dry-run /path/to/local/dir/ jiny@SERVER_IP:/remote/path/
+```
+
+**Key rsync options:**
+- `-a` archive mode (preserve permissions, timestamps, etc.)
+- `-v` verbose
+- `-z` compress during transfer
+- `--progress` show progress
+- `--exclude` skip patterns
+
+### Method 3: Use SSH config (More convenient)
+
+**On your Mac**, add to `~/.ssh/config`:
+
+```
+Host myserver
+  HostName SERVER_IP
+  User jiny
+  ServerAliveInterval 60
+  ServerAliveCountMax 3
+```
+
+**Then use simpler commands:**
+
+```bash
+scp -r /path/to/local/dir myserver:/remote/path/
+rsync -avz --progress /path/to/local/dir/ myserver:/remote/path/
+```
+
+### Method 4: Pull from VM (copy server → Mac)
+
+```bash
+# From Mac terminal
+scp -r jiny@SERVER_IP:/remote/path/dir /local/dest/
+
+# Or using SSH config
+scp -r myserver:/remote/path/dir /local/dest/
+```
+
+### Common use cases for dotfiles
+
+```bash
+# Copy entire dotfiles directory
+rsync -avz --progress ~/projects/dotfiles/ myserver:~/projects/dotfiles/
+
+# Copy SSH public key
+scp ~/.ssh/id_ed25519.pub myserver:~/.ssh/
+```
