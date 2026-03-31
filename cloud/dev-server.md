@@ -261,13 +261,21 @@ tmux
 
 ### 4.6 Node.js via nvm (optional)
 
+The nvm install script supports both bash and zsh. Run this to install:
+
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-source ~/.bashrc
+```
+
+If you just installed and want to use Node immediately (before reloading shell):
+
+```bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 nvm install 22
 ```
 
-Note: nvm is lazy-loaded in the `.zshrc` — the first call to `node`, `npm`, or `nvim` triggers the nvm load.
+**No .bashrc sourcing needed for zsh users** — the `.zshrc` already lazy-loads nvm. The first call to `node`, `npm`, or `nvim` will automatically load nvm.
 
 ### 4.7 OpenCode (AI coding assistant)
 
