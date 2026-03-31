@@ -267,15 +267,14 @@ The nvm install script supports both bash and zsh. Run this to install:
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 ```
 
-If you just installed and want to use Node immediately (before reloading shell):
+Then reload shell and install Node:
 
 ```bash
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+source ~/.zshrc
 nvm install 22
 ```
 
-**No .bashrc sourcing needed for zsh users** — the `.zshrc` already lazy-loads nvm. The first call to `node`, `npm`, or `nvim` will automatically load nvm.
+**No .bashrc sourcing needed for zsh users** — the `.zshrc` loads nvm automatically.
 
 ### 4.7 OpenCode (AI coding assistant)
 
