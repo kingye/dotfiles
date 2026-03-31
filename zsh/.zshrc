@@ -230,7 +230,13 @@ fi
 
 
 alias ls="eza --icons=always"
-export PATH="$HOME/.local/bin:$HOME/.bun/bin:$PATH"
-
+if [[ -f /etc/os-release ]] && source /etc/os-release && [[ "$ID" == "debian" ]];
+then
+  # Debian 12 specific settings
+  export PATH="$HOME/.opencode/bin:$HOME/.local/bin:$HOME/.bun/bin:$PATH"
+else
+  # Not Debian 12
+  export PATH="$HOME/.local/bin:$HOME/.bun/bin:$PATH"
+fi
 # Atuin env (curl-installed atuin puts binary here)
 [[ -f "$HOME/.atuin/bin/env" ]] && . "$HOME/.atuin/bin/env"

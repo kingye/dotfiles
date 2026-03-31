@@ -1,8 +1,10 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "anthropic/claude-opus-4-6",
+  "model": "ark/glm-4-7",
+  "small_model": "SiliconFlow/Qwen/Qwen3-8B",
+  // "model": "anthropic/claude-opus-4-6",
   // "model": "SiliconFlow/Pro/zai-org/GLM-4.7",
-  "small_model": "anthropic/claude-sonnet-4-6",
+  // "small_model": "anthropic/claude-sonnet-4-6",
   "provider": {
     "anthropic": {
       "options": {
