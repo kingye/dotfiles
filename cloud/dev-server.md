@@ -327,6 +327,10 @@ ln -sf $DOTFILES/starship/starship.toml ~/.config/starship.toml
 # Atuin
 mkdir -p ~/.config/atuin
 ln -sf $DOTFILES/atuin/config.toml ~/.config/atuin/config.toml
+
+# OpenCode
+mkdir -p ~/.config/opencode
+ln -sf $DOTFILES/opencode/opencode.jsonc ~/.config/opencode/opencode.jsonc
 ```
 
 ### 5.4 LazyVim + dotfiles nvim config
@@ -485,6 +489,7 @@ rustup update stable
 | nvim | `nvim/` | `~/.config/nvim` |
 | starship | `starship/starship.toml` | `~/.config/starship.toml` |
 | atuin | `atuin/config.toml` | `~/.config/atuin/config.toml` |
+| opencode | `opencode/opencode.jsonc` | `~/.config/opencode/opencode.jsonc` |
 | git | _(not symlinked)_ | configured via `git config` |
 | secrets | `zsh/.zshrc.local.example` | `~/.zshrc.local` (copy, not symlink) |
 
