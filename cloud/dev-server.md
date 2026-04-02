@@ -261,10 +261,10 @@ tmux
 
 ### 4.6 Node.js via nvm (optional)
 
-The nvm install script supports both bash and zsh. Run this to install:
+Run this to install:
 
 ```bash
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | zsh
 ```
 
 Then reload shell and install Node:
@@ -274,7 +274,7 @@ source ~/.zshrc
 nvm install 22
 ```
 
-**No .bashrc sourcing needed for zsh users** — the `.zshrc` loads nvm automatically.
+The `.zshrc` loads nvmv automatically on shell startup.
 
 ### 4.7 OpenCode (AI coding assistant)
 

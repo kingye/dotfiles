@@ -229,3 +229,4 @@ else
 fi
 # Atuin env (curl-installed atuin puts binary here)
 [[ -f "$HOME/.atuin/bin/env" ]] && . "$HOME/.atuin/bin/env"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
