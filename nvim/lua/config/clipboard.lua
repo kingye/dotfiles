@@ -12,13 +12,9 @@ function M.setup()
   if is_mac then
     -- macOS: Use pbcopy/pbpaste (should already work)
     vim.notify("Using macOS clipboard (pbcopy/pbpaste)", vim.log.levels.INFO)
-    
   elseif is_linux then
-    -- Linux cloud - always try OSC52 first
+    -- Linux: Always try OSC52 for SSH clipboard
     M.setup_osc52()
-  else
-    -- Other cases
-    vim.notify("Using system clipboard", vim.log.levels.INFO)
   end
 end
 
@@ -51,14 +47,27 @@ function M.setup_osc52()
       paste = {['+'] = paste, ['*'] = paste},
     }
     
-    vim.notify("OSC52 clipboard enabled for SSH", vim.log.levels.INFO)
+    -- Auto-copy on yank to clipboard register
+    vim.api.nvim_create_autocmd('TextYankPost', {
+      callback = function()
+        if vim.v.event.operator == 'y' and vim.v.event.regname == '+' then
+          osc52.copy_register('+')
+        end
+      end,
+    })
+    
+    vim.notify("✓ OSC52 clipboard enabled for SSH", vim.log.levels.INFO)
   else
-    -- OSC52 not available - use Tmux buffer if in tmux
+    -- OSC52 not available - check why and provide helpful message
     local in_tmux = vim.fn.exists('$TMUX') == 1
+    
     if in_tmux then
+      vim.notify("⚠ OSC52 plugin not loaded. Using Tmux buffer only", vim.log.levels.WARN)
+      vim.notify("   Run ':Lazy sync' to install plugins", vim.log.levels.INFO)
       M.setup_tmux_fallback()
     else
-      vim.notify("No clipboard support available", vim.log.levels.WARN)
+      vim.notify("⚠ OSC52 plugin not loaded and not in tmux", vim.log.levels.WARN)
+      vim.notify("   Run ':Lazy sync' to install plugins", vim.log.levels.INFO)
     end
   end
 end
