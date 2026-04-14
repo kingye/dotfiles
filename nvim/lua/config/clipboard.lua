@@ -23,7 +23,9 @@ function M.setup_osc52()
   local ok, osc52 = pcall(require, 'osc52')
   
   if ok then
-    -- OSC52 available - configure it
+    print("OSC52: Configuring plugin...")
+    
+    -- Configure OSC52
     osc52.setup({
       max_length = 0,
       silent = false,
@@ -31,43 +33,59 @@ function M.setup_osc52()
       tmux_passthrough = true,
     })
     
-    -- Set OSC52 as clipboard provider
-    local function copy(lines, _)
-      return osc52.copy(table.concat(lines, '\n'))
-    end
+    -- Test OSC52 works
+    print("OSC52: Testing copy...")
+    local test_result = osc52.copy("OSC52 Test from setup")
+    print("OSC52: Copy result:", test_result)
     
-    local function paste()
-      -- OSC52 is copy-only, use terminal buffer for paste
-      return {vim.fn.split(vim.fn.getreg(''), '\n'), vim.fn.getregtype('')}
+    -- Setup OSC52 as clipboard provider (simpler approach)
+    local function copy_to_osc52(lines, _)
+      local text = table.concat(lines, '\n')
+      print("OSC52: Copying text (length: " .. #text .. ")")
+      return osc52.copy(text)
     end
     
     vim.g.clipboard = {
       name = 'osc52',
-      copy = {['+'] = copy, ['*'] = copy},
-      paste = {['+'] = paste, ['*'] = paste},
+      copy = {
+        ['+'] = copy_to_osc52,
+        ['*'] = copy_to_osc52,
+      },
+      paste = {
+        ['+'] = function()
+          -- OSC52 is copy-only, fall back to terminal paste
+          return {vim.fn.split(vim.fn.getreg(''), '\n'), vim.fn.getregtype('')}
+        end,
+        ['*'] = function()
+          return {vim.fn.split(vim.fn.getreg(''), '\n'), vim.fn.getregtype('')}
+        end,
+      },
     }
+    
+    -- Set clipboard option (this enables OSC52 integration)
+    vim.opt.clipboard = 'unnamedplus'
     
     -- Auto-copy on yank to clipboard register
     vim.api.nvim_create_autocmd('TextYankPost', {
-      callback = function()
-        if vim.v.event.operator == 'y' and vim.v.event.regname == '+' then
+      callback = function(event)
+        if event.operator == 'y' and event.regname == '+' then
+          print("OSC52: Auto-copying yanked text")
           osc52.copy_register('+')
         end
       end,
     })
     
-    vim.notify("✓ OSC52 clipboard enabled for SSH", vim.log.levels.INFO)
+    print("✓ OSC52 clipboard configured")
+    
   else
-    -- OSC52 not available - check why and provide helpful message
+    print("✗ OSC52 plugin not available")
     local in_tmux = vim.fn.exists('$TMUX') == 1
     
     if in_tmux then
-      vim.notify("⚠ OSC52 plugin not loaded. Using Tmux buffer only", vim.log.levels.WARN)
-      vim.notify("   Run ':Lazy sync' to install plugins", vim.log.levels.INFO)
+      print("⚠ Using Tmux buffer fallback")
       M.setup_tmux_fallback()
     else
-      vim.notify("⚠ OSC52 plugin not loaded and not in tmux", vim.log.levels.WARN)
-      vim.notify("   Run ':Lazy sync' to install plugins", vim.log.levels.INFO)
+      print("⚠ No clipboard support available")
     end
   end
 end
