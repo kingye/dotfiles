@@ -12,24 +12,13 @@
 # Cargo/Rust environment
 [[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
 
-# Limit cargo parallelism on Linux (low-Ram cloud servers)
+# Limit cargo parallelism on Linux (low-RAM cloud servers)
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   export CARGO_BUILD_JOBS=1
-  
-  # Set TERM for Linux to support OSC52 clipboard over SSH
-  # Only set if TERM is empty or not properly set
-  if [[ -z "$TERM" ]] || [[ "$TERM" == "dumb" ]]; then
-    export TERM=xterm-256color
-  fi
 fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-
-# Function to detect if we're in an SSH session
-function is_ssh() {
-  [[ -n "$SSH_CONNECTION" || -n "$SSH_CLIENT" || -n "$SSH_TTY" ]]
-}
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME

@@ -21,6 +21,3 @@ require('config.wezterm-nav')
 -- Load VSCode-specific keymaps
 require('config.vscode-keymaps')
 
--- Load clipboard keymaps
-require('config.clipboard').setup_keymaps()
-
