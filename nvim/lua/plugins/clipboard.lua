@@ -14,6 +14,11 @@ return {
     end,
     config = function()
       -- Minimal config, setup happens in clipboard.lua
+      -- This ensures the plugin is available when needed
+    end,
+    init = function()
+      -- Ensure the plugin loads early enough
+      vim.g.loaded_osc52 = 1
     end
   }
 }

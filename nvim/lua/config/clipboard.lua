@@ -36,18 +36,32 @@ function M.setup()
           tmux_passthrough = true,
         })
         
-        -- IMPORTANT: Set up OSC52 as the clipboard provider
+        -- IMPORTANT: Set up OSC52 as the clipboard provider (correct way)
+        local function copy(lines, _)
+          return osc52.copy(table.concat(lines, '\n'))
+        end
+        
+        -- OSC52 can only copy, not paste. Use system paste or fallback
+        local function paste()
+          -- Try to use system paste if available, otherwise empty
+          -- Note: OSC52 is copy-only, so paste will be from terminal
+          return {vim.fn.split(vim.fn.getreg(''), '\n'), vim.fn.getregtype('')}
+        end
+        
         vim.g.clipboard = {
-          name = 'OSC52',
-          copy = {
-            ['+'] = osc52.copy('+'),
-            ['*'] = osc52.copy('*'),
-          },
-          paste = {
-            ['+'] = osc52.paste('+'),
-            ['*'] = osc52.paste('*'),
-          },
+          name = 'osc52',
+          copy = {['+'] = copy, ['*'] = copy},
+          paste = {['+'] = paste, ['*'] = paste},
         }
+        
+        -- Auto-copy on yank to clipboard register
+        vim.api.nvim_create_autocmd('TextYankPost', {
+          callback = function()
+            if vim.v.event.operator == 'y' and vim.v.event.regname == '+' then
+              osc52.copy_register('+')
+            end
+          end,
+        })
         
         vim.notify("Linux cloud with Tmux: Using OSC52 clipboard over SSH", vim.log.levels.INFO)
       else
