@@ -26,9 +26,22 @@ function M.setup()
     -- Linux cloud with Tmux
     if has_osc52_support then
       -- Try to use OSC52 if terminal supports it
-      vim.notify("Linux cloud with Tmux: Using OSC52 clipboard over SSH", vim.log.levels.INFO)
+      local ok, osc52 = pcall(require, 'osc52')
+      if ok then
+        osc52.setup({
+          max_length = 0,
+          silent = false,
+          trim = false,
+          tmux_passthrough = true,
+        })
+        vim.notify("Linux cloud with Tmux: Using OSC52 clipboard over SSH", vim.log.levels.INFO)
+      else
+        vim.notify("OSC52 plugin not loaded. Using Tmux buffer fallback", vim.log.levels.WARN)
+        M.setup_tmux_fallback()
+      end
     else
       -- No OSC52 support, use Tmux buffer fallback
+      vim.notify("No OSC52 support detected. Using Tmux buffer only", vim.log.levels.WARN)
       M.setup_tmux_fallback()
     end
   else
@@ -82,6 +95,20 @@ function M.setup_keymaps()
       vim.cmd('r !tmux save-buffer -')
     end, { desc = "Paste from Tmux buffer" })
   end
+  
+  -- Test OSC52 clipboard
+  map('n', '<leader>yc', function()
+    local ok, osc52 = pcall(require, 'osc52')
+    if ok then
+      -- Test OSC52 copy
+      local text = "OSC52 Test: " .. os.date("%H:%M:%S")
+      osc52.copy(text)
+      vim.notify("Test copied via OSC52: " .. text, vim.log.levels.INFO)
+      print("Try pasting locally (should work with WezTerm)")
+    else
+      vim.notify("OSC52 not available", vim.log.levels.ERROR)
+    end
+  end, { desc = "Test OSC52 clipboard" })
 end
 
 return M
