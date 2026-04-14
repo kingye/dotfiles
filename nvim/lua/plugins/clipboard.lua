@@ -3,12 +3,11 @@ return {
   {
     'ojroques/nvim-osc52',
     lazy = true,
-    -- Load on Linux systems (not macOS) when in Tmux
+    -- Load on Linux systems (not macOS)
     cond = function()
       local is_mac = vim.fn.has('mac') == 1
       local is_linux = vim.fn.has('unix') == 1 and not is_mac
-      local in_tmux = vim.fn.exists('$TMUX') == 1
-      return is_linux and in_tmux
+      return is_linux
     end,
     config = function()
       -- Configuration is handled in clipboard.lua

@@ -5,9 +5,6 @@ local M = {}
 function M.setup()
   local is_mac = vim.fn.has('mac') == 1
   local is_linux = vim.fn.has('unix') == 1 and not is_mac
-  local in_tmux = vim.fn.exists('$TMUX') == 1
-  local term = vim.env.TERM or ""
-  local wezterm = vim.env.WEZTERM_EXECUTABLE ~= nil
   
   -- Always set clipboard to unnamedplus as base
   vim.opt.clipboard = 'unnamedplus'
@@ -16,11 +13,11 @@ function M.setup()
     -- macOS: Use pbcopy/pbpaste (should already work)
     vim.notify("Using macOS clipboard (pbcopy/pbpaste)", vim.log.levels.INFO)
     
-  elseif is_linux and in_tmux then
-    -- Linux cloud with Tmux - try to use OSC52
+  elseif is_linux then
+    -- Linux cloud - try to use OSC52 (works with or without Tmux)
     M.try_setup_osc52()
   else
-    -- Other cases (Linux without Tmux, etc.)
+    -- Other cases
     vim.notify("Using system clipboard", vim.log.levels.INFO)
   end
 end
