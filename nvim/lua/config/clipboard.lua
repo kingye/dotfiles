@@ -28,12 +28,27 @@ function M.setup()
       -- Try to use OSC52 if terminal supports it
       local ok, osc52 = pcall(require, 'osc52')
       if ok then
+        -- Configure OSC52 as the clipboard provider
         osc52.setup({
           max_length = 0,
           silent = false,
           trim = false,
           tmux_passthrough = true,
         })
+        
+        -- IMPORTANT: Set up OSC52 as the clipboard provider
+        vim.g.clipboard = {
+          name = 'OSC52',
+          copy = {
+            ['+'] = osc52.copy('+'),
+            ['*'] = osc52.copy('*'),
+          },
+          paste = {
+            ['+'] = osc52.paste('+'),
+            ['*'] = osc52.paste('*'),
+          },
+        }
+        
         vim.notify("Linux cloud with Tmux: Using OSC52 clipboard over SSH", vim.log.levels.INFO)
       else
         vim.notify("OSC52 plugin not loaded. Using Tmux buffer fallback", vim.log.levels.WARN)
