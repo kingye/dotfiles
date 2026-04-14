@@ -19,13 +19,20 @@ function M.setup()
 end
 
 function M.setup_osc52()
+  -- Fix TERM environment if it's not set
+  if not os.getenv('TERM') then
+    -- Default to xterm-256color which supports OSC52
+    vim.env.TERM = 'xterm-256color'
+    print("OSC52: Set TERM to xterm-256color")
+  end
+  
   -- Try to load OSC52 plugin
   local ok, osc52 = pcall(require, 'osc52')
   
   if ok then
     print("OSC52: Configuring plugin...")
     
-    -- Configure OSC52
+    -- Configure OSC52 with safe defaults
     osc52.setup({
       max_length = 0,
       silent = false,
@@ -33,17 +40,46 @@ function M.setup_osc52()
       tmux_passthrough = true,
     })
     
-    -- Test OSC52 works
-    print("OSC52: Testing copy...")
-    local test_result = osc52.copy("OSC52 Test from setup")
-    print("OSC52: Copy result:", test_result)
-    
-    -- Setup OSC52 as clipboard provider (simpler approach)
+    -- Setup OSC52 as clipboard provider
     local function copy_to_osc52(lines, _)
       local text = table.concat(lines, '\n')
-      print("OSC52: Copying text (length: " .. #text .. ")")
       return osc52.copy(text)
     end
+    
+    vim.g.clipboard = {
+      name = 'osc52',
+      copy = {
+        ['+'] = copy_to_osc52,
+        ['*'] = copy_to_osc52,
+      },
+      paste = {
+        ['+'] = function()
+          -- OSC52 is copy-only, use terminal paste
+          return {vim.fn.split(vim.fn.getreg(''), '\n'), vim.fn.getregtype('')}
+        end,
+        ['*'] = function()
+          return {vim.fn.split(vim.fn.getreg(''), '\n'), vim.fn.getregtype('')}
+        end,
+      },
+    }
+    
+    -- Enable clipboard integration
+    vim.opt.clipboard = 'unnamedplus'
+    
+    print("✓ OSC52 clipboard configured")
+    
+  else
+    print("✗ OSC52 plugin not available")
+    local in_tmux = vim.fn.exists('$TMUX') == 1
+    
+    if in_tmux then
+      print("⚠ Using Tmux buffer fallback")
+      M.setup_tmux_fallback()
+    else
+      print("⚠ No clipboard support available")
+    end
+  end
+end
     
     vim.g.clipboard = {
       name = 'osc52',
