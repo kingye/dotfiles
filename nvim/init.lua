@@ -1,6 +1,9 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
 
+-- setup intelligent clipboard configuration
+require("config.clipboard").setup()
+
 -- setup treesitter parser for filetype cds
 -- followed cmmand needs to be executed
 -- :TSInstall cds 
