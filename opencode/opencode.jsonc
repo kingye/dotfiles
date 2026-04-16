@@ -22,7 +22,24 @@
       },
       "models": {
         "glm-4-7": {
-          "name": "glm-4-7"
+          "name": "glm-4-7",
+          "limit": {
+            "context": 200000,
+            "output": 4096
+          },
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinking": {
+              "type": "enabled"
+            }
+          }
         },
         "doubao-seed-2.0-code": {
           "name": "doubao-seed-2.0-code"
@@ -37,7 +54,24 @@
           "name": "doubao-seed-code"
         },
         "minimax-m2.5": {
-          "name": "minimax-m2.5"
+          "name": "minimax-m2.5",
+          "limit": {
+            "context": 200000,
+            "output": 4096
+          },
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinking": {
+              "type": "enabled"
+            }
+          }
         },
         "deepseek-v3.2": {
           "name": "deepseek-v3.2",
@@ -67,6 +101,9 @@
           "options": {
             "interleaved": {
               "field": "reasoning_content"
+            },
+            "thinking": {
+              "type": "enabled"
             }
           }
         }
