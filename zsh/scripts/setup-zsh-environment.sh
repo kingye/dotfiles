@@ -33,6 +33,16 @@ log_error() {
     echo -e "${RED}[ERROR]${NC} $1"
 }
 
+# brew包装函数：在Apple Silicon上确保使用ARM架构
+brew_install() {
+    if [[ "$OSTYPE" == "darwin"* ]] && [[ -d "/opt/homebrew" ]]; then
+        # /opt/homebrew 是ARM前缀，需要用arch -arm64运行
+        arch -arm64 brew install "$@"
+    else
+        brew install "$@"
+    fi
+}
+
 # 安装sheldon
 install_sheldon() {
     log_info "Installing sheldon plugin manager..."
@@ -45,7 +55,7 @@ install_sheldon() {
     
     # macOS with Homebrew
     if [[ "$OSTYPE" == "darwin"* ]] && command -v brew &>/dev/null; then
-        brew install sheldon
+        brew_install sheldon
         
     # Linux with Cargo
     elif command -v cargo &>/dev/null; then
@@ -97,7 +107,7 @@ install_starship() {
     
     # macOS with Homebrew
     if [[ "$OSTYPE" == "darwin"* ]] && command -v brew &>/dev/null; then
-        brew install starship
+        brew_install starship
         
     # Linux with official installer
     elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
@@ -135,7 +145,7 @@ install_eza() {
     
     # macOS with Homebrew
     if [[ "$OSTYPE" == "darwin"* ]] && command -v brew &>/dev/null; then
-        brew install eza
+        brew_install eza
     elif command -v cargo &>/dev/null; then
         cargo install eza
     else
@@ -166,7 +176,7 @@ install_zoxide() {
     
     # macOS with Homebrew
     if [[ "$OSTYPE" == "darwin"* ]] && command -v brew &>/dev/null; then
-        brew install zoxide
+        brew_install zoxide
     elif command -v cargo &>/dev/null; then
         cargo install zoxide
     else
@@ -181,6 +191,89 @@ install_zoxide() {
         return 0
     else
         log_warning "zoxide installation failed or not fully functional"
+        return 1
+    fi
+}
+
+# 安装fnm (Fast Node Manager)
+install_fnm() {
+    log_info "Installing fnm (fast Node.js version manager)..."
+    
+    # 检查是否已安装
+    if command -v fnm &>/dev/null; then
+        log_success "fnm already installed: $(fnm --version 2>/dev/null | head -1)"
+        return 0
+    fi
+    
+    # macOS with Homebrew
+    if [[ "$OSTYPE" == "darwin"* ]] && command -v brew &>/dev/null; then
+        brew_install fnm
+        
+    # Linux: 下载预编译二进制（最快，无依赖）
+    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        log_info "Installing fnm via prebuilt binary..."
+        
+        local arch
+        case "$(uname -m)" in
+            x86_64)  arch="linux" ;;
+            aarch64) arch="linux-arm64" ;;
+            arm64)   arch="linux-arm64" ;;
+            *)
+                log_warning "Unsupported architecture: $(uname -m)"
+                log_info "Falling back to cargo install..."
+                if command -v cargo &>/dev/null; then
+                    cargo install fnm
+                else
+                    log_error "cargo not available either"
+                    return 1
+                fi
+                ;;
+        esac
+        
+        if [[ -n "$arch" ]]; then
+            local install_dir="$HOME/.local/bin"
+            mkdir -p "$install_dir"
+            
+            local tmp_dir
+            tmp_dir=$(mktemp -d)
+            
+            curl -fsSL "https://github.com/Schniz/fnm/releases/latest/download/fnm-${arch}.zip" -o "$tmp_dir/fnm.zip"
+            unzip -o "$tmp_dir/fnm.zip" -d "$tmp_dir"
+            chmod +x "$tmp_dir/fnm"
+            mv "$tmp_dir/fnm" "$install_dir/fnm"
+            rm -rf "$tmp_dir"
+            
+            # 确保 ~/.local/bin 在 PATH 中
+            export PATH="$install_dir:$PATH"
+        fi
+        
+    # 其他平台: cargo
+    elif command -v cargo &>/dev/null; then
+        cargo install fnm
+        
+    else
+        log_warning "Cannot install fnm automatically. Please install manually:"
+        log_info "  macOS: brew install fnm"
+        log_info "  Linux: curl -fsSL https://fnm.vercel.app/install | bash"
+        log_info "  Or: cargo install fnm"
+        return 1
+    fi
+    
+    if command -v fnm &>/dev/null; then
+        log_success "fnm installed: $(fnm --version 2>/dev/null | head -1)"
+        
+        # 初始化fnm环境
+        eval "$(fnm env)"
+        
+        # 安装LTS版本的Node
+        log_info "Installing Node.js LTS..."
+        fnm install --lts
+        fnm default lts-latest
+        
+        return 0
+    else
+        log_error "fnm installation failed"
+        log_warning "You may need to add ~/.local/bin to PATH"
         return 1
     fi
 }
@@ -300,6 +393,19 @@ verify_installation() {
         log_warning "⚠ zoxide not installed (smart cd functionality unavailable)"
     fi
     
+    # 检查fnm
+    if command -v fnm &>/dev/null; then
+        log_success "✓ fnm: $(fnm --version 2>/dev/null | head -1)"
+        # 检查Node版本
+        if command -v node &>/dev/null; then
+            log_success "✓ Node: $(node --version 2>/dev/null)"
+        else
+            log_warning "⚠ No Node version installed yet (run: fnm install --lts)"
+        fi
+    else
+        log_warning "⚠ fnm not installed (Node.js version management unavailable)"
+    fi
+    
     # 检查符号链接
     STARSHP_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/starship.toml"
     if [[ -L "$STARSHP_CONFIG" ]]; then
@@ -353,6 +459,13 @@ main() {
     
     echo ""
     
+    # 安装fnm (Node.js版本管理)
+    if ! install_fnm; then
+        log_warning "fnm installation failed, continuing without it..."
+    fi
+    
+    echo ""
+    
     # 设置符号链接
     setup_config_symlinks
     
@@ -390,6 +503,8 @@ main() {
     echo "   starship --version"
     echo "   eza --version"
     echo "   zoxide --version"
+    echo "   fnm --version"
+    echo "   node --version"
     echo ""
     echo "3. Manage plugins with sheldon:"
     echo "   Edit: $DOTFILES_ROOT/zsh/sheldon/plugins.toml"
@@ -404,8 +519,15 @@ main() {
     echo "   z <dir>    # zoxide smart directory navigation"
     echo "   zi <dir>   # zoxide interactive search"
     echo ""
-    echo "6. To remove oh-my-zsh completely (optional):"
+    echo "6. Manage Node.js versions with fnm:"
+    echo "   fnm ls              # List installed versions"
+    echo "   fnm install --lts   # Install latest LTS"
+    echo "   fnm use <version>   # Switch version"
+    echo "   fnm default <ver>   # Set default version"
+    echo ""
+    echo "7. Clean up old tools (optional):"
     echo "   rm -rf ~/.oh-my-zsh"
+    echo "   rm -rf ~/.nvm"
     echo ""
     echo "=============================================="
 }

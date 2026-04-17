@@ -1,13 +1,4 @@
 # ~/.zshrc
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
-
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Cargo/Rust environment
 [[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
@@ -156,33 +147,14 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   x11-clip-wrap-widgets paste vi-put-after vi-put-before put-replace-selection
 fi
 
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+# fnm配置 (fast Node.js version manager)
+if command -v fnm &>/dev/null; then
+    eval "$(fnm env --use-on-cd --shell=zsh --corepack-enabled)"
+else
+    echo "⚠️  fnm not installed. Run setup script or install manually."
+    echo "   Install: ./zsh/scripts/setup-zsh-environment.sh"
+    echo "   Or: brew install fnm"
+fi
 
 # Source local secrets (API keys, tokens — not tracked in git)
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
@@ -203,8 +175,6 @@ if command -v atuin &>/dev/null; then
 fi
 
 alias g='git'
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # setup fzf shell integration
 if command -v fzf &>/dev/null; then
@@ -236,4 +206,3 @@ else
 fi
 # Atuin env (curl-installed atuin puts binary here)
 [[ -f "$HOME/.atuin/bin/env" ]] && . "$HOME/.atuin/bin/env"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
