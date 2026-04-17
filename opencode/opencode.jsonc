@@ -15,6 +15,182 @@
         "apiKey": "{env:ANTHROPIC_API_KEY}"
       }
     },
+    "tencent": {
+      "options": {
+        "baseURL": "https://api.lkeap.cloud.tencent.com/plan/v3",
+        "apiKey": "{env:TENCENT_TOKEN_PLAN_KEY}"
+      },
+      "models": {
+        "tc-code-latest": {
+          "name": "Auto",
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinking": {
+              "type": "enabled",
+              "budgetTokens": 8192
+            }
+          },
+          "limit": {
+            "context": 196608,
+            "output": 32768
+          }
+        },
+        "hunyuan-2.0-instruct": {
+          "name": "Tencent HY 2.0 Instruct",
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinking": {
+              "type": "enabled",
+              "budgetTokens": 8192
+            }
+          },
+          "limit": {
+            "context": 128000,
+            "output": 16000
+          }
+        },
+        "hunyuan-2.0-thinking": {
+          "name": "Tencent HY 2.0 Think",
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinking": {
+              "type": "enabled",
+              "budgetTokens": 8192
+            }
+          },
+          "limit": {
+            "context": 128000,
+            "output": 32000
+          }
+        },
+        "hunyuan-t1": {
+          "name": "Hunyuan-T1",
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinking": {
+              "type": "enabled",
+              "budgetTokens": 8192
+            }
+          },
+          "limit": {
+            "context": 64000,
+            "output": 32000
+          }
+        },
+        "hunyuan-turbos": {
+          "name": "hunyuan-turbos",
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinking": {
+              "type": "enabled",
+              "budgetTokens": 8192
+            }
+          },
+          "limit": {
+            "context": 32000,
+            "output": 16000
+          }
+        },
+        "minimax-m2.5": {
+          "name": "MiniMax-M2.5",
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinking": {
+              "type": "enabled",
+              "budgetTokens": 8192
+            }
+          },
+          "limit": {
+            "context": 196608,
+            "output": 32768
+          }
+        },
+        "kimi-k2.5": {
+          "name": "Kimi-K2.5",
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinking": {
+              "type": "enabled",
+              "budgetTokens": 8192
+            }
+          },
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          }
+        },
+        "glm-5": {
+          "name": "GLM-5",
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinking": {
+              "type": "enabled",
+              "budgetTokens": 8192
+            }
+          },
+          "limit": {
+            "context": 202752,
+            "output": 16384
+          }
+        }
+      }
+    },
     "ark": {
       "options": {
         "baseURL": "https://ark.cn-beijing.volces.com/api/coding/v3",
