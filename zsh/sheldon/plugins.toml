@@ -1,0 +1,26 @@
+shell = "zsh"
+
+# 核心插件（立即加载）
+[plugins.fast-syntax-highlighting]
+github = "zdharma-continuum/fast-syntax-highlighting"
+
+[plugins.zsh-autocomplete]
+github = "marlonrichert/zsh-autocomplete"
+use = ["zsh-autocomplete.plugin.zsh"]
+
+# starship现在在.zshrc中直接处理
+
+# Git功能不再使用oh-my-zsh插件
+# 使用自定义别名（在.zshrc中定义）
+
+# 延迟加载配置（可选，如果启动时间仍然太慢）
+# [plugins.zsh-defer]
+# github = "romkatv/zsh-defer"
+
+# 可以启用延迟加载来改善启动时间
+# [templates]
+# defer = """
+# {{#each plugins}}
+# {{#if @first}}{{else}} {{/if}}zsh-defer source "{{this}}"
+# {{/each}}
+# """
