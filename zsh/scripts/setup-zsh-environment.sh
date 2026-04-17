@@ -192,7 +192,6 @@ setup_config_symlinks() {
     # 确保XDG配置目录存在（sheldon需要）
     CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
     mkdir -p "$CONFIG_DIR"
-    mkdir -p "$CONFIG_DIR/sheldon"
     
     # 获取dotfiles根目录
     # 脚本位于dotfiles/zsh/scripts/，所以向上两级到dotfiles根目录
@@ -219,7 +218,22 @@ setup_config_symlinks() {
         fi
     fi
     
-    # starship配置
+    # 1. 创建sheldon配置目录和符号链接
+    SHELDON_CONFIG_DIR="$CONFIG_DIR/sheldon"
+    DOTFILES_SHELDON_PLUGINS="$DOTFILES_ROOT/zsh/sheldon/plugins.toml"
+    
+    mkdir -p "$SHELDON_CONFIG_DIR"
+    
+    if [[ ! -L "$SHELDON_CONFIG_DIR/plugins.toml" ]] || \
+       [[ "$(readlink "$SHELDON_CONFIG_DIR/plugins.toml")" != "$DOTFILES_SHELDON_PLUGINS" ]]; then
+        log_info "Creating sheldon config symlink..."
+        ln -sf "$DOTFILES_SHELDON_PLUGINS" "$SHELDON_CONFIG_DIR/plugins.toml"
+        log_success "Sheldon symlink created: $SHELDON_CONFIG_DIR/plugins.toml -> $DOTFILES_SHELDON_PLUGINS"
+    else
+        log_success "Sheldon symlink already exists and is correct"
+    fi
+    
+    # 2. starship配置
     STARSHP_CONFIG="$CONFIG_DIR/starship.toml"
     DOTFILES_STARSHIP="$DOTFILES_ROOT/zsh/starship/starship.toml"
     
@@ -237,7 +251,17 @@ setup_config_symlinks() {
     log_info "Important directories:"
     log_info "  Dotfiles root: $DOTFILES_ROOT"
     log_info "  Config dir: $CONFIG_DIR"
-    log_info "  Sheldon dir: $CONFIG_DIR/sheldon"
+    log_info "  Sheldon dir: $SHELDON_CONFIG_DIR"
+    
+    # 显示已创建的符号链接
+    echo ""
+    log_info "Created symlinks:"
+    if [[ -L "$SHELDON_CONFIG_DIR/plugins.toml" ]]; then
+        log_info "  ✓ sheldon/plugins.toml -> $(readlink "$SHELDON_CONFIG_DIR/plugins.toml")"
+    fi
+    if [[ -L "$STARSHP_CONFIG" ]]; then
+        log_info "  ✓ starship.toml -> $(readlink "$STARSHP_CONFIG")"
+    fi
 }
 
 # 验证安装

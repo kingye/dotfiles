@@ -36,10 +36,9 @@ if [[ -z "$DOTFILES_DIR" ]]; then
     fi
 fi
 
-# 确保XDG配置目录存在（sheldon需要）
+# 确保XDG配置目录存在（sheldon需要，但符号链接由安装脚本创建）
 CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
 mkdir -p "$CONFIG_DIR"
-mkdir -p "$CONFIG_DIR/sheldon"
 
 # 加载starship配置
 if [[ -n "$DOTFILES_DIR" ]] && [[ -f "$DOTFILES_DIR/zsh/scripts/setup-starship.zsh" ]]; then
@@ -56,11 +55,38 @@ fi
 
 # Sheldon插件管理
 if command -v sheldon &>/dev/null; then
-    eval "$(sheldon source)"
+    # 检查sheldon配置是否存在
+    SHELDON_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/sheldon/plugins.toml"
+    
+    if [[ ! -f "$SHELDON_CONFIG" ]] && [[ ! -L "$SHELDON_CONFIG" ]]; then
+        echo "⚠️  Sheldon config not found at: $SHELDON_CONFIG"
+        echo "   Run setup script: ./zsh/scripts/setup-zsh-environment.sh"
+        echo "   Or create symlink manually:"
+        echo "   mkdir -p ~/.config/sheldon"
+        echo "   ln -sf \"\$DOTFILES_DIR/zsh/sheldon/plugins.toml\" \"$SHELDON_CONFIG\""
+        
+        # 尝试自动创建（如果知道DOTFILES_DIR）
+        if [[ -n "$DOTFILES_DIR" ]] && [[ -f "$DOTFILES_DIR/zsh/sheldon/plugins.toml" ]]; then
+            echo "   Attempting to create symlink automatically..."
+            mkdir -p "$(dirname "$SHELDON_CONFIG")"
+            ln -sf "$DOTFILES_DIR/zsh/sheldon/plugins.toml" "$SHELDON_CONFIG" 2>/dev/null && \
+                echo "   ✓ Symlink created successfully"
+        fi
+    fi
+    
+    # 尝试加载sheldon
+    if eval "$(sheldon source 2>/dev/null)"; then
+        # 成功加载
+        :
+    else
+        echo "⚠️  Sheldon failed to load plugins"
+        echo "   Check config: $SHELDON_CONFIG"
+        echo "   Run: sheldon lock --update"
+    fi
 else
     echo "Sheldon not installed. Run setup script or install manually."
     
-    # 如果没有sheldon，手动加载其他插件
+    # 如果没有sheldon，手动加载其他插件（如果存在）
     [[ -f ~/.local/share/sheldon/repos/github.com/zdharma-continuum/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]] && \
         source ~/.local/share/sheldon/repos/github.com/zdharma-continuum/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
     
