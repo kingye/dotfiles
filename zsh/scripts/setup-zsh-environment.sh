@@ -189,14 +189,35 @@ install_zoxide() {
 setup_config_symlinks() {
     log_info "Setting up configuration symlinks..."
     
-    # 确保XDG配置目录存在
+    # 确保XDG配置目录存在（sheldon需要）
     CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
     mkdir -p "$CONFIG_DIR"
+    mkdir -p "$CONFIG_DIR/sheldon"
     
     # 获取dotfiles根目录
     # 脚本位于dotfiles/zsh/scripts/，所以向上两级到dotfiles根目录
     SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
     DOTFILES_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+    
+    # 验证这看起来像dotfiles目录
+    if [[ ! -d "$DOTFILES_ROOT/zsh" ]] || [[ ! -f "$DOTFILES_ROOT/zsh/.zshrc" ]]; then
+        log_warning "Dotfiles structure not found at: $DOTFILES_ROOT"
+        log_warning "Trying alternative detection..."
+        
+        # 尝试从HOME目录寻找常见的dotfiles位置
+        for possible_dir in "$HOME/projects/dotfiles" "$HOME/dotfiles" "$HOME/.dotfiles" "$HOME/config/dotfiles"; do
+            if [[ -d "$possible_dir/zsh" ]] && [[ -f "$possible_dir/zsh/.zshrc" ]]; then
+                DOTFILES_ROOT="$possible_dir"
+                log_success "Found dotfiles at: $DOTFILES_ROOT"
+                break
+            fi
+        done
+        
+        if [[ ! -d "$DOTFILES_ROOT/zsh" ]]; then
+            log_error "Cannot find dotfiles directory. Please run from dotfiles directory."
+            return 1
+        fi
+    fi
     
     # starship配置
     STARSHP_CONFIG="$CONFIG_DIR/starship.toml"
@@ -210,6 +231,13 @@ setup_config_symlinks() {
     else
         log_success "Starship symlink already exists and is correct"
     fi
+    
+    # 显示重要的目录信息
+    echo ""
+    log_info "Important directories:"
+    log_info "  Dotfiles root: $DOTFILES_ROOT"
+    log_info "  Config dir: $CONFIG_DIR"
+    log_info "  Sheldon dir: $CONFIG_DIR/sheldon"
 }
 
 # 验证安装
@@ -318,6 +346,12 @@ main() {
     # 获取dotfiles根目录用于显示路径
     SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
     DOTFILES_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+    
+    # 验证路径（在显示前）
+    if [[ ! -d "$DOTFILES_ROOT/zsh" ]]; then
+        log_warning "Cannot determine dotfiles root for next steps"
+        DOTFILES_ROOT="[unknown - please find manually]"
+    fi
     
     # 显示下一步
     echo "=============================================="

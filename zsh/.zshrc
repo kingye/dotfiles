@@ -18,18 +18,39 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 fi
 
 # Starship提示符配置（必须在sheldon之前）
-# 设置dotfiles目录（根据你的实际路径）
-export DOTFILES_DIR="$HOME/Documents/work/projects/kingye/dotfiles"
+# 自动检测dotfiles目录（从.zshrc文件位置推断）
+if [[ -z "$DOTFILES_DIR" ]]; then
+    # 在zsh中，${(%):-%x} 获取当前源文件的路径
+    ZSHRC_PATH="${(%):-%x}"
+    
+    # .zshrc位于dotfiles/zsh/.zshrc
+    # 所以向上两级获取dotfiles根目录
+    if [[ -n "$ZSHRC_PATH" ]] && [[ -f "$ZSHRC_PATH" ]]; then
+        ZSH_DIR="$(cd "$(dirname "$ZSHRC_PATH")" && pwd)"
+        DOTFILES_ROOT="$(cd "$ZSH_DIR/.." && pwd)"
+        
+        # 验证这看起来像dotfiles目录
+        if [[ -d "$DOTFILES_ROOT/zsh" ]] && [[ -f "$DOTFILES_ROOT/zsh/.zshrc" ]]; then
+            export DOTFILES_DIR="$DOTFILES_ROOT"
+        fi
+    fi
+fi
+
+# 确保XDG配置目录存在（sheldon需要）
+CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
+mkdir -p "$CONFIG_DIR"
+mkdir -p "$CONFIG_DIR/sheldon"
 
 # 加载starship配置
-if [[ -f "$DOTFILES_DIR/zsh/scripts/setup-starship.zsh" ]]; then
+if [[ -n "$DOTFILES_DIR" ]] && [[ -f "$DOTFILES_DIR/zsh/scripts/setup-starship.zsh" ]]; then
     source "$DOTFILES_DIR/zsh/scripts/setup-starship.zsh"
 else
-    echo "Warning: Could not find starship setup script at $DOTFILES_DIR/zsh/scripts/setup-starship.zsh"
     # 回退到传统初始化
     export STARSHIP_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/starship.toml"
-    [[ ! -f "$STARSHIP_CONFIG" ]] && \
-        ln -sf "$HOME/dotfiles/zsh/starship/starship.toml" "$STARSHIP_CONFIG" 2>/dev/null || true
+    if [[ -n "$DOTFILES_DIR" ]]; then
+        [[ ! -f "$STARSHIP_CONFIG" ]] && \
+            ln -sf "$DOTFILES_DIR/zsh/starship/starship.toml" "$STARSHIP_CONFIG" 2>/dev/null || true
+    fi
     command -v starship &>/dev/null && eval "$(starship init zsh)"
 fi
 
