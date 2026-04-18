@@ -188,6 +188,27 @@
             "context": 202752,
             "output": 16384
           }
+        },
+        "glm-5.1": {
+          "name": "GLM-5.1",
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinking": {
+              "type": "enabled",
+              "budgetTokens": 8192
+            }
+          },
+          "limit": {
+            "context": 202752,
+            "output": 16384
+          }
         }
       }
     },
