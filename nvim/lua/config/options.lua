@@ -7,20 +7,20 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 -- OSC 52 clipboard for Linux SSH/tmux (nvim 0.10+ built-in)
--- On macOS, LazyVim's default unnamedplus + pbcopy just works.
--- On Linux without a display server, use OSC 52 to sync yank with local terminal.
+-- LazyVim sets clipboard="" when SSH_CONNECTION is detected, and defers
+-- clipboard restore to VeryLazy. But tmux inhibits OSC 52 auto-detection.
+-- Fix: force OSC 52 provider, then set unnamedplus after VeryLazy fires.
 if vim.fn.has("mac") == 0 and vim.fn.has("unix") == 1 then
-  vim.g.clipboard = {
-    name = "OSC 52",
-    copy = {
-      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-    },
-    paste = {
-      ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
-      ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
-    },
-  }
+  vim.g.clipboard = "osc52"
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "VeryLazy",
+    once = true,
+    callback = function()
+      vim.schedule(function()
+        vim.opt.clipboard = "unnamedplus"
+      end)
+    end,
+  })
 end
 
 -- VSCode-specific configuration
