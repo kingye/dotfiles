@@ -4,9 +4,8 @@ shell = "zsh"
 [plugins.fast-syntax-highlighting]
 github = "zdharma-continuum/fast-syntax-highlighting"
 
-[plugins.zsh-autocomplete]
-github = "marlonrichert/zsh-autocomplete"
-use = ["zsh-autocomplete.plugin.zsh"]
+[plugins.zsh-autosuggestions]
+github = "zsh-users/zsh-autosuggestions"
 
 # starship现在在.zshrc中直接处理
 

@@ -44,6 +44,10 @@ else
     command -v starship &>/dev/null && eval "$(starship init zsh)"
 fi
 
+# vi mode must be set before loading plugins (zsh-autosuggestions etc.)
+bindkey -v
+KEYTIMEOUT=1
+
 # Sheldon插件管理
 if command -v sheldon &>/dev/null; then
     # 检查sheldon配置是否存在
@@ -81,12 +85,11 @@ else
     [[ -f ~/.local/share/sheldon/repos/github.com/zdharma-continuum/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]] && \
         source ~/.local/share/sheldon/repos/github.com/zdharma-continuum/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
     
-    [[ -f ~/.local/share/sheldon/repos/github.com/marlonrichert/zsh-autocomplete/zsh-autocomplete.plugin.zsh ]] && \
-        source ~/.local/share/sheldon/repos/github.com/marlonrichert/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+    [[ -f ~/.local/share/sheldon/repos/github.com/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && \
+        source ~/.local/share/sheldon/repos/github.com/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
-# switch on zsh line editor(zle) vi mode
-bindkey -v
+# switch on zsh line editor(zle) vi mode (bindkey -v already set above)
 function zle-line-init zle-keymap-select {
     RPS1="${${KEYMAP/vicmd/NORMAL}/(main|viins)/INSERT}"
     zle reset-prompt
@@ -112,8 +115,6 @@ _fix_cursor() {
 	echo -ne '\e[5 q'
 }
 precmd_functions+=(_fix_cursor)
-
-KEYTIMEOUT=1
 
 # Sync ZLE yank/paste with system clipboard (macOS only)
 if [[ "$OSTYPE" == "darwin"* ]]; then
