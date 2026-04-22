@@ -250,6 +250,48 @@
         "doubao-seed-code": {
           "name": "doubao-seed-code"
         },
+        "minimax-m2.7": {
+          "name": "minimax-m2.7",
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinking": {
+              "type": "enabled",
+              "budgetTokens": 8192
+            }
+          },
+          "limit": {
+            "context": 204800,
+            "output": 4096
+          }
+        },
+        "glm-5.1": {
+          "name": "glm-5.1",
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinking": {
+              "type": "enabled",
+              "budgetTokens": 8192
+            }
+          },
+          "limit": {
+            "context": 202752,
+            "output": 16384
+          }
+        },
         "minimax-m2.5": {
           "name": "minimax-m2.5",
           "limit": {
@@ -275,6 +317,33 @@
           "limit": {
             "context": 131072,
             "output": 32768
+          }
+        },
+        "kimi-k2.6": {
+          "name": "kimi-k2.6",
+          "reasoning": true,
+          "attachment": false,
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "video"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "interleaved": {
+              "field": "reasoning_content"
+            },
+            "thinking": {
+              "type": "enabled"
+            }
           }
         },
         "kimi-k2.5": {
